@@ -70,23 +70,6 @@
 		"AbilityTextureName"			"custom/drow_ranger_huntress_mark"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_huntress_mark_1"	"1"
-			"special_bonus_unique_drow_ranger_huntress_mark_2"	"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.3"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -101,75 +84,66 @@
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
 			"AbilityCooldown"														"25"
+			"AbilityCastRange"				"900"
+			"AbilityCastPoint"				"0.3"
+			"AbilityManaCost"				"50"
 			"duration"																
 			{
 				"value"																"-1"
 				"special_bonus_unique_drow_ranger_huntress_mark_1"					"=10"
 			}
-			"break_duration"														"2"
+			"break_duration"
+			{
+				"value"																"2"
+				"special_bonus_minor_perk"											"+1"
+			}
 			"proc_chance"
 			{
-				"value"																"25 30 35 40"
-				"special_bonus_unique_drow_ranger_huntress_mark_1"					"+35"
+				"value"																"25"
+				"special_bonus_minor_perk"											"+10"
 			}
 			"bonus_damage"
 			{
-				"value"																"60 80 160 240"
-				"hero_levelup"														"+8"
+				"value"																"55"
+				"hero_levelup"														"+25"
+				"special_bonus_minor_perk"											"+50%"
 				"CalculateAttackDamageTooltip"										"1"
 			}
 
-			// Ice KV's
-			//---------------------------------------------------------------------------------------------------------
-			"extra_chill"
+			"heal_radius"															{"affected_by_aoe_increase"	"1"}
+			"freeze_explosion_radius"												{"affected_by_aoe_increase"	"1"}
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_infallible"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"10"
+				"duration"															"=10"
+				"proc_chance"														"+35"
 			}
-			"extra_chill_tooltip"
+			"special_bonus_major_blackwood_whispers"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"20"
+				"heal_radius"														"900"
+				"heal_pct"															"100"
 			}
-			"extra_chill_duration"
+			"special_bonus_major_mark_of_the_glacier"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"1.5"
+				"extra_chill"														"=10"
+				"extra_chill_duration"												"=1.5"
+				"bonus_chill_damage"
+				{
+					"value"															"=3"
+					"hero_levelup"													"+2"
+				}
+				"freeze_explosion_radius"											"=450"
+				"freeze_explosion_damage"
+				{
+					"value"															"=40"
+					"hero_levelup"													"+35"
+				}
 			}
-			"bonus_chill_damage"
+			"special_bonus_major_mark_of_the_broken"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"5 10 15 20"
-				"CalculateSpellDamageTooltip"										"1"
-			}
-			"freeze_explosion_radius"
-			{
-				"special_bonus_facet_drow_ranger_ice"								"450"
-				"affected_by_aoe_increase"											"1"
-			}
-			"freeze_explosion_damage"
-			{
-				"special_bonus_facet_drow_ranger_ice"								"75 150 225 300"
-				"CalculateSpellDamageTooltip"										"1"
-			}
-			
-			// Archery KV's
-			//---------------------------------------------------------------------------------------------------------
-			"disarm"
-			{
-				"special_bonus_facet_drow_ranger_archery"							"1"
-			}
-					
-			// Talent KV's
-			//---------------------------------------------------------------------------------------------------------
-			"infallible"
-			{
-				"special_bonus_unique_drow_ranger_huntress_mark_1"					"1"
-			}
-			"heal_radius"
-			{
-				"special_bonus_unique_drow_ranger_huntress_mark_2"					"900"
-				"affected_by_aoe_increase"											"1"
-			}
-			"heal_pct"
-			{
-				"special_bonus_unique_drow_ranger_huntress_mark_2"					"100"
+				"disarms_on_break"													"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -191,82 +165,59 @@
 		"AbilitySound"					"Hero_DrowRanger.Silence"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_frozen_breath_1"						"1"
-			"special_bonus_unique_drow_ranger_frozen_breath_2"						"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.25"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 15 14 13 13 13 13"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 90 90 90 80 70 60"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastRange"				"900"
+			"AbilityCastPoint"				"0.25"
+			"AbilityCooldown"
+			{
+				"value"						"16"
+				"special_bonus_minor_perk"	"-3"
+			}
+			"AbilityManaCost"				"90"
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
 			"wave_speed"															"2000.0"
 			"wave_width"															"250"
-			"silence_duration"														"3 4 5 6"
+			"silence_duration"
+			{
+				"value"																"3"
+				"special_bonus_minor_perk"											"+3"
+			}
 			"knockback_distance_max"												"450"
-			"knockback_duration"													"0.6 0.7 0.8 0.9"
+			"knockback_duration"													"0.6"
 			"knockback_height"														"0"
-
-			// Ice KV's
-			//---------------------------------------------------------------------------------------------------------
-			"freeze_duration"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_glacierbreath"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"1.5"
+				"freeze_duration"													"1.5"
+				"damage_per_chill"
+				{
+					"value"															"1"
+					"hero_levelup"													"+0.5"
+				}
 			}
-			"damage_per_chill"
+			"special_bonus_major_boreal_winds"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"1 2 3 4"
+				"mspd"																"30"
+				"aspd"																"60"
+				"buff_duration"														"6"
 			}
-
-			// Archery KV's
-			//---------------------------------------------------------------------------------------------------------
-			"mspd"
+			"special_bonus_major_frost_in_your_eyes"
 			{
-				"special_bonus_facet_drow_ranger_archery"							"15 20 25 30"
+				"miss_chance"														"50"
+				"miss_duration"														"1.5"
 			}
-			"aspd"
+			"special_bonus_major_never_falter"
 			{
-				"special_bonus_facet_drow_ranger_archery"							"30 40 50 60"
-			}
-			"buff_duration"
-			{
-				"special_bonus_facet_drow_ranger_archery"							"6"
-			}
-			
-			// Talent KV's
-			//---------------------------------------------------------------------------------------------------------
-			"miss_chance"
-			{
-				"special_bonus_unique_drow_ranger_frozen_breath_1"					"50"
-			}
-			"miss_duration"
-			{
-				"special_bonus_unique_drow_ranger_frozen_breath_1"					"1.5"
-			}
-			"attacks"
-			{
-				"special_bonus_unique_drow_ranger_frozen_breath_2"					"1"
+				"attacks"															"1"
 			}
 		}
-		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
 	}
 	//=================================================================================================================
 	// Drow Ranger: Volley of Arrows
@@ -286,14 +237,6 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_volley_of_arrows_1"	"1"
-			"special_bonus_unique_drow_ranger_volley_of_arrows_2"	"1"
-		}
-
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -301,40 +244,35 @@
 			"particle"					"particles/frostivus_gameplay/drow_linear_arrow.vpcf"
 		}
 	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"26 22 18 14"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 70 90 110"
-
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastPoint"														"0.0"
+			"AbilityCooldown"
+			{
+				"value"																"26"
+				"special_bonus_minor_perk"											"-8"
+				"CalculateSpellDamageTooltip"										"0"
+			}
+			"AbilityManaCost"														"50"
+
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
 			"arrow_count"
 			{
 				"value"																"12"
-				"special_bonus_facet_drow_ranger_archery"							"=42"
-				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
+				"special_bonus_minor_perk"											"+25%"
 			}
 			"arrows_per_salvo"
 			{
 				"value"																"4"
-				"special_bonus_facet_drow_ranger_archery"							"=14"
-				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
 			}
 			"salvos"																"3"
 			"arrow_damage_pct"
 			{
-				"value"																"95 125 155 185"
+				"value"																"95"
+				"special_bonus_minor_perk"											"+45"
 				"CalculateSpellDamageTooltip"										"0"
 			}
 			"arrow_width"															"90"
@@ -344,26 +282,31 @@
 			{
 				"value"																"50"
 				"special_bonus_facet_drow_ranger_archery"							"=180"
-				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
 			}
 			"channel_duration"														"1.75"
 
-			// Ice KV's
-			//---------------------------------------------------------------------------------------------------------
-			"impact_damage"
+			"impact_radius"															{"affected_by_aoe_increase"	"1"}
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_icicle_shots"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"25 35 45 55"
+				"impact_damage"
+				{
+					"value"															"20"
+					"hero_levelup"													"+5"
+				}
+				"impact_radius"														"=325"
 			}
-			"impact_radius"
+			"special_bonus_major_suppression_fire"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"325"
+				"arrow_count"														"=42"
+				"arrows_per_salvo"													"=14"
+				"arrow_angle"														"=180"
 			}
-
-			// Talent KV's
-			//---------------------------------------------------------------------------------------------------------
-			"vector_cast_range"
+			"special_bonus_major_tactical_advantage"
 			{
-				"special_bonus_unique_drow_ranger_volley_of_arrows_2"				"900"
+				"vector_cast_range"													"=900"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_3"
@@ -383,15 +326,6 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"MaxLevel"						"3"
 		"AbilityTextureName"			"drow_ranger_marksmanship"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_rangers_expertise_1"	"1"
-			"special_bonus_unique_drow_ranger_rangers_expertise_2"	"1"
-		}
 		
 		"precache"
 		{
@@ -404,47 +338,43 @@
 		{
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
-			"huntress_mark_cd"														"10 15 20"
-			"frozen_breath_damage"													"20 40 60"
-			"volley_extra_salvos"													"1 2 3"
-			"volley_extra_arrows"													"4 8 12"
-
-			// Ice KV's
-			//---------------------------------------------------------------------------------------------------------
-			"chill_buff_radius"
+			"huntress_mark_cd"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"900"
+				"value"																"10"
+				"special_bonus_minor_perk"											"-6"
 			}
-			"minion_bonus"
+			"frozen_breath_damage"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"1"
+				"value"																"20"
+				"hero_levelup"														"+3"
+				"special_bonus_minor_perk"											"+100%"
 			}
-			"monster_bonus"
+			"volley_extra_salvos"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"5"
+				"value"																"1"
+				"special_bonus_minor_perk"											"+2"
 			}
-			"boss_bonus"
+			"volley_extra_arrows"
 			{
-				"special_bonus_facet_drow_ranger_ice"								"20"
+				"value"																"4"
+				"special_bonus_minor_perk"											"+8"
 			}
-
-			// Archery KV's
-			//---------------------------------------------------------------------------------------------------------
-			"split_count"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_splintershot"
 			{
-				"special_bonus_facet_drow_ranger_archery"							"2"
+				"split_count"														"2"
+				"split_range"														"375"
+				"split_damage_reduction"											"35"
 			}
-			"split_range"
+			"special_bonus_major_arctic_bowstring"
 			{
-				"special_bonus_facet_drow_ranger_archery"							"375"
-			}
-			"split_damage_reduction"
-			{
-				"special_bonus_facet_drow_ranger_archery"							"35"
-			}
-
-			// Talent KV's
-			//---------------------------------------------------------------------------------------------------------
+				"chill_buff_radius"													"900"
+				"minion_bonus"														"1"
+				"monster_bonus"														"5"
+				"boss_bonus"														"20"
+			}	
 		}
 	}
 
