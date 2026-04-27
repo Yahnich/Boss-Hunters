@@ -1297,14 +1297,14 @@
 			"lina_laguna"				"ULTIMATE"
 		}
 
-		"Ability10"						"special_bonus_unique_lina_dragon_1"
-		"Ability11"						"special_bonus_unique_lina_dragon_2"
-		"Ability12"						"special_bonus_unique_lina_lsa_1"
-		"Ability13"						"special_bonus_unique_lina_lsa_2"
-		"Ability14"						"special_bonus_unique_lina_fireball_1"
-		"Ability15"						"special_bonus_unique_lina_fireball_2"
-		"Ability16"						"special_bonus_unique_lina_laguna_1"
-		"Ability17"						"special_bonus_unique_lina_laguna_2"
+		"Ability10"						"special_bonus_placeholder_1"
+		"Ability11"						"special_bonus_placeholder_2"
+		"Ability12"						"special_bonus_placeholder_3"
+		"Ability13"						"special_bonus_placeholder_4"
+		"Ability14"						"special_bonus_placeholder_5"
+		"Ability15"						"special_bonus_placeholder_6"
+		"Ability16"						"special_bonus_placeholder_7"
+		"Ability17"						"special_bonus_placeholder_8"
 		
 		"Masteries"
 		{
@@ -1914,14 +1914,14 @@
 			"puck_singularity_core"		"ULTIMATE"
 		}
 		
-		"Ability10"						"special_bonus_unique_puck_faerie_orb_1"
-		"Ability11"						"special_bonus_unique_puck_faerie_orb_2"
-		"Ability12"						"special_bonus_unique_puck_mystical_rift_1"
-		"Ability13"						"special_bonus_unique_puck_mystical_rift_2"
-		"Ability14"						"special_bonus_unique_puck_dimension_shift_1"
-		"Ability15"						"special_bonus_unique_puck_dimension_shift_2"
-		"Ability16"						"special_bonus_unique_puck_singularity_core_1"
-		"Ability17"						"special_bonus_unique_puck_singularity_core_2"
+		"Ability10"						"special_bonus_placeholder_1"
+		"Ability11"						"special_bonus_placeholder_2"
+		"Ability12"						"special_bonus_placeholder_3"
+		"Ability13"						"special_bonus_placeholder_4"
+		"Ability14"						"special_bonus_placeholder_5"
+		"Ability15"						"special_bonus_placeholder_6"
+		"Ability16"						"special_bonus_placeholder_7"
+		"Ability17"						"special_bonus_placeholder_8"
 		
 		"Masteries"
 		{
@@ -1958,14 +1958,14 @@
 			"pudge_feast"							"ULTIMATE"
 		}
 	
-		"Ability10"						"special_bonus_unique_pudge_butchers_hook_1"
-		"Ability11"						"special_bonus_unique_pudge_butchers_hook_2"
-		"Ability12"						"special_bonus_unique_pudge_rotting_gas_1"
-		"Ability13"						"special_bonus_unique_pudge_rotting_gas_2"
-		"Ability14"						"special_bonus_placeholder_1"
-		"Ability15"						"special_bonus_placeholder_2"
-		"Ability16"						"special_bonus_unique_pudge_feast_1"
-		"Ability17"						"special_bonus_unique_pudge_feast_2"
+		"Ability10"						"special_bonus_placeholder_1"
+		"Ability11"						"special_bonus_placeholder_2"
+		"Ability12"						"special_bonus_placeholder_3"
+		"Ability13"						"special_bonus_placeholder_4"
+		"Ability14"						"special_bonus_placeholder_5"
+		"Ability15"						"special_bonus_placeholder_6"
+		"Ability16"						"special_bonus_placeholder_7"
+		"Ability17"						"special_bonus_placeholder_8"
 		
 		"Masteries"
 		{
