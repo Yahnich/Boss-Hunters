@@ -6401,7 +6401,6 @@
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Sniper
-
 		"DOTA_Tooltip_Facet_sniper_deadeye"																		"Deadeye"
 		"DOTA_Tooltip_Facet_sniper_deadeye_Description"															"Sniper specializes into long-range riflery, allowing him to gun down enemies from longe-range."
 		"DOTA_Tooltip_Facet_sniper_gunslinger"																	"Gunslinger"	
@@ -6409,16 +6408,16 @@
 
 		// Rangefinder
 		"DOTA_Tooltip_ability_sniper_rangefinder"																"Rangefinder"
-		"DOTA_Tooltip_ability_sniper_rangefinder_Description"													"Sniper's gun is improved based on his facet."
+		"DOTA_Tooltip_ability_sniper_rangefinder_Description"													"Sniper gains Stability every second while standing still, up to a maximum of %maximum_stability%. Each point of Stability grants Sniper %cast_speed_per_stability%%% cast point reduction and %accuracy_per_stability%%%% Accuracy."
 		"DOTA_Tooltip_ability_sniper_rangefinder_Facet_sniper_deadeye"											"Provides an attack range bonus."
-		"DOTA_Tooltip_ability_sniper_rangefinder_bonus_range"													"BONUS ATTACK RANGE:"
+		"DOTA_Tooltip_ability_sniper_rangefinder_stability_gain"												"STABILITY PER SECOND:"
 		"DOTA_Tooltip_ability_sniper_rangefinder_Facet_sniper_gunslinger"										"Reduces Sniper's Base Attack Time and grants him bonus attack speed."
 		"DOTA_Tooltip_ability_sniper_rangefinder_bonus_attack_time"												"BONUS BASE ATTACK TIME:"
 		"DOTA_Tooltip_ability_sniper_rangefinder_bonus_attack_speed"											"BONUS ATTACK SPEED:"
 
 		// Explosive Arsenal
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal"															"Explosive Armanents"
-		"DOTA_Tooltip_ability_sniper_explosive_arsenal_Description"												"Launches a grenade at the area-targeted location that damages enemy units, and applies knockback to both Sniper and all affected enemy units within the radius.\nCan be toggled to disable knockback."
+		"DOTA_Tooltip_ability_sniper_explosive_arsenal_Description"												"Launches a grenade at the area-targeted location that damages enemy units, and applies knockback to both Sniper and all affected enemy units within the radius. Enemies are debuffed, slowing them slightly.\nCan be alt-cast to disable knockback."
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_Lore"													"ATTN: IN CASE OF DANGER PULL PIN"
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_damage"													"DAMAGE:"
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_radius"													"RADIUS:"
@@ -6428,10 +6427,14 @@
 		"DOTA_Tooltip_modifier_sniper_grenade_debuff"															"Explosive Arsenal"
 		"DOTA_Tooltip_modifier_sniper_grenade_debuff_Description"												"Slowed for %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_explosive_arsenal_1"									"Flashbang"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_explosive_arsenal_1_Description"						"Explosive Arsenal includes a Flashbang, blinding enemies and causing them to miss <b>100%</b> of their attacks."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_explosive_arsenal_2"									"Anti-Tank Grenade"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_explosive_arsenal_2_Description"						"Explosive Arsenal is improved into an Anti-Tank Grenade, reducing enemy armor by <b>7</b>."
+		"DOTA_Tooltip_Perk_special_bonus_major_flashbang"														"Flashbang"
+		"DOTA_Tooltip_Perk_special_bonus_major_flashbang_Description"											"Explosive Arsenal debuff blinds enemies and causing them to miss <b>100%</b> of their attacks."
+		"DOTA_Tooltip_Perk_special_bonus_major_antitank_grenade"												"Anti-Tank Grenade"
+		"DOTA_Tooltip_Perk_special_bonus_major_antitank_grenade_Description"									"Explosive Arsenal debuff reduces enemy armor by <b>7</b>."
+		"DOTA_Tooltip_Perk_special_bonus_major_explosive_assembly"												"Explosive Assembly"
+		"DOTA_Tooltip_Perk_special_bonus_major_explosive_assembly_Description"									"Explosive Arsenal explosion radius increased by {s:radius} and slow by +{s:slow}%."
+		"DOTA_Tooltip_Perk_special_bonus_major_juryrigging_genius"												"Jury-rigging Genius"
+		"DOTA_Tooltip_Perk_special_bonus_major_juryrigging_genius_Description"									"Explosive Arsenal cooldown reduced by {s:AbilityChargeRestoreTime}."
 
 		// Death From Above
 		"DOTA_Tooltip_ability_sniper_death_from_above"															"Death From Above"
@@ -6450,10 +6453,14 @@
 		"DOTA_Tooltip_modifier_sniper_death_from_above_talent"													"Belt-Fed Chamber"
 		"DOTA_Tooltip_modifier_sniper_death_from_above_talent_Description"										"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed."
 		
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_death_from_above_1"									"Armour Piercing Rounds"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_death_from_above_1_Description"						"Death From Above deals an additional <b>50</b> damage per second. Damage type changed to Pure."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_death_from_above_2"									"Belt-Fed Chamber"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_death_from_above_2_Description"						"Casting Death From Above grants a <b>100</b> attack speed bonus for <b>7</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_armor_piercing_rounds"											"Armour Piercing Rounds"
+		"DOTA_Tooltip_Perk_special_bonus_major_armor_piercing_rounds_Description"								"Death From Above damage is Pure and increased by {s:damage}%."
+		"DOTA_Tooltip_Perk_special_bonus_major_belt_fed_chamber"												"Belt-Fed Chamber"
+		"DOTA_Tooltip_Perk_special_bonus_major_belt_fed_chamber_Description"									"Casting Death From Above grants a <b>{s:bonus_attack_speed}</b> attack speed bonus for <b>{s:bonus_attack_speed_duration}</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_slag_rain"														"Slag Rain"
+		"DOTA_Tooltip_Perk_special_bonus_major_slag_rain_Description"											"Death from Above slow increased by +{s:slow_movement_speed}% and linger duration by {s:slow_duration} seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_superheated_shrapnel"											"Super-heated Shrapnel"
+		"DOTA_Tooltip_Perk_special_bonus_major_superheated_shrapnel_Description"								"Death from Above radius increased by {s:radius} and duration by {s:duration} seconds."
 
 		// Critical Aim
 		"DOTA_Tooltip_ability_sniper_critical_aim"																"Critical Aim"
@@ -6463,36 +6470,41 @@
 		"DOTA_Tooltip_ability_sniper_critical_aim_damage"														"DAMAGE:"
 		"DOTA_Tooltip_ability_sniper_critical_aim_slow_duration"												"DURATION:"
 		"DOTA_Tooltip_ability_sniper_critical_aim_blind"														"%MISS CHANCE:"
-		"DOTA_Tooltip_ability_sniper_critical_aim_Facet_sniper_deadeye"											"If a unit has its Weakness Spotted refreshed by Critical Aim or Hunker Down is active, fires an Assassinate projectile that deals %assassinate_damage%%% of the damage and stun duration."
-		"DOTA_Tooltip_ability_sniper_critical_aim_Facet_sniper_gunslinger"										"Critical Aim chance is increased based on how close you are, up to %proc_chance_max_chance%%% chance. Maximum chance at %proc_chance_min_range% range, minimum at %proc_chance_max_range%."
 
 		"DOTA_Tooltip_modifier_sniper_critical_aim_root"														"Weakness Spotted"
 		"DOTA_Tooltip_modifier_sniper_critical_aim_root_Description"											"Rooted."
 
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_critical_aim_1"										"Mach-Speed Bullets"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_critical_aim_1_Description"							"Weakness Spotted damage increased by <b>45</b> and procs knock enemies <b>50</b> units backward."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_critical_aim_2"										"Powder Shrapnel"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_critical_aim_2_Description"							"Weakness Spotted's root lasts for an additional <b>3</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_mach_speed_bullets"												"Mach-Speed Bullets"
+		"DOTA_Tooltip_Perkspecial_bonus_major_mach_speed_bullets_Description"									"Weakness Spotted damage increased by <b>{s:damage}</b>."
+		"DOTA_Tooltip_Perk_special_bonus_major_powder_shrapnel"													"Powder Shrapnel"
+		"DOTA_Tooltip_Perk_special_bonus_major_powder_shrapnel_Description"										"Weakness Spotted's root lasts for an additional <b>{s:slow_duration}</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_deadeye_shot"													"Deadeye Shot"
+		"DOTA_Tooltip_Perk_special_bonus_major_deadeye_shot_Description"										"If a unit has its Weakness Spotted refreshed by Critical Aim or Hunker Down is active, fires an Assassinate projectile that deals %assassinate_damage%%% of the damage and stun duration."
+		"DOTA_Tooltip_Perk_special_bonus_major_gunslingers_aim"													"Gunslinger's Aim"
+		"DOTA_Tooltip_Perk_special_bonus_major_gunslingers_aim_Description"										"Critical Aim chance is increased based on how close you are, up to %proc_chance_max_chance%%% chance. Maximum chance at %proc_chance_min_range% range, minimum at %proc_chance_max_range%."
 				
 		// Hunker Down		
 		"DOTA_Tooltip_ability_sniper_hunker_down"																"Hunker Down"
-		"DOTA_Tooltip_ability_sniper_hunker_down_Description"													"Extends the attack range of Sniper's rifle. Can be activated to increase Headshot chance by %bonus_headshot_chance%%%."
+		"DOTA_Tooltip_ability_sniper_hunker_down_Description"													"Extends the attack range of Sniper's rifle. Can be activated to increase Headshot chance by %bonus_headshot_chance%%%. Sniper is slowed while Hunker Down is active, but does not lose Stability while doing so."
 		"DOTA_Tooltip_ability_sniper_hunker_down_Lore"															"Kardel always takes it upon himself to stay as far from harm as he can while still performing his role - taking perfect aim."
 		"DOTA_Tooltip_ability_sniper_hunker_down_bonus_attack_range"											"PASSIVE ATACK RANGE BONUS:"
 		"DOTA_Tooltip_ability_sniper_hunker_down_bonus_headshot_chance"											"%ACTIVE BONUS HEADSHOT CHANCE:"
 		"DOTA_Tooltip_ability_sniper_hunker_down_duration"														"ACTIVE DURATION:"
-		"DOTA_Tooltip_ability_sniper_hunker_down_Facet_sniper_deadeye"											"Bonus Range is doubled and Sniper gains True Strike. Slows you for the duration."
 		"DOTA_Tooltip_ability_sniper_hunker_down_slow"															"%ACTIVE SELF MOVESPEED SLOW:"
-		"DOTA_Tooltip_ability_sniper_hunker_down_Facet_sniper_gunslinger"										"Sniper turns invisible for the duration and attacking does not reveal you. The movement speed slow becomes a phased movement speed bonus instead and grants %armor% armor while active."
-		"DOTA_Tooltip_ability_sniper_hunker_down_ms_bonus"														"%ACTIVE SELF MOVESPEED BONUS:"
 
 		"DOTA_Tooltip_modifier_sniper_hunker_down"																"Hunker Down"
 		"DOTA_Tooltip_modifier_sniper_hunker_down_Description"													"Increased Headshot chance and slowed."
 
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_hunker_down_1"										"Firepower Upgrade"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_hunker_down_1_Description"							"Sniper gains <b>30%</b> Crit Chance and <b>130%</b> Crit Damage."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_hunker_down_2"										"Cozy Camper"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_hunker_down_2_Description"							"Sniper heals <b>2%</b> of his Max HP every second."
+		"DOTA_Tooltip_Perk_special_bonus_major_firepower_upgrade"												"Firepower Upgrade"
+		"DOTA_Tooltip_Perk_special_bonus_major_special_bonus_major_firepower_upgrade_Description"				"Sniper gains <b>{s:hp_regen}%</b> Crit Chance and <b>{s:hp_regen}%</b> Crit Damage."
+		"DOTA_Tooltip_Perk_special_bonus_major_cozy_camper"														"Cozy Camper"
+		"DOTA_Tooltip_Perk_special_bonus_major_cozy_camper_Description"											"Sniper heals <b>{s:hp_regen}%</b> of his Max HP every second."
+		"DOTA_Tooltip_Perk_special_bonus_major_steepstalker_spotter"											"Steepstalker Spotter"
+		"DOTA_Tooltip_Perk_special_bonus_major_steepstalker_spotter_Description"								"Sniper gains True Strike and the passive range bonus is increased by {s:attack_range_mult}x while active."
+		"DOTA_Tooltip_Perk_special_bonus_major_guerilla_warfare"												"Guerilla Warfare"
+		"DOTA_Tooltip_Perk_special_bonus_major_guerilla_warfare_Description"									"Sniper turns invisible for the duration and attacking does not reveal, while gaining {s:armor} armor while active."
+		"DOTA_Tooltip_Perk_special_bonus_major_trained_artillerist"												"Trained Artillerist"
+		"DOTA_Tooltip_Perk_special_bonus_major_trained_artillerist_Description"									"Hunker Down duration increased by {s:duration} and cooldown reduced by {s:AbilityCooldown}."
 
 		// Suppressive Fire
 		"DOTA_Tooltip_ability_sniper_suppressive_fire"															"Suppressive Fire"
@@ -6505,10 +6517,14 @@
 		"DOTA_Tooltip_ability_sniper_suppressive_fire_range"													"RANGE:"
 		"DOTA_Tooltip_ability_sniper_suppressive_fire_damage_reduction"											"%ATTACK DAMAGE REDUCTION:"
 
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_suppressive_fire_1"									"Extended Magazine"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_suppressive_fire_1_Description"						"Channel time increased to <b>2.5</b> seconds."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_suppressive_fire_2"									"Trigger Discipline"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_suppressive_fire_2_Description"						"Spread reduced to <b>15</b> but Fire Rate increased to <b>0.1</b>."
+		"DOTA_Tooltip_Perk_special_bonus_major_extended_magazine"												"Extended Magazine"
+		"DOTA_Tooltip_Perk_special_bonus_major_extended_magazine_Description"									"Suppressive Fire channel time increased BY <b>{s:channel}</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_trigger_discipline"												"Trigger Discipline"
+		"DOTA_Tooltip_Perk_special_bonus_major_trigger_discipline_Description"									"Suppressive Fire spread reduced by <b>{s:spread_rad}</b> and deals +<b>{s:damage_reduction}</b> more damage."
+		"DOTA_Tooltip_Perk_special_bonus_major_clip_hotswap"													"Clip Hotswap"
+		"DOTA_Tooltip_Perk_special_bonus_major_clip_hotswap_Description"										"Suppressive Fire cooldown reduced by {s:AbilityCooldown} seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_higher_caliber"													"Higher Caliber"
+		"DOTA_Tooltip_Perk_special_bonus_major_higher_caliber_Description"										"Suppressive Fire bullet width increased by <b>{s:width}</b> and deals +<b>{s:damage_reduction}</b> more damage."
 
 		// Killer Shot
 		"DOTA_Tooltip_ability_sniper_killer_shot"																"Killer Shot"
@@ -6524,10 +6540,14 @@
 		"DOTA_Tooltip_modifier_sniper_killer_shot_bargain"														"Focus"
 		"DOTA_Tooltip_modifier_sniper_killer_shot_bargain_Description"											"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed."
 
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_killer_shot_1"										"Sydney Sleeper"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_killer_shot_1_Description"							"Killer Shot applies a debuff on the target that causes it to take <b>15%</b> more damage over for <b>7</b> seconds."
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_killer_shot_2"										"Bazaar's Bargain"
-		"DOTA_Tooltip_Perk_special_bonus_unique_sniper_killer_shot_2_Description"							"Kills or Assists on Boss units with Killer Shot grants Sniper an infinitely stacking Attack Speed buff that gives <b>25</b> Attack Speed per stack. Buff is removed on death."
+		"DOTA_Tooltip_Perk_special_bonus_major_sydney_sleeper"													"Sydney Sleeper"
+		"DOTA_Tooltip_Perk_special_bonus_major_sydney_sleeper_Description"										"Killer Shot applies a debuff on the target that causes it to take <b>{s:incoming_dmg}%</b> more damage over for <b>{s:debuff_duration}</b> seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_bazaars_bargain"													"Bazaar's Bargain"
+		"DOTA_Tooltip_Perk_special_bonus_major_bazaars_bargain_Description"										"Kills or Assists on Boss units with Killer Shot grants Sniper an infinitely stacking Attack Speed buff that gives <b>{s:aspd}</b> Attack Speed per stack. Buff is removed on death."
+		"DOTA_Tooltip_Perk_special_bonus_major_rapid_reload"													"Rapid Reload"
+		"DOTA_Tooltip_Perk_special_bonus_major_rapid_reload_Description"										"Killer Shot cooldown reduced by {s:AbilityCooldown} seconds."
+		"DOTA_Tooltip_Perk_special_bonus_major_ringing_shot"													"Ringing Shot"
+		"DOTA_Tooltip_Perk_special_bonus_major_ringing_shot_Description"										"Killer Shot stun duration increased by {s:ministun_duration} seconds."
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Faceless Void
