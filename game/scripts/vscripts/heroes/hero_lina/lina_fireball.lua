@@ -27,21 +27,25 @@ function lina_fireball:OnProjectileHit(hTarget, vLocation)
         EmitSoundOn("Hero_Jakiro.LiquidFire", hTarget)
 
         ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, caster, {[0]=hTarget:GetAbsOrigin(), [1]=Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"))})
-
+		
+		local stunDuration = self:GetSpecialValueFor("stun_duration")
+		local damage = self:GetSpecialValueFor("damage")
+		local duration = self:GetSpecialValueFor("duration")
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
-				if caster:HasTalent("special_bonus_unique_lina_fireball_2") then
-					self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_lina_fireball_2"), false)
+				if stunDuration > 0 then
+					self:Stun(enemy, stunDuration, false)
 				end
 
-				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
-				enemy:AddNewModifier(caster, self, "modifier_lina_fireball", {Duration = self:GetSpecialValueFor("duration")})
+				self:DealDamage(caster, enemy, damage, {}, 0)
+				enemy:AddNewModifier(caster, self, "modifier_lina_fireball", {Duration = duration})
 			end
         end
-
-        if caster:HasTalent("special_bonus_unique_lina_fireball_1") then
-            CreateModifierThinker(caster, self, "modifier_lina_fireball_fire", {Duration = self:GetSpecialValueFor("duration")}, vLocation, caster:GetTeam(), false)
+		
+		local flameDuration = self:GetSpecialValueFor("flame_duration") / 100
+        if flameDuration > 0 then
+            CreateModifierThinker(caster, self, "modifier_lina_fireball_fire", {Duration = duration * flameDuration}, vLocation, caster:GetTeam(), false)
         end
     end
 end

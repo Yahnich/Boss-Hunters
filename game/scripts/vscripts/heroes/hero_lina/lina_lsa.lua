@@ -68,11 +68,7 @@ function modifier_lina_lsa_fire:OnRemoved()
 end
 
 function modifier_lina_lsa_fire:IsAura()
-    if self:GetCaster():HasTalent("special_bonus_unique_lina_lsa_2") then
-        return true
-    end
-
-    return false
+    return self:GetSpecialValueFor("moveslow") > 0
 end
 
 function modifier_lina_lsa_fire:GetAuraDuration()
@@ -112,5 +108,5 @@ function modifier_lina_lsa_slow:DeclareFunctions()
 end
 
 function modifier_lina_lsa_slow:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_lina_lsa_2")
+    return self:GetSpecialValueFor("moveslow")
 end

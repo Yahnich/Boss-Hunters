@@ -71,7 +71,6 @@
 			"AbilityCooldown"
 			{
 				"value"										"22.0"
-				"special_bonus_minor_perk"					"-3"
 			}
 			"AbilityManaCost"								"130"
 			"radius"
@@ -80,31 +79,21 @@
 				"special_bonus_minor_perk"					"+125"
 				"affected_by_aoe_increase"					"1"
 			}
-			"duration"
-			{
-				"value"										"15"
-				"special_bonus_minor_perk"					"+5"
-			}
+			"duration"										"15"
 			"damage"
 			{
 				"value"										"45"
 				"hero_levelup"								"+5"
-				"special_bonus_minor_perk"					"+50%"
 				"CalculateSpellDamageTooltip"				"1"
 			}
 			"damage_per_sec"
 			{
 				"value"										"17"
 				"hero_levelup"								"+3"
-				"special_bonus_minor_perk"					"+75%"
 				"CalculateSpellDamageTooltip"				"1"
 			}
 			"linger_duration"								"0.5"
-			"armor_reduction"
-			{
-				"value"										"3"
-				"special_bonus_minor_perk"					"+1"
-			}
+			"armor_reduction"								"3"
 			"tick_rate"										"1.0"
 		}
 		"AbilityPerks"
@@ -127,6 +116,16 @@
 			"special_bonus_major_sticky_infusion"
 			{
 				"alkahest_duration"							"=6"
+			}
+			"special_bonus_major_mass_manufacturing"
+			{
+				"AbilityCooldown"							"-8"
+				"AbilityManaCost"							"-50"
+			}
+			"special_bonus_major_distilled_power"
+			{
+				"armor_reduction"							"-3"
+				"duration"									"+5"
 			}
 		}
 	}
@@ -162,11 +161,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCooldown"
-			{
-				"value"												"16"
-				"special_bonus_minor_perk"							"-3"
-			}
+			"AbilityCooldown"										"16"
 			"AbilityManaCost"										"90"
 			"AbilityCastRange"										"775"
 			"AbilityCastPoint"										"0.0"
@@ -188,7 +183,6 @@
 			"max_stun"
 			{
 				"value"												"1.7"
-				"special_bonus_minor_perk"							"+0.75"
 				"is_debuff_duration"								"1"
 			}
 			"min_damage"											{"CalculateSpellDamageTooltip"	"1"}
@@ -196,7 +190,6 @@
 			{ 
 				"value"												"165"
 				"hero_levelup"										"+15"
-				"special_bonus_minor_perk"							"+50%"
 				"CalculateSpellDamageTooltip"						"1"
 			}
 			"radius"
@@ -207,9 +200,10 @@
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_major_stabilized_concoctons"
+			"special_bonus_major_stabilized_concoctions"
 			{
 				"brew_time"											"-2.5"
+				"AbilityCooldown"									"-6"
 			}
 			"special_bonus_major_aurum_assault"
 			{
@@ -229,6 +223,20 @@
 					"hero_levelup"									"+2"
 				}
 				"freezes_cooldowns"									"1"
+			}
+			"special_bonus_major_midas_goop"
+			{
+				"bonus_physical_damage"
+				{ 
+					"value"											"18"
+					"hero_levelup"									"+2"
+				}
+				"freezes_cooldowns"									"1"
+			}
+			"special_bonus_major_explosive_powders"
+			{
+				"min_stun"											"+1.5"
+				"max_stun"											"+1.5"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -253,18 +261,13 @@
 			"max_stacks"
 			{
 				"value"							"10"
-				"special_bonus_minor_perk"		"+2"
 			}
 			"debuff_duration"
 			{
 				"value"							"4.0"
 				"is_debuff_duration"			"1"
 			}
-			"slow_per_stack"
-			{
-				"value"							"1.0"
-				"special_bonus_minor_perk"		"+0.5"
-			}
+			"slow_per_stack"					"1.0"
 			"stacks_per_attack"					"2"
 			"stacks_per_second"					"1"
 		}	
@@ -283,6 +286,11 @@
 			{
 				"attack_damage_gain"								"100"
 				"status_resist_per_stack"							"100"
+			}
+			"special_bonus_major_added_coatings"
+			{
+				"max_stacks"										"+6"
+				"slow_per_stack"									"+0.5"
 			}
 		}
 	}
@@ -315,35 +323,18 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"						"100"
 	
 		"AbilityValues"
 		{
-			"AbilityCooldown"
-			{
-				"value"							"35"
-				"special_bonus_minor_perk"		"-5"
-			}
-			"duration"
-			{
-				"value"							"15"
-				"special_bonus_minor_perk"		"+5"
-			}
-			"attack_speed"
-			{
-				"value"							"50"
-				"special_bonus_minor_perk"		"+25"
-			}
-			"move_speed"
-			{
-				"value"							"30"
-				"special_bonus_minor_perk"		"+15"
-			}
+			"AbilityCooldown"					"35"
+			"AbilityManaCost"					"100"
+			"duration"							"15"
+			"attack_speed"						"50"
+			"move_speed"						"30"
 			"hp_regen"
 			{
 				"value"							"10"
 				"hero_levelup"					"+1"
-				"special_bonus_minor_perk"		"+50%"
 			}
 			"projectile_speed"			"900"
 		}
@@ -357,6 +348,25 @@
 			"special_bonus_major_distilled_fury"
 			{
 				"bonus_damage"								"+25"
+			}
+			"special_bonus_major_restorative_ingredients"
+			{
+				"hp_regen"									"+100%"
+			}
+			"special_bonus_major_wasteless_haste"
+			{
+				"attack_speed"								"+50"
+				"move_speed"								"+30"
+			}
+			"special_bonus_major_distilled_fury"
+			{
+				"bonus_damage"								"+25"
+			}
+			"special_bonus_major_improved_processes"
+			{
+				"AbilityCooldown"							"-5"
+				"AbilityManaCost"							"=0"
+				"duration"									"+5"
 			}
 		}
 	}
@@ -387,47 +397,42 @@
 		"AbilityValues"
 		{
 			"AbilityCastPoint"										"0.0"
-			"AbilityCooldown"
-			{
-				"value"												"45.0"
-				"special_bonus_minor_perk"							"-5"
-			}
+			"AbilityCooldown"										"45.0"
 			"AbilityManaCost"										"50"
 			
 			"duration"												"25.0"
-			"base_attack_time"
-			{
-				"value"												"-0.2"
-				"special_bonus_minor_perk"							"-0.1"
-			}
+			"base_attack_time"										"-0.2"
+			
 			"bonus_hp"
 			{
 				"value"												"0"
 				"hero_levelup"										"+110"
-				"special_bonus_minor_perk"							"+50%"
 			}
 			"bonus_health_regen"
 			{
 				"value"												"20"
 				"hero_levelup"										"+5"
-				"special_bonus_minor_perk"							"+50%"
 			}
 			"materia_bonus"											"1.5"
-			"bonus_movespeed"
-			{
-				"value"												"20"
-				"special_bonus_minor_perk"							"+20"
-			}
+			"bonus_movespeed"										"20"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_taxmans_vigor"
 			{
 				"bonus_armor_per_materia"							"0.4"
+				"bonus_health_regen"								"+50%"
+				"bonus_hp"											"+50%"
 			}
 			"special_bonus_major_bring_my_baliff"
 			{
+				"base_attack_time"									"-0.2"
+				"bonus_movespeed"									"+20"
 				"bonus_damage_per_materia"							"1"
+			}
+			"special_bonus_major_withdrawal_symptoms"
+			{
+				"AbilityCooldown"									"-10"
 			}
 		}
 	}
@@ -466,21 +471,10 @@
 			"AbilityManaCost"										"50"
 			
 			"duration"												"25.0"
-			"status_amp"
-			{
-				"value"												"20"
-				"special_bonus_minor_perk"							"+10"
-			}
-			"spell_amp"
-			{
-				"value"												"20"
-				"special_bonus_minor_perk"							"+10"
-			}
-			"bonus_radius"
-			{
-				"value"												"75"
-				"special_bonus_minor_perk"							"+25"
-			}
+			"status_amp"											"20"
+			"spell_amp"												"20"
+			"bonus_radius"											"75"
+			
 			"materia_bonus"											"1"
 		}
 		"AbilityPerks"
@@ -494,6 +488,17 @@
 				"missing_health_heal"								"10"
 				"current_health_damage"								"4"
 				"transmutation_radius"								"900"
+			}
+			"special_bonus_major_gifted_mind"
+			{
+				"bonus_radius"										"+25"
+				"spell_amp"											"+10"
+				"status_amp"										"+10"
+			}
+			"special_bonus_major_quick_of_mind"
+			{
+				"AbilityCooldown"									"-10"
+				"AbilityManaCost"									"=0"
 			}
 		}
 	}

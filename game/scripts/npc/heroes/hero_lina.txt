@@ -17,42 +17,8 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_dragon_slave"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_lina_dragon_1"	"1"
-			"special_bonus_unique_lina_dragon_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800"
-		"AbilityCastPoint"				"0.35"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 105 110 115"
 		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"80 120 160 200"
-			"damage_flame"				"30 55 80 105"
-			"duration"					"4"
-			"radius"					"200"
-			"speed"						"1200"
-			"tick_rate"					"0.5"
-			"width"						"275"
-		}
-	
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
@@ -60,37 +26,58 @@
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 		}
-	}
-
-	"special_bonus_unique_lina_dragon_1" 
-	{
-		// General
+		
+		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"					"-4"
+			"AbilityCastRange"					"1075"
+			"AbilityCastPoint"					"0.35"
+			"AbilityCooldown"					"11"
+			"AbilityManaCost"					"100"
+			"damage"
+			{
+				"value"							"50"
+				"hero_levelup"					"15"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"damage_flame"
+			{
+				"value"							"18"
+				"hero_levelup"					"2"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"duration"							"4"
+			"radius"							"200"
+			"speed"								"1200"
+			"tick_rate"							"0.5"
+			"width"								"275"
 		}
-	}
-
-	"special_bonus_unique_lina_dragon_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"					"-180"
+			"special_bonus_major_seven_beautiful_fires"
+			{
+				"duration"						"+4"
+				"damage_flame"					"+100%"
+			}
+			"special_bonus_major_the_dragons_bite"
+			{
+				"AbilityCooldown"				"-3"
+				"damage"						"+50%"
+			}
+			"special_bonus_major_backdraft"
+			{
+				"attack_speed_loss"				"-180"
+			}
+			"special_bonus_greatwyrms_wrath"
+			{
+				"AbilityCooldown"				"-3"
+				"radius"						"+100%"
+				"width"							"+100%"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -110,45 +97,8 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_light_strike_array"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_lina_lsa_1"	"1"
-			"special_bonus_unique_lina_lsa_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800 900 1000 1100"
-		"AbilityCastPoint"				"0.45"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130 140 150 160"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"
-			{
-				"value"							"80 120 160 200"
-				"LinkedSpecialBonus"			"special_bonus_unique_lina_lsa_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"damage_flame"						"10 20 30 40"
-			"duration"							"4"
-			"radius"							"225"		
-			"stun_duration"						"1.25 1.5 1.75 2"
-		}
-	
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
@@ -157,37 +107,51 @@
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 		}
-	}
-
-	"special_bonus_unique_lina_lsa_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"					"2"
+			"AbilityCastRange"					"700"
+			"AbilityCastPoint"					"0.45"
+			"AbilityCooldown"					"13"
+			"AbilityManaCost"					"100"
+			"damage"
+			{
+				"value"							"70"
+				"hero_levelup"					"10"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"damage_flame"
+			{
+				"value"							"18"
+				"hero_levelup"					"2"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"duration"							"4"
+			"radius"							"225"		
+			"stun_duration"						"1.2"
 		}
-	}
-
-	"special_bonus_unique_lina_lsa_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"					"-65"
+			"special_bonus_major_pillar_of_red_steam"
+			{
+				"duration"						"+4"
+				"damage_flame"					"+100%"
+			}
+			"special_bonus_major_rod_from_hell"
+			{
+				"AbilityCooldown"				"-6"
+				"damage"						"+50%"
+			}
+			"special_bonus_major_chains_of_ifrit"
+			{
+				"moveslow"						"-35"
+			}
+			"special_bonus_major_baalzebub_impact"
+			{
+				"radius"						"+250"
+				"stun_duration"					"+1.2"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -207,39 +171,8 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"black_dragon_fireball"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_lina_fireball_1"	"1"
-			"special_bonus_unique_lina_fireball_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800"
-		"AbilityCastPoint"				"0.45"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.5"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 130 140 150"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"50 100 150 200"
-			"damage_time"				"15 30 45 60"
-			"duration"					"4"
-			"radius"					"375"
-		}
-	
+		
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_lina/lina_fireball.vpcf"
@@ -250,37 +183,51 @@
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 		}
-	}
-
-	"special_bonus_unique_lina_fireball_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"					"1"
+			"AbilityCastRange"					"500"
+			"AbilityCastPoint"					"0.45"
+			"AbilityCooldown"					"10"
+			"AbilityManaCost"					"120"
+			"damage"
+			{
+				"value"							"70"
+				"hero_levelup"					"10"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"damage_flame"
+			{
+				"value"							"10"
+				"hero_levelup"					"5"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"duration"							"4"
+			"radius"							"375"
 		}
-	}
-
-	"special_bonus_unique_lina_fireball_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"					"1.5"
+			"special_bonus_major_magmatic_lens"
+			{
+				"flame_duration"				"100"
+				"damage_flame"					"100"
+			}
+			"special_bonus_major_net_of_molten_steel"
+			{
+				"stun_duration"					"1.5"
+			}
+			"special_bonus_major_infernoball"
+			{
+				"AbilityCooldown"				"-3"
+				"damage"						"+50%"
+			}
+			"special_bonus_major_meteor_ball"
+			{
+				"duration"						"+2"
+				"radius"						"+175"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -296,7 +243,6 @@
 		"AbilityTextureName"			"lina_fiery_soul"
 		"MaxLevel"						"1"
 		"Innate" 						"1"
-		"HasScepterUpgrade"				"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -328,74 +274,46 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lina_laguna_blade"
 		"MaxLevel"						"3"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_lina_laguna_1"	"1"
-			"special_bonus_unique_lina_laguna_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800 900 1000"
-		"AbilityCastPoint"				"0.45"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 75 70"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"280 420 560"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"450 650 850"
-			"hp"						"5"
-		}
-	
+		
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 		}
-	}
-
-	"special_bonus_unique_lina_laguna_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"					"1"
+			"AbilityCastRange"					"750"
+			"AbilityCastPoint"					"0.45"
+			"AbilityCooldown"					"70"
+			"AbilityManaCost"					"280"
+			"damage"
+			{
+				"value"							"170"
+				"hero_levelup"					"30"
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"hp"								"5"
 		}
-	}
-
-	"special_bonus_unique_lina_laguna_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"					"10"
+			"special_bonus_major_elemental_purity"
+			{
+				"pure_damage"				"1"
+				"damage"					"+50%"
+			}
+			"special_bonus_major_mistress_fahrenheit"
+			{
+				"daze_duration"				"10"
+			}
+			"special_bonus_major_lightning_lash"
+			{
+				"AbilityCooldown"			"-20"
+			}
 		}
 	}
 }

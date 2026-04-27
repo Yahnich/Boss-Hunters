@@ -1291,10 +1291,10 @@
 		
 		"AbilityPool"
 		{
-			"lina_dragon"	"BASIC"
-			"lina_lsa"		"BASIC"
-			"lina_fireball"		"BASIC"
-			"lina_laguna"		"ULTIMATE"
+			"lina_dragon"				"BASIC"
+			"lina_lsa"					"BASIC"
+			"lina_fireball"				"BASIC"
+			"lina_laguna"				"ULTIMATE"
 		}
 
 		"Ability10"						"special_bonus_unique_lina_dragon_1"

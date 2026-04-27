@@ -14,7 +14,7 @@ function juggernaut_windless_cuts:OnSpellStart()
     self:Slash(target)
 
     local last_gasp = caster:FindModifierByName("modifier_juggernaut_windless_cuts_last_gasp")
-    if not last_gasp and self:GetSpecialValueFor("last_gasp") ~= 0 then
+    if not last_gasp and self:GetSpecialValueFor("last_gasp_threshold") ~= 0 then
         caster:AddNewModifier(caster, self, "modifier_juggernaut_windless_cuts_last_gasp", {duration = -1})
     else
         return
@@ -40,11 +40,6 @@ function juggernaut_windless_cuts:Slash(target)
 	ParticleManager:FireParticle(self.nfx2, PATTACH_POINT, caster, {[0]="attach_hitloc", [1]=position})
 	EmitSoundOn("Hero_Juggernaut.OmniSlash", caster)
 	EmitSoundOn("Hero_Juggernaut.OmniSlash.Damage", target)
-
-	local outgoing_reduction = self:GetSpecialValueFor("outgoing_reduction")
-    if outgoing_reduction ~= 0 then
-        target:AddNewModifier(caster, self, "modifier_juggernaut_windless_cuts_ronin", {duration = 0.5})
-    end
 
     caster:PerformGenericAttack(target, true, {procAttackEffects = true})
 	caster:SetForwardVector( CalculateDirection( target, caster ) )
@@ -132,6 +127,11 @@ end
 function modifier_juggernaut_windless_cuts:OnDestroy()
     local caster = self:GetCaster()
     if IsServer() then
+		
+		local refresh_outgoing_increase_duration = self:GetSpecialValueFor("refresh_outgoing_increase_duration")
+		if refresh_outgoing_increase_duration ~= 0 then
+			target:AddNewModifier(caster, self, "modifier_juggernaut_windless_cuts_ronin", {duration = refresh_outgoing_increase_duration})
+		end
         self.blade_fury:SetActivated(true)
         caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
         ResolveNPCPositions(caster:GetAbsOrigin(), caster:GetHullRadius() + caster:GetCollisionPadding())
@@ -202,15 +202,11 @@ function modifier_juggernaut_windless_cuts_ronin:OnCreated()
 end
 
 function modifier_juggernaut_windless_cuts_ronin:OnRefresh()
-    self.outgoing_reduction = self:GetSpecialValueFor("outgoing_reduction")
+    self.refresh_outgoing_increase = self:GetSpecialValueFor("refresh_outgoing_increase")
 end
 
 function modifier_juggernaut_windless_cuts_ronin:DeclareFunctions()
     return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
-end
-
-function modifier_juggernaut_windless_cuts_ronin:GetModifierTotalDamageOutgoing_Percentage()
-    return -self.outgoing_reduction
 end
 
 modifier_juggernaut_windless_cuts_last_gasp = class({})
@@ -231,7 +227,6 @@ end
 function modifier_juggernaut_windless_cuts_last_gasp:OnCreated()
     self.duration = self:GetSpecialValueFor("duration")
     self.threshold = self:GetSpecialValueFor("last_gasp_threshold") / 100
-    self.cooldown = self:GetSpecialValueFor("last_gasp_cooldown")
 
     self.nearestEnemy = {}
     self:StartIntervalThink(0.1)
@@ -239,19 +234,19 @@ end
 
 function modifier_juggernaut_windless_cuts_last_gasp:OnIntervalThink()
     local caster = self:GetCaster()
+    local ability = self:GetAbility()
     local maxHP = caster:GetMaxHealth()
     local currentHP = caster:GetHealth()
 
-
     if IsServer() then
-        if currentHP < (maxHP * self.threshold) and not caster:HasModifier("modifier_juggernaut_windless_cuts_last_gasp_cd") and not caster:HasModifier("modifier_juggernaut_windless_cuts") then
+        if currentHP < (maxHP * self.threshold) and ability:IsCooldownReady() then
             self:StartIntervalThink(-1)
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_windless_cuts_last_gasp_cd", {duration = self.cooldown})
+			ability:SetCooldown()
             for _, enemy in ipairs(caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("AbilityCastRange"), {order=FIND_CLOSEST})) do
                 if not self.nearestEnemy[enemy:entindex()] then
-                    caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_windless_cuts", {duration = self.duration + 0.1})
-                    caster:Purge(false,true,false,true,true)
-                    self:GetAbility():Slash(enemy)
+                    caster:AddNewModifier(caster, ability, "modifier_juggernaut_windless_cuts", {duration = self.duration + 0.1})
+                    caster:Dispel(caster,true)
+                    ability:Slash(enemy)
                     self.nearestEnemy[enemy:entindex()] = true
                     Timers:CreateTimer(self.cooldown, function()
                         self:OnCreated()
@@ -264,18 +259,4 @@ end
 
 function modifier_juggernaut_windless_cuts_last_gasp:OnTooltip()
     return self.threshold * 100
-end
-
-modifier_juggernaut_windless_cuts_last_gasp_cd = class({})
-LinkLuaModifier("modifier_juggernaut_windless_cuts_last_gasp_cd", "heroes/hero_juggernaut/juggernaut_windless_cuts", LUA_MODIFIER_MOTION_NONE)
-function modifier_juggernaut_windless_cuts_last_gasp_cd:IsHidden()
-    return false
-end
-
-function modifier_juggernaut_windless_cuts_last_gasp_cd:IsDebuff()
-    return true
-end
-
-function modifier_juggernaut_windless_cuts_last_gasp_cd:IsPurgable()
-    return false
 end

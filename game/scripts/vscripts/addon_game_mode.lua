@@ -753,7 +753,7 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 			end
 		else -- non-generic ability
 			local perkAbility = ability:GetCaster()._currentlyLoadedPerksAbility or ability
-			local majorPerk = perkAbility:GetLevel() + 1 >= perkAbility:GetMaxLevel()
+			local majorPerk = true
 			local perks = AbilityManager:GetLoadedPerksForHero( hero ) or TernaryOperator( AbilityManager:GetCurrentMajorPerksForAbility( perkAbility ), majorPerk, AbilityManager:GetCurrentMinorPerksForAbility( perkAbility ) )
 			if #perks >= 1 then -- check to see if hero is reworked and has perks
 				ability:GetCaster()._currentlyLoadedPerks = perks

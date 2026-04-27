@@ -471,33 +471,48 @@
 			"stun_duration"				
 			{
 				"value"														"1.2"
-				"special_bonus_facet_kunkka_mariner"						"=3.6"
-				"special_bonus_unique_kunkka_ghost_fleet_1"					"+100%"
 				"is_debuff_duration"										"1"
 			}
 			"fleet_interval"												"2.5"
 			"fleet_count"													"3"
 			"drift_radius"													"450"
 			
-			"ghost_ships"
+			"ghost_ships"													"1"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_flying_dutchman"
 			{
-				"value"														"1"
-				"special_bonus_unique_kunkka_ghost_fleet_1"					"+2"
+				"cannons_per_side"											"3"
+				"cannonade_interval"										"2.5"
+				"cannonball_daze_duration"									"2.5"
+				"cannonball_damage"											"50"
+				"cannonball_radius"											"100"
+				"cannonball_speed"											"1200"
 			}
-			"drag_enemies"													{"special_bonus_unique_kunkka_ghost_fleet2"	"1"}
-
-			// Admiral KV's
-			//---------------------------------------------------------------------------------------------------------
-			"captains_rum_bonus"											{"special_bonus_facet_kunkka_privateer"	"5 10 15 20"}
-
-			// Privateer KV's
-			//---------------------------------------------------------------------------------------------------------
-			"cannons_per_side"												{"special_bonus_facet_kunkka_privateer"	"3"}
-			"cannonade_interval"											{"special_bonus_facet_kunkka_privateer"	"2.5"}
-			"cannonball_daze_duration"										{"special_bonus_facet_kunkka_privateer"	"2.5"}
-			"cannonball_damage"												{"special_bonus_facet_kunkka_privateer"	"50"}
-			"cannonball_radius"												{"special_bonus_facet_kunkka_privateer"	"100"}
-			"cannonball_speed"												{"special_bonus_facet_kunkka_privateer"	"1200"}
+			"special_bonus_major_waxing_tides"
+			{
+				"drag_enemies"												"=1"
+				"stun_duration"												"=3.6"
+			}
+			"special_bonus_major_ghostly_armada"
+			{
+				"ghost_ships"												"+2"
+			}
+			"special_bonus_major_well_stocked_pantry"
+			{
+				"captains_rum_bonus"										"20"
+			}
+			"special_bonus_major_deep_soak"
+			{
+				"duration"													"+3"
+				"total_dmg_reduc"											"+4"
+			}
+			"special_bonus_major_swelling_rapids"
+			{
+				"AbilityCooldown"											"-7"
+				"AbilityManaCost"											"-25"
+			}
 		}
 	}
 }

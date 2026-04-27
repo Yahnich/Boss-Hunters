@@ -20,3 +20,6 @@ game/maps/bh_adventure_casual.vpk
 game/models/
 game/maps/
 docs/
+game/tools_thumbnail_cache.sqlite3
+game/tools_thumbnail_cache.sqlite3-shm
+game/tools_thumbnail_cache.sqlite3-wal

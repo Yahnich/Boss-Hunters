@@ -89,19 +89,11 @@
 		{
 			"AbilityCastRange"						"0"
 			"AbilityCastPoint"						"0 0 0 0"
-			"AbilityCooldown"
-			{
-				"value"								"42 34 26 18"
-				"special_bonus_minor_perk"			"-16"
-			}
+			"AbilityCooldown"						"42"
 			"AbilityManaCost"						"90"	
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
-			"duration"
-			{
-				"value"								"3"
-				"special_bonus_minor_perk"			"+1.5"
-			}
+			"duration"								"3"
 			"damage_tick"							"0.2"
 			"radius"
 			{
@@ -132,6 +124,16 @@
 			{
 				"applies_modifiers"					"=1"
 				"damage_reduction"					"=30"
+			}
+			"special_bonus_major_spin_to_win"
+			{
+				"AbilityCooldown"					"-16"
+				"damage"							"+50%"
+			}
+			"special_bonus_major_endless_dance"
+			{
+				"AbilityCooldown"					"-8"
+				"duration"							"+3"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -184,11 +186,7 @@
 				"special_bonus"						"+15"
 			}
 			"linger_duration"						"0.5"
-			"regeneration"
-			{
-				"value"								"2"
-				"special_bonus"						"+1.5"
-			}
+			"regeneration"							"2"
 			"particle_radius"						"500"
 		}
 		"AbilityPerks"
@@ -202,13 +200,14 @@
 			}
 			"special_bonus_major_deva_state"
 			{
-				"passive_regeneration"				"33"
+				"regeneration"						"+1.5"
 				"positive_aura"						"500"
 			}
 			"special_bonus_major_zenful_mind"
 			{
 				"armor"								"9"
 				"mres"								"20"
+				"passive_regeneration"				"33"
 			}
 			"special_bonus_major_slumbering_soul"
 			{
@@ -216,6 +215,11 @@
 				"pulse_aoe"							"500"
 				"aspd"								"120"
 				"extra_buff_duration"				"3.5"
+			}
+			"special_bonus_major_perpetual_hymns"
+			{
+				"AbilityCooldown"					"-20"
+				"buff_duration"						"15"
 			}
 		}
 	}
@@ -249,41 +253,46 @@
 	    {
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
-			"AbilityCooldown"															"0"
+			"AbilityCooldown"															"0.5"
 			"AbilityCastPoint"															"0.233"
 			"AbilityManaCost"															"50"
-			"AbilityChargeRestoreTime"
-			{
-				"value"																	"16"
-				"special_bonus_minor_perk"												"-4"
-			}
-			"AbilityCharges"
-			{
-				"value"																	"1"
-				"special_bonus_minor_perk"												"+1"
-			}
+			"AbilityChargeRestoreTime"													"16"
+			"AbilityCharges"															"2"
 
-			"jump_distance"
-			{
-				"value"																	"500"
-				"special_bonus_minor_perk"												"+250"
-			}
+			"jump_distance"																"250"
 			"jump_speed"																"3000"
+			"bonus_damage"
+			{
+				"value"																	"80"
+				"hero_levelup"															"+8"
+				"CalculateAttackDamageTooltip"											"1"
+			}
+			
 			"aspd"																		"50"
 			"buff_duration"																"1.5"
 	    }
 		"AbilityPerks"
 		{
-			"special_bonus_unique_juggernaut_breathless_lunge_1"
+			"special_bonus_major_degenbrecher_point"
 			{
 				"disarms"																"1"
 				"disarm_duration"														"3"
 			}
-			"special_bonus_unique_juggernaut_breathless_lunge_2"
+			"special_bonus_major_wakizashis_edge"
 			{
-				"jump_distance"															"x0.5"
 				"bleed"																	"0.5"
 				"bleed_duration"														"3"
+			}
+			"special_bonus_major_odachis_reach"
+			{
+				"jump_distance"															"+450"
+				"AbilityChargeRestoreTime"												"-4"
+			}
+			"special_bonus_major_flamberge_cut"
+			{
+				"bonus_damage"															"+50%"
+				"aspd"																	"+50"
+				"buff_duration"															"1.5"
 			}
 		}
 	}
@@ -312,34 +321,31 @@
 		//---------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 	    {
-			"AbilityCooldown"
-			{
-				"value"									"20"
-				"special_bonus_minor_perk"				"-4"
-			}
-			"AbilityManaCost"
-			{
-				"value"									"80"
-				"special_bonus_minor_perk"				"-40"
-			}
-	        "duration"
-			{
-				"value"									"2"
-				"special_bonus_minor_perk"				"+1"
-			}
+			"AbilityCooldown"							"20"
+			"AbilityManaCost"							"80"
+	        "duration"									"2"
 	    }
 		"AbilityPerks"
 		{
-			"special_bonus_unique_juggernaut_swift_retribution_1"
+			"special_bonus_major_claim_their_bones"
 			{
 				"lifesteal"								"100"
 				"bonus_attacks"							"1"
 			}
-			"special_bonus_unique_juggernaut_swift_retribution_2"
+			"special_bonus_major_yield_my_flesh"
 			{
 				"stack_attack_speed"					"25"
 				"stack_move_speed"						"5"
 				"stack_duration"						"5"
+			}
+			"special_bonus_major_song_of_steel"
+			{
+				"duration"								"+2"
+			}
+			"special_bonus_major_swiftness_of_blade"
+			{
+				"AbilityCooldown"						"-8"
+				"AbilityManaCost"						"-40"
 			}
 		}
 	}
@@ -423,12 +429,11 @@
 		{
 			"AbilityCastRange"													"350"
 			"AbilityCastPoint"													"0.3"
-			"AbilityCooldown"
-			{
-				"value"															"65"
-				"special_bonus_minor_perk"										"-10"
-			}
+			"AbilityCooldown"													"0.5"
+			"AbilityChargeRestoreTime"											"65"
+			"AbilityCharges"													"1"
 			"AbilityManaCost"													"200"
+			
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
 			"attack_rate_multiplier"											"1.5"
@@ -438,41 +443,34 @@
 				"hero_levelup"													"+6"
 				"CalculateAttackDamageTooltip"									"1"
 			}
-			"bonus_attack_speed"
-			{
-				"value"															"40"
-				"hero_levelup"													"+40"
-				"CalculateAttackDamageTooltip"									"1"
-			}
+			"bonus_attack_speed"												"40"
 			"duration"
 			{
 				"value"															"3"
-				"special_bonus_minor_perk"										"+1"
 				"is_buff_duration"												"1"
 			}
 			"omni_slash_radius"													"425"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_juggernaut_windless_cuts_ronin"
-			{
-				"endless"														"1"
-				"outgoing_reduction"											"8"
-			}
-			"special_bonus_unique_juggernaut_windless_cuts_sohei"
+			"special_bonus_major_soheis_arsenal"
 			{
 				"duration"														"+2"
 			}
+			"special_bonus_major_ronins_arsenal"
+			{
+				"endless"														"1"
+			}
 			"special_bonus_unique_juggernaut_windless_cuts_1"
 			{
-				"second_wind"													"1"
+				"AbilityCharges"												"+1"
 				"refresh_outgoing_increase"										"20"
+				"refresh_outgoing_increase_duration"							"10"
 			}
 			"special_bonus_unique_juggernaut_windless_cuts_2"
 			{
-				"last_gasp"														"2"
-				"last_gasp_cooldown"											"30"
-				"last_gasp_threshold""											"25"
+				"AbilityChargeRestoreTime"										"-30"
+				"last_gasp_threshold"											"25"
 			}
 		}
 		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"

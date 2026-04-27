@@ -55,8 +55,6 @@
 		"CastFilterRejectCaster" 		"1"
 		"MaxLevel"						"4"
 	
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.25"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -67,6 +65,8 @@
 				"value"										"8"
 				"special_bonus_minor_perk"					"-2"
 			}
+			"AbilityCastRange"								"800"
+			"AbilityCastPoint"								"0.25"
 			"AbilityManaCost"								"50"
 			"projectile_speed"								"1250"
 			"self_damage"
@@ -99,6 +99,16 @@
 			"special_bonus_major_fog_born"
 			{
 				"heal_self_damage"							"=1"
+			}
+			"special_bonus_major_thick_mist"
+			{
+				"target_damage"								"+50%"
+				"heal_amount"								"+50%"
+			}
+			"special_bonus_major_mourning_dew"
+			{
+				"AbilityCooldown"							"-3"
+				"AbilityCastRange"							"+400"
 			}
 		}
 	
@@ -138,27 +148,19 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"
-			{
-				"value"								"500"
-				"special_bonus_minor_perk"			"+150"
-			}
+			"AbilityCastRange"						"500"
 			"AbilityCastPoint"						"0.3"
-			"AbilityManaCost"
+			"AbilityManaCost"						"100"
+			"AbilityCooldown"						"12"
+			"duration"								"15.0"
+			"absorbed_to_damage"
 			{
 				"value"								"100"
-				"special_bonus_minor_perk"			"-30"
+				"CalculateSpellDamageTooltip"		"1"
 			}
-			"AbilityCooldown"
-			{
-				"value"								"12"
-				"special_bonus_minor_perk"			"-3"
-			}
-			"duration"								"15.0"
 			"damage_absorb"
 			{
 				"value"								"75"
-				"special_bonus_minor_perk"			"+50%"
 				"hero_levelup"						"15"
 				"CalculateSpellDamageTooltip"		"0"
 			}
@@ -180,9 +182,20 @@
 			}
 			"special_bonus_major_our_house_endures"
 			{
-				"AbilityCooldown"							"-4"
-				"damage_absorb"								"x1.5"
-				"no_target"									"=1"
+				"AbilityCooldown"							"-6"
+				"damage_absorb"								"+50%"
+			}
+			"special_bonus_major_deepest_dark"
+			{
+				"AbilityCastRange"							"+300"
+				"radius"									"+325"
+				"duration"									"+5"
+			}
+			"special_bonus_major_generational_trauma"
+			{
+				"AbilityCastRange"							"+300"
+				"radius"									"+325"
+				"duration"									"+5"
 			}
 		}
 	}
@@ -210,26 +223,10 @@
 				"value"									"625"
 				"affected_by_aoe_increase"				"1"
 			}
-			"buff_duration"
-			{
-				"value"									"4.5"
-				"special_bonus_minor_perk"				"+1.5"
-			}
-			"buff_cdr"
-			{
-				"value"									"20"
-				"special_bonus_minor_perk"				"+10"
-			}
-			"buff_as"
-			{
-				"value"									"80"
-				"special_bonus_minor_perk"				"+40"
-			}
-			"initial_slow"
-			{
-				"value"									"15"
-				"special_bonus_minor_perk"				"+15"
-			}
+			"buff_duration"								"3"
+			"buff_cdr"									"20"
+			"buff_as"									"80"
+			"initial_slow"								"15"
 			"curse_slow"								"-40"
 			"curse_as"									"-80"
 		}
@@ -239,6 +236,26 @@
 			"special_bonus_major_billowing_blade"
 			{
 				"silences"									"=1"
+			}
+			"special_bonus_major_the_creeping_cold"
+			{
+				"trigger_count"								"-1"
+				"initial_slow"								"+15"
+			}
+			"special_bonus_major_family_feast"
+			{
+				"trigger_radius"							"+275"
+				"buff_as"									"+40"
+				"buff_cdr"									"+10"
+			}
+			"special_bonus_major_the biting_cold"
+			{
+				"curse_slow"								"-40"
+				"curse_as"									"-80"
+			}
+			"special_bonus_major_ad_eternum"
+			{
+				"buff_duration"								"+3"
 			}
 		}
 	
@@ -273,22 +290,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCooldown"
-			{
-				"value"								"12.0"
-				"special_bonus_minor_perk"			"-6"
-			}
+			"AbilityCooldown"						"12.0"
 			"immolate_damage"
 			{
 				"value"								"5"
 				"hero_levelup"						"+5"
-				"special_bonus_minor_perk"			"+50%"
 				"CalculateSpellDamageTooltip"		"1"
 			}
 			"immolate_aoe"
 			{
 				"value"								"400"
-				"special_bonus_minor_perk"			"+200"
 				"affected_by_aoe_increase"			"1"
 			}
 			"immolate_tick"							"1"
@@ -298,6 +309,15 @@
 			"special_bonus_major_cloak_of_fog"
 			{
 				"damage_resistance"					"35"
+			}
+			"special_bonus_major_self_incineration"
+			{
+				"immolate_damage"					"+75%"
+			}
+			"special_bonus_major_billowing_form"
+			{
+				"AbilityCooldown"					"=0"
+				"immolate_aoe"						"+200"
 			}
 		}
 	}

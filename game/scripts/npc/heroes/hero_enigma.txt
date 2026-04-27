@@ -36,34 +36,35 @@
 			"AbilityCastRange"				"600"
 			"AbilityCastPoint"				"0.3"
 			
-			"tick_rate"
-			{
-				"value"						"2.0 2.0 2.0 2.0"
-				"special_bonus_minor_perk"	"-0.7"
-			}
-			"stun_duration"
-			{
-				"value"						"0.4"
-				"special_bonus_minor_perk"	"+0.3"
-			}
+			"tick_rate"						"2.0"
+			"stun_duration"					"0.4"
 			"damage"
 			{
 				"value"						"38"
 				"hero_levelup"				"12"
-				"special_bonus_minor_perk"	"+50%"
 			}
 			"duration"						"4.0"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_enigma_malefice_2"
+			"special_bonus_major_gravitational_wave"
 			{
 				"aoe_radius"				"325"
 			}
-			"special_bonus_unique_enigma_malefice_2"
+			"special_bonus_major_enter_aetherium"
 			{
 				"duration"					"+10"
 				"AbilityCooldown"			"+10"
+			}
+			"special_bonus_major_time_contraction"
+			{
+				"tick_rate"					"-0.7"
+				"AbilityCooldown"			"-5"
+			}
+			"special_bonus_major_planck_impact"
+			{
+				"stun_duration"				"+0.3"
+				"damage"					"+50%"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -100,41 +101,44 @@
 			"AbilityCastPoint"				"0.3 0.3 0.3"
 			"AbilityCooldown"
 			{
-				"value"						"30 28 26 24"
+				"value"						"30"
 				"special_bonus_minor_perk"	"-4"
 			}
 			"AbilityManaCost"				"180"
 			"radius"
 			{
 				"value"						"500"
-				"special_bonus_minor_perk"	"+250"
 				"affected_by_aoe_increase"	"1"
 			}
-			"duration"
-			{
-				"value"						"5.0"
-				"special_bonus_minor_perk"	"+3.0"
-			}
+			"duration"						"5.0"
 			"tick_rate"						"0.1"
 			"damage"
 			{
 				"value"						"28"
 				"hero_levelup"				"+7"
-				"special_bonus_minor_perk"	"+50%"
 			}
 			"push_speed"					"125"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_enigma_white_hole_1"
+			"special_bonus_major_alcubierre_drive"
 			{
 				"internal_cooldown"			"1.5"
 				"AbilityCastRange"			"x3"
 			}
-			"special_bonus_unique_enigma_white_hole_2"
+			"special_bonus_major_big_rip"
 			{
-				"damage"					"+75"
+				"damage"					"+50%"
 				"push_speed"				"+75"
+			}
+			"special_bonus_major_supermassive_white_hole"
+			{
+				"radius"					"+250"
+				"duration"					"+3"
+			}
+			"special_bonus_major_relativity_factory"
+			{
+				"AbilityCooldown"			"-6"
 			}
 		}
 	}
@@ -173,7 +177,7 @@
 			"AbilityCastPoint"					"0.1"
 			"AbilityCooldown"
 			{
-				"value"							"46 44 42 40"
+				"value"							"46"
 				"special_bonus_minor_perk"		"-8"
 			}
 			"AbilityManaCost"					"110"
@@ -186,7 +190,6 @@
 			"damage_percent"
 			{
 				"value"							"4"
-				"special_bonus_minor_perk"		"+2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"duration"
@@ -198,13 +201,24 @@
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_enigma_midnight_pulse_1"
+			"special_bonus_major_destructive_interference"
 			{
 				"slow"							"-30"
+				"damage_percent"				"+2"
 			}
-			"special_bonus_unique_enigma_midnight_pulse_2"
+			"special_bonus_major_pitch_black_heart"
 			{
 				"heal"							"0.5"
+			}
+			"special_bonus_unique_enigma_five_to_midnight"
+			{
+				"AbilityCooldown"				"-12"
+			}
+			"special_bonus_unique_enigma_spacetime_manipulation"
+			{
+				"radius"						"+250"
+				"AbilityCastRange"				"+200"
+				"duration"						"+2"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -256,15 +270,6 @@
 		"AbilityTextureName"			"enigma_black_hole"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_enigma_black_hole_1"	"1"
-			"special_bonus_unique_enigma_black_hole_2"	"1"
-		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -272,14 +277,6 @@
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityChannelAnimation"		"ACT_DOTA_CHANNEL_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"130 110 90"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"275 325 375"
 		
 		"precache"
 		{
@@ -292,36 +289,38 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCooldown"						"130"
+			"AbilityManaCost"						"275"
 			"damage"
 			{
-				"value"						"2"
-				"hero_levelup"				"+8"
-				"special_bonus_minor_perk"	"+50%"
+				"value"								"2"
+				"hero_levelup"						"+8"
 			}
-			"radius"
-			{
-				"value"						"420"
-				"special_bonus_minor_perk"	"+120"
-			}
-			"pull_speed"
-			{
-				"value"						"100"
-				"special_bonus_minor_perk"	"+100"
-			}
-			"tick_rate"						"0.1 0.1 0.1"
-			"vision_radius"					"800 800 800"
-			"animation_rate"				"0.2"
-			"channel_time"					"4"
+			"radius"								"420"
+			"pull_speed"							"100"
+			"tick_rate"								"0.1 0.1 0.1"
+			"vision_radius"							"800 800 800"
+			"animation_rate"						"0.2"
+			"channel_time"							"4"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_enigma_black_hole_1"
+			"special_bonus_major_infinite_singularity"
 			{
-				"channel_time"							"+4"
+				"channel_time"						"+4"
 			}
-			"special_bonus_unique_enigma_black_hole_2"
+			"special_bonus_major_supermassive_black_hole"
 			{
-				"radius"							"x3"
+				"radius"							"x2"
+				"pull_speed"						"x2"
+			}
+			"special_bonus_major_accretion_disk"
+			{
+				"damage"							"+50%"
+			}
+			"special_bonus_major_supernova_collapse"
+			{
+				"AbilityCooldown"					"-50"
 			}
 		}
 	}

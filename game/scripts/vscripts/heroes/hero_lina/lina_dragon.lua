@@ -39,11 +39,12 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
         ParticleManager:ReleaseParticleIndex(fireFX)
         local count = 0
         local tickRate = self:GetSpecialValueFor("tick_rate")
+		local  attack_speed_loss = self:GetSpecialValueFor("attack_speed_loss")
         Timers:CreateTimer(tickRate, function()
             if count < self:GetSpecialValueFor("duration") then
                 local enemies = caster:FindEnemyUnitsInLine(self.castPoint, vLocation, self:GetSpecialValueFor("radius"), {})
                 for _,enemy in pairs(enemies) do
-                    if caster:HasTalent("special_bonus_unique_lina_dragon_2") then
+                    if attack_speed_loss > 0 then
                         enemy:AddNewModifier(caster, self, "modifier_lina_dragon", {Duration = tickRate})
                     end
                     self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_flame"), {}, 0)
@@ -58,10 +59,13 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_lina_dragon = class({})
+function modifier_lina_dragon:OnCreated()
+	self.attack_speed_loss = self:GetSpecialValueFor("attack_speed_loss")
+end
 function modifier_lina_dragon:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_lina_dragon:GetModifierAttackSpeedBonus_Constant()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_lina_dragon_2")
+    return self.attack_speed_loss
 end

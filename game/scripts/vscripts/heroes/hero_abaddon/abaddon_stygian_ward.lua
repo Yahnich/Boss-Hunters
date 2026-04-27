@@ -30,14 +30,15 @@ function abaddon_stygian_ward:OnSpellStart()
 	end
 end
 
-
 modifier_abaddon_stygian_ward = class({})
 LinkLuaModifier("modifier_abaddon_stygian_ward", "heroes/hero_abaddon/abaddon_stygian_ward", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_abaddon_stygian_ward:OnCreated()
-	self.absorb = self:GetSpecialValueFor("damage_absorb")
 	self.radius = self:GetSpecialValueFor("radius")
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_stygian_ward_2")
+	self.absorbed_to_damage = self:GetSpecialValueFor("absorbed_to_damage") / 100
+	self.damage_reflect = self:GetSpecialValueFor("damage_reflect") / 100
+	self.absorb = self:GetSpecialValueFor("damage_absorb")
+	self.original_absorb = self.absorb
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		local sRadius = self:GetParent():GetModelRadius() * 0.6 + 25
@@ -48,6 +49,8 @@ function modifier_abaddon_stygian_ward:OnCreated()
 		ParticleManager:SetParticleControl(nFX, 4, vFX)
 		ParticleManager:SetParticleControl(nFX, 5, vFX)
 		self:AddEffect(nFX)
+		
+		self:SetHasCustomTransmitterData(true)
 	end
 end
 
@@ -58,39 +61,49 @@ function modifier_abaddon_stygian_ward:OnDestroy()
 		
 		EmitSoundOn("Hero_Abaddon.AphoticShield.Destroy", parent)
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
-		local damage =  self:GetSpecialValueFor("damage_absorb")
+		local damage = self.original_absorb * self.absorbed_to_damage
 		for _, enemy in ipairs( enemies ) do
 			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
-				self:GetAbility():DealDamage(caster, enemy, damage)
+				self:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL})
 			end
 		end
 	end
 end
 
-function modifier_abaddon_stygian_ward:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_TOOLTIP}
+function modifier_abaddon_stygian_ward:DeclareFunctions(params)
+	local funcs = {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT
+    }
+    return funcs
 end
 
-function modifier_abaddon_stygian_ward:GetModifierIncomingDamage_Percentage(params)
-	if not self:GetParent():HasModifier("modifier_abaddon_borrowed_time_active") and params.damage > 0 then
-		if self.absorb > params.damage then
-			if self.talent2 and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
-				local caster = self:GetCaster()
-				local ability = self:GetAbility()
-				ParticleManager:FireParticle( "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion_wave.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
-				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-					ability:DealDamage( caster, enemy, params.damage, {damage_type = params.damage_type, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION } )
-				end
+function modifier_abaddon_stygian_ward:GetModifierIncomingDamageConstant( params )
+	if IsServer() then
+		local absorb = math.min( self.absorb, math.max( self.absorb, params.damage ) )
+		self.absorb = math.max( self.absorb - params.damage, 0 )
+		if self.damage_reflect > 0 and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+			local caster = self:GetCaster()
+			local ability = self:GetAbility()
+			ParticleManager:FireParticle( "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion_wave.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+				ability:DealDamage( caster, enemy, params.damage * self.damage_reflect, {damage_type = params.damage_type, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION } )
 			end
-			self.absorb = self.absorb - params.damage
-			return -999
-		else
+		end
+		if self.absorb <= 0 then 
 			self:Destroy()
-			return ((self.absorb / params.damage) * 100) * (-1)
+			return
 		end
+		self:SendBuffRefreshToClients()
+		return -absorb
+	else
+		return self.absorb
 	end
 end
 
-function modifier_abaddon_stygian_ward:OnTooltip()
-	return self.absorb
+function modifier_abaddon_stygian_ward:AddCustomTransmitterData()
+	return {absorb = self.absorb}
+end
+
+function modifier_abaddon_stygian_ward:HandleCustomTransmitterData(data)
+	self.absorb = data.absorb
 end

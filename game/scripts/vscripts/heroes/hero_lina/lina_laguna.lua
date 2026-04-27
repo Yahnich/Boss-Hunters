@@ -11,23 +11,20 @@ end
 function lina_laguna:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
+	
+	local totalDamage = self:GetSpecialValueFor("damage") * (1 + caster:GetSpellAmplification( false ) ) + target:GetMaxHealth()*self:GetSpecialValueFor("hp")/100
+	local damage_type = TernaryOperator( DAMAGE_TYPE_PURE, self:GetSpecialValueFor("pure_damage") == 1, DAMAGE_TYPE_MAGICAL )
+	local dazeDuration = self:GetSpecialValueFor("daze_duration")
 
     EmitSoundOn("Ability.LagunaBlade", caster)
-    EmitSoundOn("Ability.LagunaBladeImpact", target)
 
     ParticleManager:FireRopeParticle("particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf", PATTACH_POINT_FOLLOW, caster, target, {})
 	if target:TriggerSpellAbsorb( self ) then return end
-    if caster:HasTalent("special_bonus_unique_lina_laguna_2") then
-        target:Daze(self, caster, caster:FindTalentValue("special_bonus_unique_lina_laguna_2"))
+    if dazeDuration > 0 then
+        target:Daze(self, caster, dazeDuration)
     end
+	
+	self:DealDamage(caster, target, totalDamage, {damage_type = damage_type, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0) 
 
-    if caster:HasTalent("special_bonus_unique_lina_laguna_1") then
-        self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_PURE}, 0) 
-        local hpDamage = target:GetMaxHealth()*self:GetSpecialValueFor("hp")/100
-        self:DealDamage(caster, target, hpDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
-    else
-        self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0) 
-        local hpDamage = target:GetMaxHealth()*self:GetSpecialValueFor("hp")/100
-        self:DealDamage(caster, target, hpDamage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
-    end
+    EmitSoundOn("Ability.LagunaBladeImpact", target)
 end
