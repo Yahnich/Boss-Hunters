@@ -1,17 +1,17 @@
-spectre_spectral_dagger_bh = class({})
+spectre_realm_cutter = class({})
 
-function spectre_spectral_dagger_bh:GetCooldown( iLvl )
+function spectre_realm_cutter:GetCooldown( iLvl )
 	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_spectre_spectral_dagger_2", "cd")
 end
 
-function spectre_spectral_dagger_bh:OnSpellStart()
+function spectre_realm_cutter:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local position = self:GetCursorPosition()
 	
 	self:LaunchSpectralDagger( target or position )
 end
 
-function spectre_spectral_dagger_bh:LaunchSpectralDagger( target, origin )
+function spectre_realm_cutter:LaunchSpectralDagger( target, origin )
 	local caster = self:GetCaster()
 
 	
@@ -34,7 +34,7 @@ function spectre_spectral_dagger_bh:LaunchSpectralDagger( target, origin )
 	self.projectiles[pID] = {duration = duration, damage = damage, tracking = target.GetAbsOrigin ~= nil, thinkTime = 1 / ( speed/(radius*2) ), currentThink = 0, units = {}, radius = radius }
 end
 
-function spectre_spectral_dagger_bh:OnProjectileHitHandle( target, position, projectile, bNotFinal )
+function spectre_realm_cutter:OnProjectileHitHandle( target, position, projectile, bNotFinal )
 	local caster = self:GetCaster()
 	local projectileData = self.projectiles[projectile]
 	if target then
@@ -43,7 +43,7 @@ function spectre_spectral_dagger_bh:OnProjectileHitHandle( target, position, pro
 		EmitSoundOn("Hero_Spectre.DaggerImpact", target)
 		self:DealDamage( caster, target, projectileData.damage )
 		if projectileData.tracking and not bNotFinal then
-			target:AddNewModifier(caster, self, "modifier_spectre_spectral_dagger_bh_path", {duration = projectileData.duration})
+			target:AddNewModifier(caster, self, "modifier_spectre_realm_cutter_path", {duration = projectileData.duration})
 			table.remove( self.projectiles, projectile )
 		end
 	else
@@ -53,13 +53,13 @@ end
 
 
 
-function spectre_spectral_dagger_bh:OnProjectileThinkHandle( projectile )
+function spectre_realm_cutter:OnProjectileThinkHandle( projectile )
 	local caster = self:GetCaster()
 	local projectileData = self.projectiles[projectile]
 	if projectileData then
 		if projectileData.currentThink <= 0 then
 			local position = ProjectileManager:GetProjectileLocation( projectile )
-			CreateModifierThinker(caster, self, "modifier_spectre_spectral_dagger_bh_thinker", {duration = self.projectiles[projectile].duration}, position, caster:GetTeamNumber(), false)
+			CreateModifierThinker(caster, self, "modifier_spectre_realm_cutter_thinker", {duration = self.projectiles[projectile].duration}, position, caster:GetTeamNumber(), false)
 			projectileData.currentThink = projectileData.thinkTime
 			if projectileData.tracking then
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, projectileData.radius ) ) do
@@ -74,10 +74,10 @@ function spectre_spectral_dagger_bh:OnProjectileThinkHandle( projectile )
 	end
 end
 
-modifier_spectre_spectral_dagger_bh_path = class({})
-LinkLuaModifier("modifier_spectre_spectral_dagger_bh_path", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
+modifier_spectre_realm_cutter_path = class({})
+LinkLuaModifier("modifier_spectre_realm_cutter_path", "heroes/hero_spectre/spectre_realm_cutter", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_spectre_spectral_dagger_bh_path:OnCreated()
+function modifier_spectre_realm_cutter_path:OnCreated()
 	self.pathDuration = self:GetSpecialValueFor("dagger_path_duration")
 	if IsServer() then
 		self:StartIntervalThink(0.15)
@@ -89,19 +89,19 @@ function modifier_spectre_spectral_dagger_bh_path:OnCreated()
 end
 
 
-function modifier_spectre_spectral_dagger_bh_path:OnIntervalThink()
+function modifier_spectre_realm_cutter_path:OnIntervalThink()
 	local caster = self:GetCaster()
-	CreateModifierThinker(caster, self:GetAbility(), "modifier_spectre_spectral_dagger_bh_thinker", {duration = self.pathDuration}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
+	CreateModifierThinker(caster, self:GetAbility(), "modifier_spectre_realm_cutter_thinker", {duration = self.pathDuration}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 end
 
-function modifier_spectre_spectral_dagger_bh_path:IsHidden()    
+function modifier_spectre_realm_cutter_path:IsHidden()    
 	return false
 end
 
-modifier_spectre_spectral_dagger_bh_thinker = class({})
-LinkLuaModifier("modifier_spectre_spectral_dagger_bh_thinker", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
+modifier_spectre_realm_cutter_thinker = class({})
+LinkLuaModifier("modifier_spectre_realm_cutter_thinker", "heroes/hero_spectre/spectre_realm_cutter", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_spectre_spectral_dagger_bh_thinker:OnCreated()
+function modifier_spectre_realm_cutter_thinker:OnCreated()
 	self.stick = self:GetSpecialValueFor("dagger_grace_period")
 	self.radius = self:GetSpecialValueFor("path_radius")
 	if IsServer() then
@@ -109,38 +109,38 @@ function modifier_spectre_spectral_dagger_bh_thinker:OnCreated()
 	end
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:IsAura()
+function modifier_spectre_realm_cutter_thinker:IsAura()
 	return true
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:GetModifierAura()
-	return "modifier_spectre_spectral_dagger_bh"
+function modifier_spectre_realm_cutter_thinker:GetModifierAura()
+	return "modifier_spectre_realm_cutter"
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:GetAuraRadius()
+function modifier_spectre_realm_cutter_thinker:GetAuraRadius()
 	return self.radius
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:GetAuraDuration()
+function modifier_spectre_realm_cutter_thinker:GetAuraDuration()
 	return self.stick
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:GetAuraSearchTeam()    
+function modifier_spectre_realm_cutter_thinker:GetAuraSearchTeam()    
 	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:GetAuraSearchType()    
+function modifier_spectre_realm_cutter_thinker:GetAuraSearchType()    
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
 
-function modifier_spectre_spectral_dagger_bh_thinker:IsHidden()    
+function modifier_spectre_realm_cutter_thinker:IsHidden()    
 	return true
 end
 
-modifier_spectre_spectral_dagger_bh = class({})
-LinkLuaModifier("modifier_spectre_spectral_dagger_bh", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
+modifier_spectre_realm_cutter = class({})
+LinkLuaModifier("modifier_spectre_realm_cutter", "heroes/hero_spectre/spectre_realm_cutter", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_spectre_spectral_dagger_bh:OnCreated()
+function modifier_spectre_realm_cutter:OnCreated()
 	self.slow = self:GetSpecialValueFor("bonus_movespeed")
 	if not self:GetParent():IsSameTeam( self:GetCaster() ) then
 		self.slow = self.slow * (-1)
@@ -151,26 +151,26 @@ function modifier_spectre_spectral_dagger_bh:OnCreated()
 	end
 end
 
-function modifier_spectre_spectral_dagger_bh:CheckState()
+function modifier_spectre_realm_cutter:CheckState()
 	return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = (self:GetParent() == self:GetCaster()) }
 end
 
-function modifier_spectre_spectral_dagger_bh:DeclareFunctions()
+function modifier_spectre_realm_cutter:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS }
 end
 
-function modifier_spectre_spectral_dagger_bh:GetModifierMoveSpeedBonus_Percentage()
+function modifier_spectre_realm_cutter:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
 
-function modifier_spectre_spectral_dagger_bh:GetModifierMagicalResistanceBonus()
+function modifier_spectre_realm_cutter:GetModifierMagicalResistanceBonus()
 	return self.talent1Mr
 end
 
-function modifier_spectre_spectral_dagger_bh:GetModifierEvasion_Constant()
+function modifier_spectre_realm_cutter:GetModifierEvasion_Constant()
 	return self.talent1Ev
 end
 
-function modifier_spectre_spectral_dagger_bh:GetEffectName()
+function modifier_spectre_realm_cutter:GetEffectName()
 	if self:GetParent() == self:GetCaster() then return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf" end
 end

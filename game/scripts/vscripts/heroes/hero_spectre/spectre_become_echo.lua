@@ -1,7 +1,7 @@
-spectre_reality_bh = class({})
+spectre_become_echo = class({})
 
 
-function spectre_reality_bh:OnSpellStart()
+function spectre_become_echo:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	

@@ -3,12 +3,12 @@
 	//=================================================================================================================
 	// Spectre: Spectral Dagger
 	//=================================================================================================================
-	"spectre_spectral_dagger_bh"
+	"spectre_realm_cutter"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_spectral_dagger_bh"
+		"ScriptFile"					"heroes/hero_spectre/spectre_realm_cutter"
 		"AbilityTextureName"			"spectre_spectral_dagger"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -20,170 +20,109 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Spectre.DaggerCast"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_spectre_spectral_dagger_1"	"1"
-			"special_bonus_unique_spectre_spectral_dagger_2"	"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0 20.0 18.0 16.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"130 140 150 160"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.0"	// Modifier has no support value
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastRange"				"1800"
+			"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+			"AbilityCooldown"				"22.0"
+			"AbilityManaCost"				"130"
 			"damage"
 			{
-				"value"						"75 130 185 240"
-				"LinkedSpecialBonus"		"special_bonus_unique_spectre_spectral_dagger_2"
+				"value"						"75"
+				"hero_levelup"				"+20"
 			}
 				
-			"bonus_movespeed"				"10 14 18 22 22 22 22"
+			"bonus_movespeed"				"20"
 			"dagger_path_duration"			"12.0 12.0 12.0 12.0"
-			"buff_persistence"				"4.0 4.0 4.0 4.0"
 			"dagger_radius"					"125"
-			"path_radius"					"125"
-			"vision_radius"					"200"
 			"speed"							"800"
 			"distance"						"2000"
 			"dagger_grace_period"			"1.0"
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_spectral_dagger_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedAbilityName"				"spectre_spectral_dagger_bh"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"magic_resist"				"50"
-			"evasion"					"50"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_spectral_dagger_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"200"
-			"cd"						"-4"
+			"special_bonus_major_the_lost_lamb"
+			{
+				"magic_resist"				"50"
+				"evasion"					"50"
+			}
+			"special_bonus_major_between_here_and_now"
+			{
+				"AbilityCooldown"			"-6"
+			}
+			"special_bonus_major_dark_fracture"
+			{
+				"bonus_movespeed"			"20"
+				"dagger_radius"				"+125"
+			}
+			"special_bonus_major_infinite_cutter"
+			{
+				"bonus_movespeed"			"+50%"
+			}
 		}
 	}
 	//=================================================================================================================
 	// Spectre: Desolate
 	//=================================================================================================================
-	"spectre_desolate_bh"
+	"spectre_lonely_death"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_desolate_bh"
+		"ScriptFile"					"heroes/hero_spectre/spectre_lonely_death"
 		"AbilityTextureName"			"spectre_desolate"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Spectre.Desolate"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_spectre_desolate_1"	"1"
-			"special_bonus_unique_spectre_desolate_2"	"1"
-		}
-		
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"bonus_damage"				"20 30 40 50"
-			"bonus_damage_solo"			"60 90 120 150"
-			"radius"					"325"
+			"bonus_damage"
+			{
+				"value					"15"
+				"hero_levelup			"+3"
+			}
+			
+			"solo_multiplier"			"2.5"
+			"radius"					"400"
+		}
+		
+		"AbilityPerks"
+		{
+			"special_bonus_major_metastable_vacuum"
+			{
+				"paralyze_duration"			"0.5"
+			}
+			"special_bonus_major_mysterious_visitor"
+			{
+				"shadow_path_solo"			"=1"
+			}
+			"special_bonus_major_fear_of_missing_out"
+			{
+				"bonus_damage"				"+50%"
+			}
+			"special_bonus_major_endless_solitude"
+			{
+				"solo_multiplier"			"+1.5"
+				"radius"					"-75"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_desolate_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"0.5"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_desolate_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_spectre_desolate_bh"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"1"
-		}
-	}
-	"spectre_dispersion_bh"
+	"spectre_mercurial_form"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_dispersion_bh"
+		"ScriptFile"					"heroes/hero_spectre/spectre_mercurial_form"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -192,18 +131,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		
 		"AbilityTextureName"			"spectre_dispersion"
-		"AbilityCastRange"				"700"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_spectre_dispersion_1"	"1"
-			"special_bonus_unique_spectre_dispersion_2"	"1"
-		}
-		
-		"NoThreatFlag"					"1"
 		
 		"precache"
 		{
@@ -218,50 +146,35 @@
 			"max_radius"							"700"
 			"damage_reflection_pct"
 			{
-				"value"								"8 12 16 20"
-				"LinkedSpecialBonus"				"special_bonus_unique_spectre_dispersion_1"
+				"value"								"16"
 				"CalculateSpellDamageTooltip"		"0"
 			}
 		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_dispersion_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_spectre_dispersion_buff"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"						"100"
-			"value2"					"0.5"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_dispersion_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_spectre_dispersion_buff"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"300"
-			"cd"						"7"
+			"special_bonus_major_not_quite_here"
+			{
+				"cdr_health_cost"					"100"
+				"cooldown_reduction"				"1"
+			}
+			"special_bonus_major_interconnected"
+			{
+				"path_health_cost"					"100"
+			}
+			"special_bonus_major_dispersed_form"
+			{
+				"damage_reflection_pct"				"+4"
+				"active_reflection_pct"				"=20"
+				"active_duration"					"=5"
+				"AbilityCooldown"					"25"
+				"AbilityManaCost"					"50"
+			}
+			"special_bonus_major_closer_than_you_think"
+			{
+				"damage_reflection_pct"				"+4"
+				"min_radius"						"+300"
+				"max_radius"						"+500"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -273,7 +186,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_dimensional_interjection"
-		"AbilityTextureName"			"spectre_haunt_single"
+		"AbilityTextureName"			"spawnlord_master_freeze"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"Innate"						"1"
 		"HasScepterUpgrade"				"1"
@@ -287,7 +200,19 @@
 		"AbilityValues"
 		{
 			"teleport_distance"			"450"
-			"scepter_duration"			"4"
+			"echo_duration"				"4"
+			"path_duration"				"4"
+			"echo_damage_taken"
+			{
+				"value"					"203"
+				hero_levelup"			"-3"
+			}
+			"echo_damage_dealt"
+			{
+				"value"					"40"
+				hero_levelup"			"+1"
+			}
+			"path_movespeed"			"20"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -369,43 +294,25 @@
 			"illusion_total_damage_incoming"			"200 150 100"			
 			"vision"									"300"			
 		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_haunt_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
+		"AbilityPerks"
 		{
-			"value"						"1"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_haunt_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_spectre_dispersion_aura"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"3"
-			"cd"						"-45"
+			"special_bonus_major_metastable_vacuum"
+			{
+				"paralyze_duration"			"0.5"
+			}
+			"special_bonus_major_mysterious_visitor"
+			{
+				"shadow_path_solo"			"=1"
+			}
+			"special_bonus_major_fear_of_missing_out"
+			{
+				"bonus_damage"				"+50%"
+			}
+			"special_bonus_major_endless_solitude"
+			{
+				"solo_multiplier"			"+1.5"
+				"radius"					"-75"
+			}
 		}
 	}
 }

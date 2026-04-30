@@ -1,7 +1,7 @@
-spectre_dispersion_bh = class({})
+spectre_mercurial_form = class({})
 --------------------------------------------------------------------------------
 
-function spectre_dispersion_bh:GetCooldown(iLvl)
+function spectre_mercurial_form:GetCooldown(iLvl)
 	if self:GetCaster():HasTalent("special_bonus_unique_spectre_dispersion_2") then
 		return self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_2", "cd")
 	else
@@ -9,16 +9,16 @@ function spectre_dispersion_bh:GetCooldown(iLvl)
 	end
 end
 
-function spectre_dispersion_bh:ShouldUseResources()
+function spectre_mercurial_form:ShouldUseResources()
 	return true
 end
 
-function spectre_dispersion_bh:GetIntrinsicModifierName()
+function spectre_mercurial_form:GetIntrinsicModifierName()
     return "modifier_spectre_dispersion_aura"
 end
 
 modifier_spectre_dispersion_aura = class({})
-LinkLuaModifier( "modifier_spectre_dispersion_aura", "heroes/hero_spectre/spectre_dispersion_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_spectre_dispersion_aura", "heroes/hero_spectre/spectre_mercurial_form.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_spectre_dispersion_aura:OnCreated()
 	-- self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_2")
@@ -74,7 +74,7 @@ end
 
 
 modifier_spectre_dispersion_buff = class({})
-LinkLuaModifier( "modifier_spectre_dispersion_buff", "heroes/hero_spectre/spectre_dispersion_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_spectre_dispersion_buff", "heroes/hero_spectre/spectre_mercurial_form.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 function modifier_spectre_dispersion_buff:DeclareFunctions(params)

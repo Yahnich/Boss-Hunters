@@ -1,10 +1,10 @@
-spectre_haunt_bh = class({})
+spectre_fracture_self = class({})
 
-function spectre_haunt_bh:GetCooldown( iLvl )
+function spectre_fracture_self:GetCooldown( iLvl )
 	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_spectre_haunt_2", "cd")
 end
 
-function spectre_haunt_bh:OnUpgrade( )
+function spectre_fracture_self:OnUpgrade( )
 	local caster = self:GetCaster()
 	local reality = caster:FindAbilityByName("spectre_reality_bh")
 	if reality and reality:GetLevel() == 0 then
@@ -14,7 +14,7 @@ function spectre_haunt_bh:OnUpgrade( )
 	end
 end
 
-function spectre_haunt_bh:OnSpellStart()
+function spectre_fracture_self:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetSpecialValueFor("duration")
@@ -30,7 +30,7 @@ function spectre_haunt_bh:OnSpellStart()
 	EmitSoundOn( "Hero_Spectre.HauntCast", caster )
 end
 
-function spectre_haunt_bh:SpawnHauntIllusion( target, fDur )
+function spectre_fracture_self:SpawnHauntIllusion( target, fDur )
 	local caster = self:GetCaster()
 	local duration = fDur or self:GetSpecialValueFor("duration")
 	local outgoing = self:GetSpecialValueFor("illusion_damage_outgoing") - 100
@@ -92,7 +92,7 @@ function spectre_haunt_bh:SpawnHauntIllusion( target, fDur )
 end
 
 modifier_spectre_haunt_darkness = class({})
-LinkLuaModifier( "modifier_spectre_haunt_darkness", "heroes/hero_spectre/spectre_haunt_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_spectre_haunt_darkness", "heroes/hero_spectre/spectre_fracture_self.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_spectre_haunt_darkness:OnCreated()
 	self.vision = self:GetSpecialValueFor("vision")
@@ -111,7 +111,7 @@ function modifier_spectre_haunt_darkness:GetFixedDayVision()
 end
 
 modifier_spectre_haunt_ghost = class({})
-LinkLuaModifier( "modifier_spectre_haunt_ghost", "heroes/hero_spectre/spectre_haunt_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_spectre_haunt_ghost", "heroes/hero_spectre/spectre_fracture_self.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 if IsServer() then
 	function modifier_spectre_haunt_ghost:OnCreated()

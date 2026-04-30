@@ -1,17 +1,17 @@
-spectre_desolate_bh = class({})
+spectre_lonely_death = class({})
 
-function spectre_desolate_bh:GetIntrinsicModifierName()
-	return "modifier_spectre_desolate_bh"
+function spectre_lonely_death:GetIntrinsicModifierName()
+	return "modifier_spectre_lonely_death"
 end
 
-modifier_spectre_desolate_bh = class({})
-LinkLuaModifier( "modifier_spectre_desolate_bh", "heroes/hero_spectre/spectre_desolate_bh", LUA_MODIFIER_MOTION_NONE )
+modifier_spectre_lonely_death = class({})
+LinkLuaModifier( "modifier_spectre_lonely_death", "heroes/hero_spectre/spectre_lonely_death", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_spectre_desolate_bh:OnCreated()
+function modifier_spectre_lonely_death:OnCreated()
 	self:OnRefresh()
 end
 
-function modifier_spectre_desolate_bh:OnRefresh()
+function modifier_spectre_lonely_death:OnRefresh()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.solo_damage = self:GetSpecialValueFor("bonus_damage_solo")
 	self.radius = self:GetSpecialValueFor("radius")
@@ -19,11 +19,11 @@ function modifier_spectre_desolate_bh:OnRefresh()
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_spectre_desolate_2")
 end
 
-function modifier_spectre_desolate_bh:DeclareFunctions()
+function modifier_spectre_lonely_death:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE}
 end
 
-function modifier_spectre_desolate_bh:GetModifierProcAttack_BonusDamage_Pure(params)
+function modifier_spectre_lonely_death:GetModifierProcAttack_BonusDamage_Pure(params)
 	if params.attacker == self:GetParent() then
 		local damage = self.solo_damage
 		local solo = true
@@ -52,6 +52,6 @@ function modifier_spectre_desolate_bh:GetModifierProcAttack_BonusDamage_Pure(par
 	end
 end
 
-function modifier_spectre_desolate_bh:IsHidden()
+function modifier_spectre_lonely_death:IsHidden()
 	return true
 end
