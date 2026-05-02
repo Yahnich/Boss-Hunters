@@ -106,7 +106,7 @@
 			"max_distance"														"3900"
 			"orb_speed"															"750"
 			"orb_vision"														"900"
-			"vision_duration"													"3.34 "
+			"vision_duration"													"3.34"
 			"damage"					
 			{
 				"value"															"50"
@@ -114,8 +114,20 @@
 				"CalculateSpellDamageTooltip"									"1"
 			}
 			
-			"end_damage_radius"													{"affected_by_aoe_increase"	"1"}
-			"pulse_radius"														{"affected_by_aoe_increase"	"1"}
+			
+			"mirror_projectile"													"0"
+			"incoming_dmg"														"0"
+			"debuff_duration"													"0"
+			"cooldown_increase"													"0"
+			"wander_heal"														"0"
+			"expire_damage"														"0"
+			"pulse_damage"														"0"
+			"pulse_interval"													"0"
+			"pulse_radius"
+			{
+				"value"															"0"
+				"affected_by_aoe_increase"										"1"
+			}
 		}
 		"AbilityPerks"
 		{
@@ -253,6 +265,12 @@
 				"hero_levelup"													"+15"
 				"CalculateSpellDamageTooltip"									"1"
 			}
+			
+			"repeats"															"0"
+			"armor_reduction"													"0"
+			"purge"																"0"
+			"breaks"															"0"
+			"fears"																"0"
 		}
 		"AbilityPerks"
 		{
@@ -302,12 +320,20 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastPoint"				"0.01"
-			"AbilityThreat"					"-10"
-			"AbilityCooldown"				"3.25"
-			"AbilityManaCost"				"0 0 0 0"
-			"AbilityChannelTime"			"1.75"
-			"duration"						"1.75"
+			"AbilityCastPoint"													"0.01"
+			"AbilityThreat"														"-10"
+			"AbilityCooldown"													"3.25"
+			"AbilityManaCost"													"0 0 0 0"
+			"AbilityChannelTime"												"1.75"
+			"duration"															"1.75"
+			
+			
+			"hp_regen"															"0"
+			"blooms"															"0"
+			"int_multiplier"													"0"
+			"immunity"															"0"
+			"cdr"																"0"
+			"attacks"															"0"
 		}
 		"AbilityPerks"
 		{
@@ -359,32 +385,7 @@
 		"AbilitySound"					"Hero_Puck.Dream_Coil"
 		"AbilityTextureName"			"puck_dream_coil"
 		"MaxLevel"						"3"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.1 0.1 0.1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
-		"AbilityCastRange"				"750"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60 45 30"
-
-		// Talents
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_puck_singularity_core_1"							"1"
-			"special_bonus_unique_puck_singularity_core_2"							"1"
-		}
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 200 350"
-				
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.5"	// Does two modifiers 
 		
 		"precache"
 		{
@@ -395,66 +396,74 @@
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
-		{			
+		{
+			"AbilityCastPoint"				"0.1"
+			"AbilityCastRange"				"750
+			"AbilityCooldown"				"60"
+			"AbilityManaCost"				"100"
 			// Default KV's
 			//---------------------------------------------------------------------------------------------------------
 			"coil_radius"
 			{
-				"value"																"600"
-				"affected_by_aoe_increase"											"1"
+				"value"															"600"
+				"affected_by_aoe_increase"										"1"
 			}
-			"coil_duration"															"5.0"
+			"coil_duration"														"5.0"
 			"coil_init_damage_tooltip"							
 			{
-				"value"																"100"
-				"hero_levelup"														"+10"
-				"CalculateSpellDamageTooltip"										"1"
+				"value"															"100"
+				"hero_levelup"													"+10"
+				"CalculateSpellDamageTooltip"									"1"
 			}
 			"coil_init_stun_duration"				
 			{
-				"value"																"1.5"
-				"is_debuff_duration"												"1"
+				"value"															"1.5"
+				"is_debuff_duration"											"1"
 			}
 			"coil_break_radius"
 			{
-				"value"																"750"
-				"affected_by_aoe_increase"											"1"
+				"value"															"750"
+				"affected_by_aoe_increase"										"1"
 			}
 			"coil_break_damage"			
 			{
-				"value"																"110"
-				"hero_levelup"														"+15"
-				"CalculateSpellDamageTooltip"										"1"
+				"value"															"110"
+				"hero_levelup"													"+15"
+				"CalculateSpellDamageTooltip"									"1"
 			}
 			"coil_stun_duration"					
 			{
-				"value"																"1.5"
-				"is_debuff_duration"												"1"
+				"value"															"1.5"
+				"is_debuff_duration"											"1"
 			}	
+			
+			"dmg_reduction"														"0"
+			"rapid_break"														"0"
+			"auto_attack"														"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_core_meltdown"
 			{
-				"coil_init_damage_tooltip"											"x2"
-				"coil_init_stun_duration"											"x2"
-				"coil_break_damage"													"x2"
-				"coil_stun_duration"												"x2"
+				"coil_init_damage_tooltip"										"x2"
+				"coil_init_stun_duration"										"x2"
+				"coil_break_damage"												"x2"
+				"coil_stun_duration"											"x2"
 			}
 			"special_bonus_major_singularity_finale"
 			{
-				"coil_radius"														"+600"
-				"coil_break_radius"													"+600"
-				"auto_attack"														"=1"
+				"coil_radius"													"+600"
+				"coil_break_radius"												"+600"
+				"auto_attack"													"=1"
 			}
 			"special_bonus_major_creeping_tendrils"
 			{
-				"rapid_break"														"=1"
+				"rapid_break"													"=1"
 			}
 			"special_bonus_major_enfeebling_magicka"
 			{
-				"coil_duration"														"+5"
-				"dmg_reduction"														"=50"
+				"coil_duration"													"+5"
+				"dmg_reduction"													"=50"
 			}
 		}
 	}

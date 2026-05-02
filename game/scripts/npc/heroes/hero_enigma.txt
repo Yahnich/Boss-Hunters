@@ -44,6 +44,12 @@
 				"hero_levelup"				"12"
 			}
 			"duration"						"4.0"
+			
+			"aoe_radius"
+			{
+				"value"						"0"
+				"affected_by_aoe_increase"	"1"
+			}
 		}
 		"AbilityPerks"
 		{
@@ -118,6 +124,8 @@
 				"hero_levelup"				"+7"
 			}
 			"push_speed"					"125"
+			
+			"internal_cooldown"				"0"
 		}
 		"AbilityPerks"
 		{
@@ -198,6 +206,9 @@
 				"special_bonus_minor_perk"		"+2"
 			}
 			"tick_rate"							"1"
+			
+			"slow"								"0"
+			"heal"								"0"
 		}
 		"AbilityPerks"
 		{
@@ -240,17 +251,17 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"split_attack_count"	"12"
-			"evolve_attack_count"	"6"
-			"lesser_eidolon_hp"		"200"
-			"eidolon_hp"			"400"
-			"greater_eidolon_hp"	"800"
-			"dire_eidolon_hp"		"1600"
-			"lesser_eidolon_dmg"	"25"
-			"eidolon_dmg"			"50"
-			"greater_eidolon_dmg"	"75"
-			"dire_eidolon_dmg"		"100"
-			"duration"				"60"
+			"split_attack_count"		"12"
+			"evolve_attack_count"		"6"
+			"lesser_eidolon_hp"			"200"
+			"eidolon_hp"				"400"
+			"greater_eidolon_hp"		"800"
+			"dire_eidolon_hp"			"1600"
+			"lesser_eidolon_dmg"		"25"
+			"eidolon_dmg"				"50"
+			"greater_eidolon_dmg"		"75"
+			"dire_eidolon_dmg"			"100"
+			"duration"					"60"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -296,7 +307,11 @@
 				"value"								"2"
 				"hero_levelup"						"+8"
 			}
-			"radius"								"420"
+			"radius"
+			{
+				"value"								"420"
+				"affected_by_aoe_increase"			"1"
+			}
 			"pull_speed"							"100"
 			"tick_rate"								"0.1 0.1 0.1"
 			"vision_radius"							"800 800 800"

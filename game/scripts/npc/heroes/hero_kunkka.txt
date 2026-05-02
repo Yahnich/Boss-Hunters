@@ -11,7 +11,7 @@
 		"ScriptFile"						"heroes/hero_kunkka/kunkka_captains_rum"
 		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName"				"kunkka_admirals_rum"
-		"MaxLevel"							"4"
+		"MaxLevel"							"1"
 		"Innate"							"1"
 		"DependentOnAbility"				"kunkka_ghostship"
 		
@@ -30,17 +30,22 @@
 		{
 			"grog_duration"					"6"
 			"refresh_bonus_duration"		"2"
-			"triggers_on_enemies"			{"special_bonus_facet_kunkka_mariner"	"1"}
 			
-			"grog_damage_resist"			"20 30 40 50"
-			"grog_movespeed_bonus"			"10 15 20 25"
+			"grog_damage_resist"
+			{
+				"value"						"20"
+				"hero_levelup"				"+1"
+			}
+			"grog_movespeed_bonus"			"25"
+			
+			"hungover_max_loss"				"2"
+			"minimum_health"				"1"
+			
 			"grog_heal"						{"special_bonus_facet_kunkka_admiral"	"100 200 300 400"}
 			"fleet_rum_bonus"				{"special_bonus_facet_kunkka_privateer"	"5 10 15 20"}
 			"grog_base_damage"				{"special_bonus_facet_kunkka_privateer"	"20 30 40 50"}
 			"grog_spell_amp"				{"special_bonus_facet_kunkka_privateer"	"10 15 20 25"}
-			
-			"hungover_max_loss"				"2"
-			"minimum_health"				"1"
+			"triggers_on_enemies"			{"special_bonus_facet_kunkka_mariner"	"1"}
 		}
 	}
 	//=================================================================================================================
@@ -107,6 +112,13 @@
 				"hero_levelup"                          					"+20"
 				"CalculateSpellDamageTooltip"								"1"
 			}
+			
+			"bonus_physical_damage"											"0"
+			"bonus_armor"													"0"
+			"bonus_armor_duration"											"0"
+			"admiral_mspd_bonus"											"0"
+			"extra_torrents"												"0"
+			"extra_torrent_delay"											"0"
 
 			// Mariner KV's
 			//---------------------------------------------------------------------------------------------------------
@@ -207,6 +219,9 @@
 				"value"														"3"
 				"is_debuff_duration"										"1"
 			}
+			
+			"mres_reduc"													"0"
+			"armor_reduc"													"0"
 		}
 		"AbilityPerks"
 		{
@@ -292,6 +307,15 @@
 				"CalculateSpellDamageTooltip"								"0"
 			}
 			"AbilityCooldown"												"4.0"
+			
+			// perk KVs have to be 0 to get triggered
+			"mini_stun_duration"											"0"
+			"armor_reduction"												"0"
+			"armor_reduction_duration"										"0"
+			"heal_pct"														"0"
+			"hit_cdr_hero"													"0"
+			"hit_cdr_creep"													"0"
+			
 		}
 		"AbilityPerks"
 		{
@@ -360,6 +384,15 @@
 			"AbilityCastRange"									"300"
 			"ally_max_range"									"1000"
 			"enemy_max_range"									"500"
+			
+			"aoe_enemy_radius"									"0"
+			"evasion_bonus"										"0"
+			"evasion_duration"									"0"
+			"wave_count"										"0"
+			"wave_damage"										"0"
+			"wave_width"										"0"
+			"wave_speed"										"0"
+			"wave_distance"										"0"
 		}
 		"AbilityPerks"
 		{
@@ -478,6 +511,15 @@
 			"drift_radius"													"450"
 			
 			"ghost_ships"													"1"
+			
+			"cannons_per_side"												"0"
+			"cannonade_interval"											"0"
+			"cannonball_daze_duration"										"0"
+			"cannonball_damage"												"0"
+			"cannonball_radius"												"0"
+			"cannonball_speed"												"0"
+			"drag_enemies"													"0"
+			"captains_rum_bonus"											"0"
 		}
 		"AbilityPerks"
 		{
@@ -502,16 +544,6 @@
 			"special_bonus_major_well_stocked_pantry"
 			{
 				"captains_rum_bonus"										"20"
-			}
-			"special_bonus_major_deep_soak"
-			{
-				"duration"													"+3"
-				"total_dmg_reduc"											"+4"
-			}
-			"special_bonus_major_swelling_rapids"
-			{
-				"AbilityCooldown"											"-7"
-				"AbilityManaCost"											"-25"
 			}
 		}
 	}

@@ -34,49 +34,51 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"					"1075"
-			"AbilityCastPoint"					"0.35"
-			"AbilityCooldown"					"11"
-			"AbilityManaCost"					"100"
+			"AbilityCastRange"													"1075"
+			"AbilityCastPoint"													"0.35"
+			"AbilityCooldown"													"11"
+			"AbilityManaCost"													"100"
 			"damage"
 			{
-				"value"							"50"
-				"hero_levelup"					"15"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"50"
+				"hero_levelup"													"15"
+				"CalculateSpellDamageTooltip"									"1"
 			}
 			"damage_flame"
 			{
-				"value"							"18"
-				"hero_levelup"					"2"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"18"
+				"hero_levelup"													"2"
+				"CalculateSpellDamageTooltip"									"1"
 			}
-			"duration"							"4"
-			"radius"							"200"
-			"speed"								"1200"
-			"tick_rate"							"0.5"
-			"width"								"275"
+			"duration"															"4"
+			"radius"															"200"
+			"speed"																"1200"
+			"tick_rate"															"0.5"
+			"width"																"275"
+			
+			"attack_speed_loss"													"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_seven_beautiful_fires"
 			{
-				"duration"						"+4"
-				"damage_flame"					"+100%"
+				"duration"														"+4"
+				"damage_flame"													"+100%"
 			}
 			"special_bonus_major_the_dragons_bite"
 			{
-				"AbilityCooldown"				"-3"
-				"damage"						"+50%"
+				"AbilityCooldown"												"-3"
+				"damage"														"+50%"
 			}
 			"special_bonus_major_backdraft"
 			{
-				"attack_speed_loss"				"-180"
+				"attack_speed_loss"												"-180"
 			}
 			"special_bonus_greatwyrms_wrath"
 			{
-				"AbilityCooldown"				"-3"
-				"radius"						"+100%"
-				"width"							"+100%"
+				"AbilityCooldown"												"-3"
+				"radius"														"+100%"
+				"width"															"+100%"
 			}
 		}
 	}
@@ -111,46 +113,48 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"					"700"
-			"AbilityCastPoint"					"0.45"
-			"AbilityCooldown"					"13"
-			"AbilityManaCost"					"100"
-			"damage"
+			"AbilityCastRange"													"700"
+			"AbilityCastPoint"													"0.45"
+			"AbilityCooldown"													"13"
+			"AbilityManaCost"													"100"
+			"damage"								
 			{
-				"value"							"70"
-				"hero_levelup"					"10"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"70"
+				"hero_levelup"													"10"
+				"CalculateSpellDamageTooltip"									"1"
 			}
 			"damage_flame"
 			{
-				"value"							"18"
-				"hero_levelup"					"2"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"18"
+				"hero_levelup"													"2"
+				"CalculateSpellDamageTooltip"									"1"
 			}
-			"duration"							"4"
-			"radius"							"225"		
-			"stun_duration"						"1.2"
+			"duration"															"4"
+			"radius"															"225"		
+			"stun_duration"														"1.2"
+			
+			"moveslow"															"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_pillar_of_red_steam"
 			{
-				"duration"						"+4"
-				"damage_flame"					"+100%"
+				"duration"														"+4"
+				"damage_flame"													"+100%"
 			}
 			"special_bonus_major_rod_from_hell"
 			{
-				"AbilityCooldown"				"-6"
-				"damage"						"+50%"
+				"AbilityCooldown"												"-6"
+				"damage"														"+50%"
 			}
 			"special_bonus_major_chains_of_ifrit"
 			{
-				"moveslow"						"-35"
+				"moveslow"														"-35"
 			}
 			"special_bonus_major_baalzebub_impact"
 			{
-				"radius"						"+250"
-				"stun_duration"					"+1.2"
+				"radius"														"+250"
+				"stun_duration"													"+1.2"
 			}
 		}
 	}
@@ -188,45 +192,45 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"					"500"
-			"AbilityCastPoint"					"0.45"
-			"AbilityCooldown"					"10"
-			"AbilityManaCost"					"120"
+			"AbilityCastRange"													"500"
+			"AbilityCastPoint"													"0.45"
+			"AbilityCooldown"													"10"
+			"AbilityManaCost"													"120"
 			"damage"
 			{
-				"value"							"70"
-				"hero_levelup"					"10"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"70"
+				"hero_levelup"													"10"
+				"CalculateSpellDamageTooltip"									"1"
 			}
 			"damage_flame"
 			{
-				"value"							"10"
-				"hero_levelup"					"5"
-				"CalculateSpellDamageTooltip"	"1"
+				"value"															"10"
+				"hero_levelup"													"5"
+				"CalculateSpellDamageTooltip"									"1"
 			}
-			"duration"							"4"
-			"radius"							"375"
+			"duration"															"4"
+			"radius"															"375"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_magmatic_lens"
 			{
-				"flame_duration"				"100"
-				"damage_flame"					"100"
+				"flame_duration"												"100"
+				"damage_flame"													"100"
 			}
 			"special_bonus_major_net_of_molten_steel"
 			{
-				"stun_duration"					"1.5"
+				"stun_duration"													"1.5"
 			}
 			"special_bonus_major_infernoball"
 			{
-				"AbilityCooldown"				"-3"
-				"damage"						"+50%"
+				"AbilityCooldown"												"-3"
+				"damage"														"+50%"
 			}
 			"special_bonus_major_meteor_ball"
 			{
-				"duration"						"+2"
-				"radius"						"+175"
+				"duration"														"+2"
+				"radius"														"+175"
 			}
 		}
 	}
@@ -298,6 +302,9 @@
 				"CalculateSpellDamageTooltip"	"1"
 			}
 			"hp"								"5"
+			
+			"pure_damage"						"0"
+			"daze_duration"						"0"
 		}
 		"AbilityPerks"
 		{

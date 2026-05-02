@@ -95,6 +95,11 @@
 			"linger_duration"								"0.5"
 			"armor_reduction"								"3"
 			"tick_rate"										"1.0"
+			
+			"armor_loss_per_sec"							"0"
+			"panacea_heal"									"0"
+			"panacea_armor"									"0"
+			"alkahest_duration"								"0"
 		}
 		"AbilityPerks"
 		{
@@ -197,6 +202,8 @@
 				"value"												"350"
 				"affected_by_aoe_increase"							"1"
 			}
+			"bonus_physical_damage"									"0"
+			"freezes_cooldowns"										"0"
 		}
 		"AbilityPerks"
 		{
@@ -214,15 +221,6 @@
 					"value"											"100"
 					"hero_levelup"									"+4"
 				}
-			}
-			"special_bonus_major_midas_goop"
-			{
-				"bonus_physical_damage"
-				{ 
-					"value"											"18"
-					"hero_levelup"									"+2"
-				}
-				"freezes_cooldowns"									"1"
 			}
 			"special_bonus_major_midas_goop"
 			{
@@ -260,16 +258,22 @@
 		{
 			"max_stacks"
 			{
-				"value"							"10"
+				"value"												"10"
 			}
 			"debuff_duration"
 			{
-				"value"							"4.0"
-				"is_debuff_duration"			"1"
+				"value"												"4.0"
+				"is_debuff_duration"								"1"
 			}
-			"slow_per_stack"					"1.0"
-			"stacks_per_attack"					"2"
-			"stacks_per_second"					"1"
+			"slow_per_stack"										"1.0"
+			"stacks_per_attack"										"2"
+			"stacks_per_second"										"1"
+			
+			"dps_per_stack"											"0"
+			"attack_damage_loss"									"0"
+			"bonus_lifesteal"										"0"
+			"attack_damage_gain"									"0"
+			"status_resist_per_stack"								"0"
 		}	
 		"AbilityPerks"
 		{
@@ -326,17 +330,21 @@
 	
 		"AbilityValues"
 		{
-			"AbilityCooldown"					"35"
-			"AbilityManaCost"					"100"
-			"duration"							"15"
-			"attack_speed"						"50"
-			"move_speed"						"30"
+			"AbilityCooldown"								"35"
+			"AbilityManaCost"								"100"
+			"duration"										"15"
+			"attack_speed"									"50"
+			"move_speed"									"30"
 			"hp_regen"
 			{
-				"value"							"10"
-				"hero_levelup"					"+1"
+				"value"										"10"
+				"hero_levelup"								"+1"
 			}
-			"projectile_speed"			"900"
+			"projectile_speed"								"900"
+			
+			"strong_dispel"									"0"
+			"bonus_damage"									"0"
+			"bonus_damage"									"0"
 		}
 		"AbilityPerks"
 		{
@@ -415,6 +423,9 @@
 			}
 			"materia_bonus"											"1.5"
 			"bonus_movespeed"										"20"
+			
+			"bonus_armor_per_materia"								"0"
+			"bonus_damage_per_materia"								"0"
 		}
 		"AbilityPerks"
 		{
@@ -476,6 +487,11 @@
 			"bonus_radius"											"75"
 			
 			"materia_bonus"											"1"
+			
+			"missing_health_heal"									"0"
+			"current_health_damage"									"0"
+			"transmutation_radius"									"0"
+			"bonus_cd_per_materia"									"0"
 		}
 		"AbilityPerks"
 		{

@@ -111,6 +111,10 @@
 				"value"								"100"
 				"CalculateAttackDamageTooltip"		"1"
 			}
+			
+			"mspd_slow"								"0" 
+			"aspd_slow"								"0"
+			"applies_modifiers"						"0"
 		}
 		"AbilityPerks"
 		{
@@ -188,12 +192,24 @@
 			"linger_duration"						"0.5"
 			"regeneration"							"2"
 			"particle_radius"						"500"
+			
+			"aura_slow"								"0"
+			"negative_damage"						"0"
+			"negative_aura"
+			{
+				"value"								"0"
+				"affected_by_aoe_increase"			"1"
+			}
+			"positive_aura"
+			{
+				"value"								"0"
+				"affected_by_aoe_increase"			"1"
+			}
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_asura_state"
 			{
-				"aura_radius"						"500"
 				"aura_slow"							"50"
 				"negative_damage"					"2"
 				"negative_aura"						"500"
@@ -270,6 +286,11 @@
 			
 			"aspd"																		"50"
 			"buff_duration"																"1.5"
+			
+			"disarms"																	"0"
+			"disarm_duration"															"0"
+			"bleed"																		"0"
+			"bleed_duration"															"0"
 	    }
 		"AbilityPerks"
 		{
@@ -321,31 +342,37 @@
 		//---------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 	    {
-			"AbilityCooldown"							"20"
-			"AbilityManaCost"							"80"
-	        "duration"									"2"
+			"AbilityCooldown"															"20"
+			"AbilityManaCost"															"80"
+	        "duration"																	"2"
+			
+			"lifesteal"																	"0"
+			"bonus_attacks"																"0"
+			"stack_attack_speed"														"0"
+			"stack_move_speed"															"0"
+			"stack_duration"															"0"
 	    }
 		"AbilityPerks"
 		{
 			"special_bonus_major_claim_their_bones"
 			{
-				"lifesteal"								"100"
-				"bonus_attacks"							"1"
+				"lifesteal"																"100"
+				"bonus_attacks"															"1"
 			}
 			"special_bonus_major_yield_my_flesh"
 			{
-				"stack_attack_speed"					"25"
-				"stack_move_speed"						"5"
-				"stack_duration"						"5"
+				"stack_attack_speed"													"25"
+				"stack_move_speed"														"5"
+				"stack_duration"														"5"
 			}
 			"special_bonus_major_song_of_steel"
 			{
-				"duration"								"+2"
+				"duration"																"+2"
 			}
 			"special_bonus_major_swiftness_of_blade"
 			{
-				"AbilityCooldown"						"-8"
-				"AbilityManaCost"						"-40"
+				"AbilityCooldown"														"-8"
+				"AbilityManaCost"														"-40"
 			}
 		}
 	}
@@ -450,6 +477,11 @@
 				"is_buff_duration"												"1"
 			}
 			"omni_slash_radius"													"425"
+			
+			"endless"															"0"
+			"refresh_outgoing_increase"											"0"
+			"refresh_outgoing_increase_duration"								"0"
+			"last_gasp_threshold"												"0"
 		}
 		"AbilityPerks"
 		{
@@ -461,13 +493,13 @@
 			{
 				"endless"														"1"
 			}
-			"special_bonus_unique_juggernaut_windless_cuts_1"
+			"special_bonus_major_second_wind"
 			{
 				"AbilityCharges"												"+1"
 				"refresh_outgoing_increase"										"20"
 				"refresh_outgoing_increase_duration"							"10"
 			}
-			"special_bonus_unique_juggernaut_windless_cuts_2"
+			"special_bonus_major_last_gasp"
 			{
 				"AbilityChargeRestoreTime"										"-30"
 				"last_gasp_threshold"											"25"

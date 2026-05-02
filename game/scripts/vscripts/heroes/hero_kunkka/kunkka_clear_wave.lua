@@ -55,6 +55,8 @@ function modifier_kunkka_clear_wave_active:OnCreated()
 	
 	self.hit_cdr_creep = self:GetSpecialValueFor("hit_cdr_creep")
 	self.armor_reduction_duration = self:GetSpecialValueFor("armor_reduction_duration")
+	
+	print("tidebringer active", self.armor_reduction_duration )
     if IsServer() then
         local caster = self:GetCaster()
         EmitSoundOn("Hero_Kunkaa.Tidebringer", caster)

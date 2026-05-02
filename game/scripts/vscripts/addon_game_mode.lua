@@ -763,7 +763,8 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 					for _, perk in ipairs( perks ) do
 						local perkData = ability:GetMajorPerkData( perk.perkName )
 						for specialKey, specialData in pairs( perkData ) do
-							perkBonuses[specialKey] = tostring(specialData.perkValue) .. specialData.perkSettingFunction
+							PrintAll( specialData )
+							perkBonuses[specialKey] = tostring( math.floor(specialData.perkValue * 100 ) / 100 ) .. specialData.perkSettingFunction
 						end
 					end
 					

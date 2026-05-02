@@ -177,9 +177,11 @@ end
 function AbilityManager:GetCurrentMajorPerksForAbility( ability )
 	local perks = {}
 	for perkName, perkData in pairs( ability._majorPerks ) do
-		local perk = table.copy( perkData )
-		perk.perkName = perkName
-		table.insert( perks, perk )
+		if not ability._abilityValueMajorPerk or not ability._abilityValueMajorPerk[perkName] then
+			local perk = table.copy( perkData )
+			perk.perkName = perkName
+			table.insert( perks, perk )
+		end
 	end
 	return perks
 end

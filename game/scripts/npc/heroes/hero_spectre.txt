@@ -219,12 +219,12 @@
 	//=================================================================================================================
 	// Spectre: Reality
 	//=================================================================================================================
-	"spectre_reality_bh"
+	"spectre_become_echo"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_reality_bh"
+		"ScriptFile"					"heroes/hero_spectre/spectre_become_echo"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		
@@ -244,12 +244,12 @@
 	//=================================================================================================================
 	// Spectre: Haunt
 	//=================================================================================================================
-	"spectre_haunt_bh"
+	"spectre_fracture_self"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_haunt_bh"
+		"ScriptFile"					"heroes/hero_spectre/spectre_fracture_self"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -259,14 +259,6 @@
 		"AbilityTextureName"			"spectre_haunt"
 		"AbilityCastRange"				"1000"
 		"MaxLevel"						"3"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_spectre_haunt_1"	"1"
-			"special_bonus_unique_spectre_haunt_2"	"1"
-		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -279,39 +271,97 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 200 200"
+		"AbilityManaCost"				"150"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"
-			{
-				"value"									"7.0"
-				"LinkedSpecialBonus"					"special_bonus_unique_spectre_haunt_2"
-			}
-			"illusion_damage_outgoing"					"40 60 80"
-			"illusion_total_damage_incoming"			"200 150 100"			
+			"duration"									"7.0"
+			"illusion_damage_outgoing"					"40"
+			"illusion_total_damage_incoming"			"200"			
 			"vision"									"300"			
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_major_metastable_vacuum"
+			"special_bonus_major_thus_the_end"
 			{
-				"paralyze_duration"			"0.5"
+				"cast_spells"							"=1"
 			}
-			"special_bonus_major_mysterious_visitor"
+			"special_bonus_major_embrace_the_shattered_self"
 			{
-				"shadow_path_solo"			"=1"
+				"AbilityCooldown"						"-30"
 			}
-			"special_bonus_major_fear_of_missing_out"
+			"special_bonus_major_ripples_in_space"
 			{
-				"bonus_damage"				"+50%"
+				"illusion_damage_outgoing"				"+30"
+				"illusion_total_damage_incoming"		"-50"
 			}
-			"special_bonus_major_endless_solitude"
+			"special_bonus_major_haunted_vistas"
 			{
-				"solo_multiplier"			"+1.5"
-				"radius"					"-75"
+				"duration"								"+2.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Spectre: Haunt
+	//=================================================================================================================
+	"spectre_eldritch_horror"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/spectre_eldritch_horror"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Spectre.Haunt"
+		
+		"AbilityTextureName"			"spawnlord_master_stomp"
+		"AbilityCastRange"				"1000"
+		"MaxLevel"						"3"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"duration"									"7.0"
+			"illusion_damage_outgoing"					"40"
+			"illusion_total_damage_incoming"			"200"			
+			"vision"									"300"			
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_thus_the_end"
+			{
+				"cast_spells"							"=1"
+			}
+			"special_bonus_major_embrace_the_shattered_self"
+			{
+				"AbilityCooldown"						"-30"
+			}
+			"special_bonus_major_ripples_in_space"
+			{
+				"illusion_damage_outgoing"				"+30"
+				"illusion_total_damage_incoming"		"-50"
+			}
+			"special_bonus_major_haunted_vistas"
+			{
+				"duration"								"+2.0"
 			}
 		}
 	}

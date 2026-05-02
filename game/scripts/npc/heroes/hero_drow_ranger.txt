@@ -97,8 +97,22 @@
 				"CalculateAttackDamageTooltip"										"1"
 			}
 
-			"heal_radius"															{"affected_by_aoe_increase"	"1"}
-			"freeze_explosion_radius"												{"affected_by_aoe_increase"	"1"}
+			"heal_radius"
+			{	
+																					"value"	"0"
+																					"affected_by_aoe_increase"	"1"
+			}
+			"heal_pct"																"0"
+			"extra_chill"															"0"
+			"extra_chill_duration"													"0"
+			"bonus_chill_damage"													"0
+			"freeze_explosion_damage"												"0"
+			"freeze_explosion_radius"
+			{	
+																					"value"	"0"
+																					"affected_by_aoe_increase"	"1"
+			}
+			"disarms_on_break"														"0"
 		}
 		"AbilityPerks"
 		{
@@ -170,6 +184,15 @@
 			"knockback_distance_max"												"450"
 			"knockback_duration"													"0.6"
 			"knockback_height"														"0"
+			
+			"freeze_duration"														"0"
+			"damage_per_chill"														"0"
+			"mspd"																	"0"
+			"aspd"																	"0"
+			"buff_duration"															"0"
+			"miss_chance"															"0"
+			"miss_duration"															"0"
+			"attacks"																"0"
 		}
 		"AbilityPerks"
 		{
@@ -249,7 +272,13 @@
 			"arrow_angle"															"50"
 			"channel_duration"														"1.75"
 
-			"impact_radius"															{"affected_by_aoe_increase"	"1"}
+			"impact_radius"
+			{
+				"value"																"0"
+				"affected_by_aoe_increase"											"1"
+			}
+			"impact_damage"															"0"
+			"vector_cast_range"														"0"
 		}
 		"AbilityPerks"
 		{
@@ -315,6 +344,14 @@
 			}
 			"volley_extra_salvos"													"1"
 			"volley_extra_arrows"													"4"
+			
+			"split_count"															"0"
+			"split_range"															"0"
+			"split_damage_reduction"												"0"
+			"chill_buff_radius"														"0"
+			"minion_bonus"															"0"
+			"monster_bonus"															"0"
+			"boss_bonus"															"0"
 		}
 		"AbilityPerks"
 		{
