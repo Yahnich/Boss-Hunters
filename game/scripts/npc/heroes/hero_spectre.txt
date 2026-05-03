@@ -20,7 +20,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Spectre.DaggerCast"
 		"MaxLevel"						"4"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -36,12 +36,14 @@
 				"hero_levelup"				"+20"
 			}
 				
-			"bonus_movespeed"				"20"
 			"dagger_path_duration"			"12.0 12.0 12.0 12.0"
-			"dagger_radius"					"125"
-			"speed"							"800"
+			"dagger_slow_duration"			"7"
 			"distance"						"2000"
-			"dagger_grace_period"			"1.0"
+			"bonus_movespeed"				"20"
+			
+			"magic_resist"					"0"
+			"evasion"						"0"
+			"dagger_radius"					"125"
 		}
 		"AbilityPerks"
 		{
@@ -52,7 +54,7 @@
 			}
 			"special_bonus_major_between_here_and_now"
 			{
-				"AbilityCooldown"			"-6"
+				"AbilityCooldown"			"-8"
 			}
 			"special_bonus_major_dark_fracture"
 			{
@@ -61,7 +63,7 @@
 			}
 			"special_bonus_major_infinite_cutter"
 			{
-				"bonus_movespeed"			"+50%"
+				"damage"					"+50%"
 			}
 		}
 	}
@@ -87,12 +89,15 @@
 		{
 			"bonus_damage"
 			{
-				"value					"15"
-				"hero_levelup			"+3"
+				"value						"15"
+				"hero_levelup				"+3"
 			}
 			
-			"solo_multiplier"			"2.5"
-			"radius"					"400"
+			"solo_multiplier"				"2.5"
+			"radius"						"400"
+			
+			"paralyze_duration"				"0"
+			"shadow_path_solo"				"0"
 		}
 		
 		"AbilityPerks"
@@ -149,6 +154,14 @@
 				"value"								"16"
 				"CalculateSpellDamageTooltip"		"0"
 			}
+			
+			"cdr_health_cost"						"0"
+			"cooldown_reduction"					"0"
+			"path_health_cost"						"0"
+			"active_reflection_pct"					"0"
+			"active_duration"						"0"
+			"AbilityCooldown"						"0"
+			"AbilityManaCost"						"0"
 		}
 		"AbilityPerks"
 		{
@@ -201,7 +214,6 @@
 		{
 			"teleport_distance"			"450"
 			"echo_duration"				"4"
-			"path_duration"				"4"
 			"echo_damage_taken"
 			{
 				"value"					"203"
@@ -212,7 +224,12 @@
 				"value"					"40"
 				hero_levelup"			"+1"
 			}
+			
+			"path_duration"				"4"
+			"path_radius"				"125"
+			"path_speed"				"800"
 			"path_movespeed"			"20"
+			"path_grace_period"			"1.0"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}

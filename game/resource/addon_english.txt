@@ -2352,7 +2352,7 @@
 		"DOTA_Tooltip_Perk_special_bonus_major_deepest_dark"													"The Deepest Dark"
 		"DOTA_Tooltip_Perk_special_bonus_major_deepest_dark_Description"										"Aphotic Barrier's cast range is increased by {s:AbilityCastRange}, radius increased by {s:radius} and duration increased by {s:duration}."
 		"DOTA_Tooltip_Perk_special_bonus_major_generational_trauma"												"Generational Trauma"
-		"DOTA_Tooltip_Perk_special_bonus_major_generational_trauma_Description"									"Aphotic Barrier's barrier to damage increased by +{s:barrier_to_damage}%."
+		"DOTA_Tooltip_Perk_special_bonus_major_generational_trauma_Description"									"Aphotic Barrier's barrier to damage increased by +{s:absorbed_to_damage}%."
 		"DOTA_Tooltip_modifier_abaddon_stygian_ward"															"Aphotic Barrier"
 		"DOTA_Tooltip_modifier_abaddon_stygian_ward_Description"												"Absorbing damage."
  
@@ -8386,6 +8386,7 @@
 		"DOTA_Tooltip_ability_spectre_realm_cutter_Lore"														"Mercurial's dagger eclipses the physical plane in shadow, a state in which mortals cower, but spectres thrive."
 		"DOTA_Tooltip_ability_spectre_realm_cutter_damage"														"DAMAGE:"
 		"DOTA_Tooltip_ability_spectre_realm_cutter_hero_path_duration"											"PATH DURATION:"
+		"DOTA_Tooltip_ability_spectre_realm_cutter_hero_path_duration"											"%DAGGER SLOW:"
 		"DOTA_Tooltip_modifier_spectre_realm_cutter"															"Shadow Path"
 		"DOTA_Tooltip_modifier_spectre_realm_cutter_Description"												"Movement speed by changed by %fMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 		"DOTA_Tooltip_Perk_special_bonus_major_the_lost_lamb"													"The Lost Lamb"
@@ -8432,7 +8433,7 @@
 		"DOTA_Tooltip_Perk_special_bonus_major_closer_than_you_think_Description"								"Mercurial Form's damage reflection is increased by +{s:damage_reflection_pct}% and maximum/minimum damage radiuses are increased by {s:min_radius}/{s:max_radius}."
 		
 		"DOTA_Tooltip_ability_spectre_dimensional_interjection"													"Dimensional Interjection"
-		"DOTA_Tooltip_ability_spectre_dimensional_interjection_Description"										"Whenever Spectre attempts to attack an enemy outside of her attack range, or attempts to cast an ability outside of its cast range, she will teleport up to %teleport_distance% units towards the target.\nIf both Spectre and her target are on a Shadow Path, the maximum distance is ignored.\nWhen Spectre teleports, she leaves behind an uncontrollable Echo illusion, which lasts %echo_duration%, takes increased damage and deals reduced damage.\nThe Echo illusion and Spectre become connected by a Shadow Path, which lasts %path_duration% seconds. Spectre and her illusions gain unobstructed movement and gain movement speed while on a Shadow Path."
+		"DOTA_Tooltip_ability_spectre_dimensional_interjection_Description"										"Whenever Spectre attempts to attack an enemy outside of her attack range, or attempts to cast an ability outside of its cast range, she will teleport up to %teleport_distance% units towards the target.\nIf both Spectre and her target are on a Shadow Path, the maximum distance is ignored.\nWhen Spectre teleports, she leaves behind an uncontrollable Echo illusion, which lasts %echo_duration%, takes increased damage and deals reduced damage.\nThe Echo illusion and Spectre become connected by a Shadow Path, which lasts %path_duration% seconds. Spectre and her illusions gain unobstructed movement and gain movement speed while on a Shadow Path"
 		"DOTA_Tooltip_ability_spectre_dimensional_interjection_teleport_distance"								"MAXIMUM TELEPORT DISTANCE:"
 		"DOTA_Tooltip_ability_spectre_dimensional_interjection_echo_damage_taken"								"%ECHO DAMAGE TAKEN:"
 		"DOTA_Tooltip_ability_spectre_dimensional_interjection_echo_damage_dealt"								"%ECHO DAMAGE DEALT:"
@@ -8448,7 +8449,7 @@
 		"DOTA_Tooltip_ability_spectre_fracture_self_Lore"														"At the height of combat, Mercurial's physical manifestation shatters, and the shadowy pieces haunt those who still cling to life."
 		"DOTA_Tooltip_ability_spectre_fracture_self_duration"													"ECHO BONUS DURATION:"
 		"DOTA_Tooltip_Perk_special_bonus_major_thus_the_end"													"Thus, The End"
-		"DOTA_Tooltip_Perk_special_bonus_major_thus_the_end_Description"										"Echoes created by Fracture Self Cast all of their abilities on creation, targeting their attack target when needed."
+		"DOTA_Tooltip_Perk_special_bonus_major_thus_the_end_Description"										"Echoes created by Fracture Self Cast all of their Basic abilities on creation, targeting their attack target when needed."
 		"DOTA_Tooltip_Perk_special_bonus_major_embrace_the_shattered_self"										"Embrace the Shattered Self"
 		"DOTA_Tooltip_Perk_special_bonus_major_embrace_the_shattered_self_Description"							"Fracture Self's cooldown is reduced by {s:AbilityCooldown} seconds."
 		"DOTA_Tooltip_Perk_special_bonus_major_ripples_in_space"												"Ripples in Space"
@@ -8470,10 +8471,10 @@
 		"DOTA_Tooltip_ability_spectre_echo_scream_scepter_scream_attacks"										"SCEPTER SCREAM ATTACKS:"
 		"DOTA_Tooltip_modifier_spectre_echo_scream"																"Echo Scream"
 		"DOTA_Tooltip_modifier_spectre_echo_scream_Description"													"Blinded and slowed."
-		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_1"										"Incomprehensible Screech"
-		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_1_Description"							"Enemies hit by Echo Scream are also Dazed, causing them to randomly cancel spells and attack and moving randomly."
-		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_2"										"One with the All"
-		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_2_Description"							"Echo Scream's radius is doubled."
+		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_1"											"Incomprehensible Screech"
+		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_1_Description"								"Enemies hit by Echo Scream are also Dazed, causing them to randomly cancel spells and attack and moving randomly."
+		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_2"											"One with the All"
+		"DOTA_Tooltip_Perk_special_bonus_unique_spectre_echo_scream_2_Description"								"Echo Scream's radius is doubled."
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Necrophos
