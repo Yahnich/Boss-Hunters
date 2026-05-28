@@ -88,6 +88,10 @@
 				"special_bonus_minor_perk"					"+50%"
 				"CalculateSpellHealTooltip"					"1"
 			}
+			
+			"heal_self_damage"								"0"
+			"aoe_radius"									"0"
+			"bounces"										"0"
 		}
 		"AbilityPerks"
 		{
@@ -161,7 +165,7 @@
 			"damage_absorb"
 			{
 				"value"								"75"
-				"hero_levelup"						"15"
+				"hero_levelup"						"20"
 				"CalculateSpellDamageTooltip"		"0"
 			}
 			"radius"
@@ -169,6 +173,13 @@
 				"value"								"675"
 				"affected_by_aoe_increase"			"1"
 			}
+			
+			"aoe_radius"
+			{
+				"value"										"0"
+				"affected_by_aoe_increase"					"1"
+			}
+			"damage_reflect"								"0"
 		}
 		"AbilityPerks"
 		{
@@ -193,9 +204,7 @@
 			}
 			"special_bonus_major_generational_trauma"
 			{
-				"AbilityCastRange"							"+300"
-				"radius"									"+325"
-				"duration"									"+5"
+				"absorbed_to_damage"						"+50%"
 			}
 		}
 	}
@@ -217,18 +226,20 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"trigger_count"								"4"
+			"trigger_count"									"4"
 			"trigger_radius"
 			{
-				"value"									"625"
-				"affected_by_aoe_increase"				"1"
+				"value"										"625"
+				"affected_by_aoe_increase"					"1"
 			}
-			"buff_duration"								"3"
-			"buff_cdr"									"20"
-			"buff_as"									"80"
-			"initial_slow"								"15"
-			"curse_slow"								"-40"
-			"curse_as"									"-80"
+			"buff_duration"									"3"
+			"buff_cdr"										"20"
+			"buff_as"										"80"
+			"initial_slow"									"15"
+			"curse_slow"									"-40"
+			"curse_as"										"-80"
+			
+			"silences"										"0"
 		}
 		
 		"AbilityPerks"
@@ -274,7 +285,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_abaddon/abaddon_mist_reaver"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"abaddon_withering_mist"
 		"HasScepterUpgrade"				"1"

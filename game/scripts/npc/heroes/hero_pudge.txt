@@ -98,10 +98,6 @@
 				"value"											"20"
 				"CalculateSpellDamageTooltip"					"1"
 			}
-			
-			"bonus_movespeed"									{"special_bonus_unique_pudge_butchers_hook_1"	"50"}
-			"movespeed_duration"								{"special_bonus_unique_pudge_butchers_hook_1"	"8"}
-
 			"vision_radius"										"500 500 500 500"
 			"vision_duration"									"4.0 4.0 4.0 4.0"
 			"cooldown_reduction_pct_allied_hook"				"50"
@@ -109,6 +105,18 @@
 			"pierces_enemies"									"1"
 			
 			"autocast"											"1"
+			
+			"bonus_hooks"										"0"
+			"bonus_hook_angle"									"0"
+			"bonus_movespeed"									"0"
+			"movespeed_duration"								"0"
+			"instant_hook"										"0"
+			"armor_loss"										"0"
+			"mr_loss"											"0"
+			"debuff_linger_duration"							"0"
+			"bonus_armor"										"0"
+			"bonus_mr"											"0"
+			"buff_linger_duration"								"0"
 		}
 		"AbilityPerks"
 		{
@@ -126,16 +134,16 @@
 			}
 			"special_bonus_major_tenderizing_swing"
 			{
-				"instant_hook"										"1"
-				"armor_loss"										"4"
-				"mr_loss"											"12"
-				"debuff_linger_duration"							"4"
+				"instant_hook"									"1"
+				"armor_loss"									"4"
+				"mr_loss"										"12"
+				"debuff_linger_duration"						"4"
 			}
 			"special_bonus_major_lip_smacking_good"
 			{
-				"bonus_armor"										"9"
-				"bonus_mr"											"20"
-				"buff_linger_duration"								"8"
+				"bonus_armor"									"9"
+				"bonus_mr"										"20"
+				"buff_linger_duration"							"8"
 			}
 		}
 	}
@@ -157,15 +165,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_ROT"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_pudge_rotting_gas_1"	"1"
-			"special_bonus_unique_pudge_rotting_gas_2"	"1"
-		}
-	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -175,44 +176,37 @@
 			"particle"			"particles/units/heroes/hero_pudge/pudge_rot.vpcf"
 			"particle"  		"particles/units/heroes/hero_pudge/pudge_rot_recipient.vpcf"
 		}
-			
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"375 375 375 375 450 525 600"
-		"AbilityCastPoint"				"0.03"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_ROT"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastRange"									"375"
+			"AbilityCastPoint"									"0.03"
+			"AbilityCooldown"									"0"
+			"AbilityManaCost"									"0"
 			"damage"
 			{
-				"value"										"23"
-				"hero_levelup"                          	"+7"
+				"value"											"23"
+				"hero_levelup"                          		"+7"
 			}
 			"radius"
 			{
-				"value"										"375"
-				"affected_by_aoe_increase"					"1"
+				"value"											"375"
+				"affected_by_aoe_increase"						"1"
 			}
-			"tick_rate"										"0.25"
-			"slow"											"20"
-			"regen_reduction"								"20"
-			"self_damage"									"100"
-			"max_bonus_damage"
-			{
-				"CalculateSpellDamageTooltip"				"0"
-				"DamageTypeTooltip"							"DAMAGE_TYPE_PHYSICAL"
-			}
+			"tick_rate"											"0.25"
+			"slow"												"20"
+			"regen_reduction"									"20"
+			"self_damage"										"100"
+			
+			"fear_duration"										"0"
+			"fear_delay"										"0"
+			"max_rot_power"										"0"
+			"time_for_max_rot_stacks"							"0"
+			"max_bonus_damage"									"0"
+			"time_for_max_stacks"								"0"
+			"time_for_decay"									"0"
 		}
 		"AbilityPerks"
 		{
@@ -224,7 +218,7 @@
 			"special_bonus_major_noxious_fumes"
 			{
 				"radius"										"125"
-				"damage"										"+100%"
+				"damage"										"+50%"
 				"slow"											"30"
 				"regen_reduction"								"30"
 			}
@@ -232,6 +226,7 @@
 			{
 				"max_rot_power"									"50"
 				"time_for_max_rot_stacks"						"5.0"
+				"self_damage"									"-33"
 			}
 			"special_bonus_major_gas_powered"
 			{
@@ -327,38 +322,42 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCooldown"								"20"
-			"AbilityManaCost"								"35"
+			"AbilityCooldown"									"20"
+			"AbilityManaCost"									"35"
 			"damage_block"
 			{
-				"value"										"8"
-				"hero_levelup"                          	"+3"
-				"CalculateAttributeTooltip"					"1"
+				"value"											"8"
+				"hero_levelup"                          		"+3"
+				"CalculateAttributeTooltip"						"1"
 			}
 			"duration"							
 			{
-				"value"										"4"
-				"is_buff_duration"							"1"
+				"value"											"4"
+				"is_buff_duration"								"1"
 			}
+			
+			"meat_shield_bonus"									"0"
+			"status_resistance"									"0"
+			"damage_block"										"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_fleshehemoth"
 			{
-				"meat_shield_bonus"							"50"
+				"meat_shield_bonus"								"50"
 			}
 			"special_bonus_major_visceral_fat"
 			{
-				"status_resistance"							"40"
-				"damage_block"								"+100%"
+				"status_resistance"								"40"
+				"damage_block"									"+100%"
 			}
 			"special_bonus_major_ceaseless_meat"
 			{
-				"AbilityCooldown"							"-6"
+				"AbilityCooldown"								"-6"
 			}
 			"special_bonus_major_wall_of_endless_slaughter"
 			{
-				"duration"									"+4"
+				"duration"										"+4"
 			}
 		}
 		
@@ -397,37 +396,43 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"								"250"
-		"AbilityCastPoint"								"0.3"
-		"AbilityManaCost"								"100"
+		"AbilityCastRange"										"250"
+		"AbilityCastPoint"										"0.3"
+		"AbilityManaCost"										"100"
 			
 		"AbilityValues"
 		{
-			"AbilityCooldown"							"45"
-			"AbilityChannelTime"						"3.0"
+			"AbilityCooldown"									"45"
+			"AbilityChannelTime"								"3.0"
 			
 			"damage"
 			{
-				"value"									"62"
-				"hero_levelup"                         	"+3"
-				"CalculateAttributeTooltip"				"1"
+				"value"											"62"
+				"hero_levelup"                      		   	"+3"
+				"CalculateAttributeTooltip"						"1"
 			}
-			"str_damage"								"100"
-			"duration"									"3.0"
-			"tick_interval"								"0.5"
-			"heal_pct"									"100"
-			"aoe_radius"								"250"
+			"str_damage"										"100"
+			"duration"											"3.0"
+			"tick_interval"										"0.5"
+			"heal_pct"											"100"
+			"aoe_radius"										"250"
 			
-			"pull_units_per_second"						"75"
-			"pull_distance_limit"						"125"
-			"animation_rate"							"1.5"
+			"pull_units_per_second"								"75"
+			"pull_distance_limit"								"125"
+			"animation_rate"									"1.5"
+			
+			"gluttony_strength_bonus"							"0"
+			"glutton_strength_stack_duration"					"0"
+			"gluttony_damage_bonus"								"0"
+			"gluttony_damage_bonus_duration"					"0"
+			"bonus_armor"										"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_the_long_night"
 			{
-				"duration"									"+3"
-				"AbilityChannelTime"						"+3"
+				"duration"										"+3"
+				"AbilityChannelTime"							"+3"
 			}
 			"special_bonus_major_a_hearty_meal"
 			{

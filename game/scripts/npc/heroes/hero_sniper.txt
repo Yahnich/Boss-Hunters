@@ -106,6 +106,9 @@
 			}
 			"knockback_duration"								"0.4"
 			
+			"blind"												"0"
+			"armor_reduc"										"0"
+			"armor_reduc"										"0"
 		}
 		"AbilityPerks"
 		{
@@ -159,45 +162,49 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"													"1800"
-			"AbilityCastPoint"													"0.3"
-			"AbilityCooldown"													"0"
-			"AbilityCharges"													"3"
-			"AbilityChargeRestoreTime"											"35"
-			"AbilityManaCost"													"50"
+			"AbilityCastRange"										"1800"
+			"AbilityCastPoint"										"0.3"
+			"AbilityCooldown"										"0"
+			"AbilityCharges"										"3"
+			"AbilityChargeRestoreTime"								"35"
+			"AbilityManaCost"										"50"
 			
 			"damage"
 			{
-				"value"															"23"
-				"hero_levelup"													"+7"
+				"value"												"23"
+				"hero_levelup"										"+7"
 			}
-			"delay"																"1.2"
-			"duration"															"10"
-			"radius"															"450"
-			"slow_movement_speed"												"-12"
-			"slow_duration"														"2"
+			"delay"													"1.2"
+			"duration"												"10"
+			"radius"												"450"
+			"slow_movement_speed"									"-12"
+			"slow_duration"											"2"
+			
+			"bonus_attack_speed"									"0"
+			"bonus_attack_speed_duration"							"0"
+			"pure_damage"											"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_belt_fed_chamber"
 			{
-				"bonus_attack_speed"											"100"
-				"bonus_attack_speed_duration"									"7"
+				"bonus_attack_speed"								"100"
+				"bonus_attack_speed_duration"						"7"
 			}
 			"special_bonus_major_armor_piercing_rounds"
 			{
-				"pure_damage"													"1"
-				"damage"														"+50%"
+				"pure_damage"										"1"
+				"damage"											"+50%"
 			}
 			"special_bonus_major_slag_rain"
 			{
-				"slow_movement_speed"											"-28"
-				"slow_duration"													"+1"
+				"slow_movement_speed"								"-28"
+				"slow_duration"										"+1"
 			}
 			"special_bonus_major_superheated_shrapnel"
 			{
-				"radius"														"+75"
-				"duration"														"+6"
+				"radius"											"+75"
+				"duration"											"+6"
 			}
 		}
 	}
@@ -253,7 +260,14 @@
 			}
 			// Gunslinger KV's
 			//---------------------------------------------------------------------------------------------------------
-			"proc_chance_max_chance"											{"affected_by_chance_increase"	"1"}
+			"assassinate_damage"												"0"
+			"proc_chance_min_range"												"0"
+			"proc_chance_max_range"												"0"
+			"proc_chance_max_chance"
+			{
+				"value"															"0"
+				"affected_by_chance_increase"									"1"
+			}
 		}
 		"AbilityPerks"
 		{
@@ -310,6 +324,14 @@
 				"is_buff_duration"												"1"
 			}
 			"slow"																"-30"
+			"crit_chance"														"0"
+			"crit_damage"														"0"
+			"hp_regen"															"0"
+			"heal_interval"														"0"
+			"attack_range_mult"													"0"
+			"true_strike"														"0"
+			"invisibility"														"0"
+			"armor"																"0"
 		}
 		"AbilityPerks"
 		{
@@ -380,6 +402,11 @@
 			"range"																"3000"
 			"ministun_duration"													"0.5"
 			"attack_factor"														"100"
+			
+			"incoming_dmg"														"0"
+			"debuff_duration"													"0"
+			"aspd"																"0"
+			"assist_duration"													"0"
 		}
 		
 		"AbilityPerks"

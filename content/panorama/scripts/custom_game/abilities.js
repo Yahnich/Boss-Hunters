@@ -97,7 +97,8 @@ function DisplayPerkSelection( eventData ){
 			let perkTitleVar = "#DOTA_Tooltip_Perk_" + perkData.perkName
 			let perkTitle = $.Localize(perkTitleVar)
 			for (const key in eventData.perkBonuses ){
-				perkPanel.SetDialogVariable( key, eventData.perkBonuses[key].trim() )
+				let value = eventData.perkBonuses[key]
+				perkPanel.SetDialogVariable( key, value.trim() )
 				$.Msg( key, eventData.perkBonuses[key].trim() )
 			}
 			let perkDescription = $.Localize( perkTitleVar + "_Description",  perkPanel )

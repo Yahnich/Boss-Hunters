@@ -168,59 +168,70 @@ function modifier_stats_system_handler:UpdatePerkValues()
 	local selectedAbility = caster._currentlyLoadedPerksAbility
 	
 	if selectedAbility then
-		local entindex = selectedAbility:entindex()
-		self.perkInfo[entindex] = {}
-		if selectedAbility._abilityValueMajorPerk then
-			for perkName, active in pairs( selectedAbility._abilityValueMajorPerk ) do
-				if active then
-					local perkData = selectedAbility:GetMajorPerkData( perkName )
-					for specialKey, keyData in pairs( perkData ) do
-						self.perkInfo[entindex][specialKey] = self.perkInfo[entindex][specialKey] or {}
-						local bonus = 0
-						local step = ADD_BONUS
-						local levelBonus = (keyData.perkLevelValue or 0) * caster:GetLevel()
-						if keyData.perkSettingType == "=" then
-							step = SET_BONUS
-							self.perkInfo[entindex][specialKey][step] = bonus + levelBonus
-						elseif keyData.perkSettingType == "+" or keyData.perkSettingType == "-" then
-							bonus = tonumber( keyData.perkSettingType .. keyData.perkValue ) + levelBonus
-							if keyData.perkSettingFunction == "%" then
-								step = PCT_BONUS
-							end
-							self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 0) + bonus
-						elseif keyData.perkSettingType == "x" or keyData.perkSettingType == "/" then
-							bonus = tonumber( keyData.perkValue ) + levelBonus
-							if keyData.perkSettingType == "/" then
-								bonus = 1 / tonumber( keyData.perkValue )
-							end
-							self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 1) * bonus
-						end
-					end
-				end
+		self:UpdatePerkValueForAbility( selectedAbility )
+	else -- update all
+		for i = 0, caster:GetAbilityCount() do
+			local abilityToUpdate = caster:GetAbilityByIndex( i )
+			if abilityToUpdate then
+				self:UpdatePerkValueForAbility( abilityToUpdate )
 			end
 		end
-		if selectedAbility._abilityValueMinorPerkLevel then
-			for perkName, level in pairs( selectedAbility._abilityValueMinorPerkLevel ) do
-				if level > 0 then
-					local perkData = selectedAbility:GetMinorPerkData( perkName )
-					self.perkInfo[entindex][perkName] = self.perkInfo[entindex][perkName] or {}
+	end
+end
+
+function modifier_stats_system_handler:UpdatePerkValueForAbility( selectedAbility )
+	local caster = selectedAbility:GetCaster()
+	local entindex = selectedAbility:entindex()
+	self.perkInfo[entindex] = {}
+	if selectedAbility._abilityValueMajorPerk then
+		for perkName, active in pairs( selectedAbility._abilityValueMajorPerk ) do
+			if active then
+				local perkData = selectedAbility:GetMajorPerkData( perkName )
+				for specialKey, keyData in pairs( perkData ) do
+					self.perkInfo[entindex][specialKey] = self.perkInfo[entindex][specialKey] or {}
 					local bonus = 0
 					local step = ADD_BONUS
-					bonus = tonumber( perkData.perkSettingType .. perkData.perkValue ) * level
-					if perkData.perkSettingFunction == "%" then
-						step = PCT_BONUS
+					local levelBonus = (keyData.perkLevelValue or 0) * caster:GetLevel()
+					if keyData.perkSettingType == "=" then
+						step = SET_BONUS
+						self.perkInfo[entindex][specialKey][step] = bonus + levelBonus
+					elseif keyData.perkSettingType == "+" or keyData.perkSettingType == "-" then
+						bonus = tonumber( keyData.perkSettingType .. keyData.perkValue ) + levelBonus
+						if keyData.perkSettingFunction == "%" then
+							step = PCT_BONUS
+						end
+						self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 0) + bonus
+					elseif keyData.perkSettingType == "x" or keyData.perkSettingType == "/" then
+						bonus = tonumber( keyData.perkValue ) + levelBonus
+						if keyData.perkSettingType == "/" then
+							bonus = 1 / tonumber( keyData.perkValue )
+						end
+						self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 1) * bonus
 					end
-					self.perkInfo[entindex][perkName][step] = (self.perkInfo[entindex][perkName][step] or 0) + bonus
 				end
 			end
 		end
-		for specialKey, steps in pairs( self.perkInfo[entindex] ) do
-			for i = 1, MUL_BONUS do -- ensure all values are available in array
-				local step = steps[i]
-				if not step then steps[i] = 'X' end -- distinguish from 0 setters
+	end
+	if selectedAbility._abilityValueMinorPerkLevel then
+		for perkName, level in pairs( selectedAbility._abilityValueMinorPerkLevel ) do
+			if level > 0 then
+				local perkData = selectedAbility:GetMinorPerkData( perkName )
+				self.perkInfo[entindex][perkName] = self.perkInfo[entindex][perkName] or {}
+				local bonus = 0
+				local step = ADD_BONUS
+				bonus = tonumber( perkData.perkSettingType .. perkData.perkValue ) * level
+				if perkData.perkSettingFunction == "%" then
+					step = PCT_BONUS
+				end
+				self.perkInfo[entindex][perkName][step] = (self.perkInfo[entindex][perkName][step] or 0) + bonus
 			end
 		end
-	else -- update all
+	end
+	for specialKey, steps in pairs( self.perkInfo[entindex] ) do
+		for i = 1, MUL_BONUS do -- ensure all values are available in array
+			local step = steps[i]
+			if not step then steps[i] = 'X' end -- distinguish from 0 setters
+		end
 	end
 end
 
