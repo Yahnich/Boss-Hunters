@@ -5098,7 +5098,7 @@
 		// Vengeful Spirit
 		
 		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage"														"Magic Barrage"
-		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage_Description"											"Fires magic missiles to all enemy units around the initial target, stunning and dealing damage."
+		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage_Description"											"Fires a magic missiles to the targeted enemy, stunning and dealing damage."
 		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage_Lore"												"A simple Skywrath technique, the magic missile is Shendel's primary tool for vengeance."
 		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage_damage"												"DAMAGE:"
 		"DOTA_Tooltip_ability_vengefulspirit_magic_barrage_radius"												"RADIUS:"

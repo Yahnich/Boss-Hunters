@@ -121,7 +121,7 @@
 #base "heroes/hero_phoenix.txt"
 #base "heroes/hero_tinker.txt"
 #base "heroes/hero_timbersaw.txt"
-#base "heroes/hero_vengeful.txt"
+#base "heroes/hero_vengeful_spirit.txt"
 #base "heroes/hero_tusk.txt"
 #base "heroes/hero_ancient_apparition.txt"
 #base "heroes/hero_drow_ranger.txt"

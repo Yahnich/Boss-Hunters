@@ -16,14 +16,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/vengefulspirit_magic_barrage"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_vengefulspirit_magic_barrage_1"	"1"
-			"special_bonus_unique_vengefulspirit_magic_barrage_2"	"1"
-		}
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -33,53 +27,35 @@
 			"particle"			"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"		
 		}
 	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 12 12 12 11 10 9"
-	
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130 130 130 130"
-	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"						"90 180 270 360 450 540 630"
+			"AbilityCastRange"					"500"
+			"AbilityCastPoint"					"0.3"
+			"AbilityCooldown"					"12"
+			"AbilityManaCost"					"100"
+			"damage"
+			{
+				"value"						"90"
+				"hero_levelup"					"+20"
+			}
 			"radius"						"250"
 			"speed"							"1250"
-			"stun_duration"
+			"stun_duration"						"1.4"
+		}
+		"AbilityPerks"
+		{
+			"perk"
 			{
-				"value"							"1.4 1.5 1.6 1.7 1.7 1.7 1.7"
-				"LinkedSpecialBonus"			"special_bonus_unique_vengefulspirit_magic_barrage_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				""					""
+			}
+			"perk"
+			{
+				""					""
 			}
 		}
 	}
-
-	"special_bonus_unique_vengefulspirit_magic_barrage_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-		}
-	}
-
 	"special_bonus_unique_vengefulspirit_magic_barrage_2" 
 	{
 		// General
@@ -165,6 +141,19 @@
 			"speed"							"2000"
 			"width"							"300"			
 		}
+		"AbilityPerks"
+		{
+			"perk"
+			{
+				""					""
+			}
+			"perk"
+			{
+				""					""
+			}
+		}
+
+
 	}
 	"special_bonus_unique_vengefulspirit_wave_1" 
 	{
@@ -246,6 +235,18 @@
 			}
 			"radius"					"1200"
 		}
+		"AbilityPerks"
+		{
+			"perk"
+			{
+				""					""
+			}
+			"perk"
+			{
+				""					""
+			}
+		}
+
 	}
 	"special_bonus_unique_vengefulspirit_aura_1" 
 	{
@@ -334,6 +335,18 @@
 			}
 			"speed"					"100"
 		}
+		"AbilityPerks"
+		{
+			"perk"
+			{
+				""					""
+			}
+			"perk"
+			{
+				""					""
+			}
+		}
+
 	}
 
 	"special_bonus_unique_vengefulspirit_swap_1" 
@@ -446,6 +459,18 @@
 				"RequiresScepter"				"1"
 			}
 		}
+		"AbilityPerks"
+		{
+			"perk"
+			{
+				""					""
+			}
+			"perk"
+			{
+				""					""
+			}
+		}
+
 	}
 
 	"special_bonus_unique_vengefulspirit_haunt_1" 
@@ -536,5 +561,17 @@
 			"duration"				"10"
 			"scepter_cooldown"		"15"
 		}
+		"AbilityPerks"
+		{
+			"perk"
+			{
+				""					""
+			}
+			"perk"
+			{
+				""					""
+			}
+		}
+
 	}
 }
