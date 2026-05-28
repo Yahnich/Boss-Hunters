@@ -36,14 +36,18 @@
 				"hero_levelup"				"+20"
 			}
 				
-			"dagger_path_duration"			"12.0 12.0 12.0 12.0"
 			"dagger_slow_duration"			"7"
 			"distance"						"2000"
 			"bonus_movespeed"				"20"
 			
 			"magic_resist"					"0"
 			"evasion"						"0"
-			"dagger_radius"					"125"
+			
+			"path_duration"					"12"
+			"path_radius"					"125"
+			"path_speed"					"800"
+			"path_movespeed"				"20"
+			"path_grace_period"				"1.0"
 		}
 		"AbilityPerks"
 		{
@@ -59,7 +63,7 @@
 			"special_bonus_major_dark_fracture"
 			{
 				"bonus_movespeed"			"20"
-				"dagger_radius"				"+125"
+				"path_radius"				"+125"
 			}
 			"special_bonus_major_infinite_cutter"
 			{
@@ -89,8 +93,8 @@
 		{
 			"bonus_damage"
 			{
-				"value						"15"
-				"hero_levelup				"+3"
+				"value"						"15"
+				"hero_levelup"				"+3"
 			}
 			
 			"solo_multiplier"				"2.5"
@@ -172,7 +176,8 @@
 			}
 			"special_bonus_major_interconnected"
 			{
-				"path_health_cost"					"100"
+				"aura_radius"						"900"
+				"aura_benefit"						"50"
 			}
 			"special_bonus_major_dispersed_form"
 			{
@@ -191,6 +196,60 @@
 		}
 	}
 	//=================================================================================================================
+	// Spectre: Desolate
+	//=================================================================================================================
+	"spectre_echo_step"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/spectre_echo_step"
+		"AbilityTextureName"			"spectre_shadow_step"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySound"					"Hero_Spectre.Desolate"
+		"MaxLevel"						"4"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"AbilityCastPoint"					"0.3"
+			"AbilityCooldown"					"24"
+			"AbilityManaCost"					"60"
+			"AbilityCastRange"					"825"
+			"duration"							"5.0"
+			
+			"move_speed"						"900"
+			"bonus_move_speed_illusion_pct"		"35"
+			
+			"reality_swaps"						"0"
+			"shadow_path_walk"					"0"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_everywhere_all_at_once"
+			{
+				"reality_swaps"							"=1"
+				"AbilityCastRange"						"+375"
+			}
+			"special_bonus_major_rift_walker"
+			{
+				"AbilityCooldown"						"-9"
+			}
+			"special_bonus_major_ripples_in_space"
+			{
+				"duration"								"+3"
+				"move_speed"							"+400"
+			}
+			"special_bonus_major_dimensionbreaker"
+			{
+				"shadow_path_walk"						"=1"
+			}
+		}
+	}
+	//=================================================================================================================
 	// Spectre: Dimensional Interjection
 	//=================================================================================================================
 	"spectre_dimensional_interjection"
@@ -199,7 +258,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_dimensional_interjection"
-		"AbilityTextureName"			"spawnlord_master_freeze"
+		"AbilityTextureName"			"spectre_dimensional_interjection"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"Innate"						"1"
 		"HasScepterUpgrade"				"1"
@@ -217,12 +276,12 @@
 			"echo_damage_taken"
 			{
 				"value"					"203"
-				hero_levelup"			"-3"
+				"hero_levelup"			"-3"
 			}
 			"echo_damage_dealt"
 			{
-				"value"					"40"
-				hero_levelup"			"+1"
+				"value"					"39"
+				"hero_levelup"			"+1"
 			}
 			
 			"path_duration"				"4"
@@ -294,9 +353,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"									"7.0"
-			"illusion_damage_outgoing"					"40"
-			"illusion_total_damage_incoming"			"200"			
+			"duration"									"3.0"
+			"illusion_damage_outgoing"					"0"
+			"illusion_total_damage_incoming"			"0"			
+			"cast_spells"								"0"			
 			"vision"									"300"			
 		}
 		"AbilityPerks"
@@ -312,7 +372,7 @@
 			"special_bonus_major_ripples_in_space"
 			{
 				"illusion_damage_outgoing"				"+30"
-				"illusion_total_damage_incoming"		"-50"
+				"illusion_total_damage_incoming"		"-25"
 			}
 			"special_bonus_major_haunted_vistas"
 			{
@@ -352,20 +412,44 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"150"
 
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"									"7.0"
-			"illusion_damage_outgoing"					"40"
-			"illusion_total_damage_incoming"			"200"			
-			"vision"									"300"			
+			"AbilityCastRange"				
+			{
+				"value"					"825 950 1075 1200"
+			}
+			"duration"					
+			{
+				"value"							"3.5 4.0 4.5 5.0"
+				"special_bonus_unique_spectre_shadow_step_duration"	"+1.0"
+			}	
+			"illusion_damage_incoming"	"100 85 70 55"
+			"tooltip_illusion_total_damage_incoming"
+			{
+				"value"					"200 185 170 155"
+
+				// "damage" in attribute name but it's a percentage-based effect
+				"CalculateSpellDamageTooltip"	"0"
+				"DamageTypeTooltip"	"DAMAGE_TYPE_NONE"
+			}
+			"illusion_outgoing_damage"	
+			{
+				"value" 							"35 40 45 50"
+				"CalculateSpellDamageTooltip"		"0"
+				"DamageTypeTooltip"					"DAMAGE_TYPE_PHYSICAL"
+			}
+			
+			"move_speed"						"900"
+			"bonus_move_speed_illusion_pct"		"35"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_major_thus_the_end"
+			"special_bonus_major_everywhere_all_at_once"
 			{
-				"cast_spells"							"=1"
+				"reality_swaps"							"=1"
 			}
 			"special_bonus_major_embrace_the_shattered_self"
 			{

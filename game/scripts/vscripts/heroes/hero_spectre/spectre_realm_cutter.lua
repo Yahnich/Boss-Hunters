@@ -9,23 +9,20 @@ function spectre_realm_cutter:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local position = self:GetCursorPosition()
 	
-	caster:LaunchShadowPath( target or position, {radius = self:GetSpecialValueFor("dagger_radius")} )
+	caster:LaunchShadowPath( target or position, {distance = self:GetSpecialValueFor("distance"), ability = self} )
 end
 
-function spectre_realm_cutter:OnShadowPathHit( target, position, projectile, bNotFinal )
+function spectre_realm_cutter:OnShadowPathHit( target, position, projectileData, bNotFinal )
 	local caster = self:GetCaster()
 	if target then
-		projectileData.units[target] = true
-		if target:TriggerSpellAbsorb(self) then return false end
-		EmitSoundOn("Hero_Spectre.DaggerImpact", target)
+		local duration = self:GetSpecialValueFor("dagger_slow_duration")
 		if projectileData.tracking and not bNotFinal then
-			target:AddNewModifier( caster, self, "modifier_spectre_realm_cutter_path", {self:GetSpecialValueFor("dagger_slow_duration")} )
+			target:AddNewModifier( caster, self, "modifier_spectre_realm_cutter_path", {duration = duration} )
 		end
-		target:AddNewModifier( caster, self, "modifier_spectre_realm_cutter_slow", {self:GetSpecialValueFor("dagger_slow_duration")} )
+		target:AddNewModifier( caster, self, "modifier_spectre_realm_cutter_slow", {duration = duration} )
 		self:DealDamage( caster, target, self:GetSpecialValueFor("damage") )
-	else
+	end
 end
-
 
 modifier_spectre_realm_cutter_path = class({})
 LinkLuaModifier("modifier_spectre_realm_cutter_path", "heroes/hero_spectre/spectre_realm_cutter", LUA_MODIFIER_MOTION_NONE)
@@ -43,9 +40,9 @@ function modifier_spectre_realm_cutter_path:OnCreated()
 end
 
 
-function modifier_spectre_realm_cutter_slow:OnIntervalThink()
+function modifier_spectre_realm_cutter_path:OnIntervalThink()
 	local caster = self:GetCaster()
-	caster:CreateShadowPath( self:GetParent():GetAbsOrigin(), {duration = self.duration, radius = self.radius} )
+	caster:CreateShadowPath( self:GetParent():GetAbsOrigin(), {ability = self:GetAbility()} )
 end
 
 function modifier_spectre_realm_cutter_path:IsHidden()    
@@ -56,7 +53,7 @@ modifier_spectre_realm_cutter_slow = class({})
 LinkLuaModifier("modifier_spectre_realm_cutter_slow", "heroes/hero_spectre/spectre_realm_cutter", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_realm_cutter_slow:OnCreated()
-	self.bonus_movespeed = self:GetSpecialValueFor("bonus_movespeed")
+	self.bonus_movespeed = -self:GetSpecialValueFor("bonus_movespeed")
 end
 
 

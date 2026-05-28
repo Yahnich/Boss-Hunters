@@ -10,7 +10,9 @@ end
 
 function spectre_dimensional_interjection:Spawn()
 	self:GetCaster()._dimensionalInterjunction = self
-	self:GetCaster().SpawnEcho = function( self, position, echoData ) self._dimensionalInterjunction:SpawnEcho( position, echoData ) end
+	self._echoTable = {}
+	self:GetCaster().CreateEcho = function( self, position, echoData ) self._dimensionalInterjunction:CreateEcho( position, echoData ) end
+	self:GetCaster().GetEchoes = function( self, position, echoData ) return #self._dimensionalInterjunction._echoTable end
 	self:GetCaster().LaunchShadowPath = function( self, position, pathData ) self._dimensionalInterjunction:LaunchShadowPath( position, pathData ) end
 	self:GetCaster().CreateShadowPath = function( self, position, pathData ) self._dimensionalInterjunction:CreateShadowPath( position, pathData ) end
 end
@@ -28,8 +30,8 @@ function spectre_dimensional_interjection:Blink(position)
 	
 	if caster:IsRealHero() then
 		caster:EmitSound("Hero_Spectre.Reality")
-		self:CreateEcho( caster:GetAbsOrigin() )
-		self:LaunchShadowPath( startPos )
+		self:CreateEcho( startPos )
+		self:LaunchShadowPath( startPos + CalculateDirection( startPos, position ) * 150 )
 	end
 end
 
@@ -94,12 +96,13 @@ function spectre_dimensional_interjection:LaunchShadowPath( target, pathData )
 	local caster = self:GetCaster()
 	local tmpPathData = pathData or {}
 	
+	local ability = tmpPathData.ability or self
 	local direction = CalculateDirection( target , tmpPathData.origin or caster )
-	local radius = tmpPathData.radius or self:GetSpecialValueFor("path_radius")
+	local radius = tmpPathData.radius or ability:GetSpecialValueFor("path_radius")
 	local vision = tmpPathData.vision or radius
-	local speed = tmpPathData.speed or self:GetSpecialValueFor("path_speed")
+	local speed = tmpPathData.speed or ability:GetSpecialValueFor("path_speed")
 	local distance = tmpPathData.distance or CalculateDistance( caster, target )
-	local duration = tmpPathData.duration or self:GetSpecialValueFor("path_duration")
+	local duration = tmpPathData.duration or ability:GetSpecialValueFor("path_duration")
 	
 	self.projectiles = self.projectiles or {}
 	local pID
@@ -108,19 +111,20 @@ function spectre_dimensional_interjection:LaunchShadowPath( target, pathData )
 	else -- unit targeted
 		pID = self:FireTrackingProjectile("particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf", target, speed, {source = origin}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, vision)
 	end
-	self.projectiles[pID] = {duration = duration, damage = damage, tracking = target.GetAbsOrigin ~= nil, thinkTime = 1 / ( speed/(radius*2) ), currentThink = 0, units = {}, radius = radius }
+	self.projectiles[pID] = {ability = ability, duration = duration, damage = damage, tracking = target.GetAbsOrigin ~= nil, thinkTime = 1 / ( speed/(radius*2) ), currentThink = 0, units = {}, radius = radius }
 end
 
 function spectre_dimensional_interjection:CreateShadowPath( position, pathData )
 	local caster = self:GetCaster()
 	local tmpPathData = pathData or {}
 	
-	local radius = tmpPathData.radius or self:GetSpecialValueFor("path_radius")
+	local ability = tmpPathData.ability or self
+	local radius = tmpPathData.radius or ability:GetSpecialValueFor("path_radius")
 	local vision = tmpPathData.vision or radius
-	local duration = tmpPathData.duration or self:GetSpecialValueFor("path_duration")
-	local movespeed = tmpPathData.movespeed or self:GetSpecialValueFor("path_movespeed")
+	local duration = tmpPathData.duration or ability:GetSpecialValueFor("path_duration")
 	
-	CreateModifierThinker( caster, self, "modifier_spectre_dimensional_interjection_shadow_path_thinker", {duration = duration, radius = radius, movespeed = movespeed, vision = vision}, position, caster:GetTeamNumber(), false )
+	print( tmpPathData.duration, ability:GetSpecialValueFor("path_duration") )
+	CreateModifierThinker( caster, ability, "modifier_spectre_dimensional_interjection_shadow_path_thinker", {duration = duration}, position, caster:GetTeamNumber(), false )
 end
 
 
@@ -130,7 +134,7 @@ function spectre_dimensional_interjection:OnProjectileThinkHandle( projectile )
 	if projectileData then
 		if projectileData.currentThink <= 0 then
 			local position = ProjectileManager:GetProjectileLocation( projectile )
-			self:CreateShadowPath( position, {radius = projectileData.radius, duration = projectileData.duration} )
+			self:CreateShadowPath( position, {ability = projectileData.ability} )
 			projectileData.currentThink = projectileData.thinkTime
 			if projectileData.tracking then
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, projectileData.radius ) ) do
@@ -148,19 +152,24 @@ end
 function spectre_dimensional_interjection:OnProjectileHitHandle( target, position, projectile, bNotFinal )
 	local caster = self:GetCaster()
 	local projectileData = self.projectiles[projectile]
-	if target then
+	if target and not projectileData.units[target] then
 		projectileData.units[target] = true
 		if target:TriggerSpellAbsorb(self) then return false end
 		EmitSoundOn("Hero_Spectre.DaggerImpact", target)
 		if projectileData.tracking and not bNotFinal then
 			table.remove( self.projectiles, projectile )
 		end
+		if self._hookedShadowPathAbilities then
+			for _, ability in ipairs( self._hookedShadowPathAbilities ) do
+				ability:OnShadowPathHit( target, position, projectileData, bNotFinal )
+			end
+		end
 	else
 		table.remove( self.projectiles, projectile )
-	end
-	if self._hookedShadowPathAbilities then
-		for _, ability in ipairs( self._hookedShadowPathAbilities ) do
-			ability:OnShadowPathHit( target, position, projectile, bNotFinal )
+		if self._hookedShadowPathAbilities then
+			for _, ability in ipairs( self._hookedShadowPathAbilities ) do
+				ability:OnShadowPathHit( target, position, projectileData, bNotFinal )
+			end
 		end
 	end
 end
@@ -171,11 +180,11 @@ function spectre_dimensional_interjection:HookInShadowPathEvents( ability )
 end
 
 modifier_spectre_dimensional_interjection_shadow_path_thinker = class({})
-LinkLuaModifier("modifier_spectre_dimensional_interjection_shadow_path_thinker", "heroes/hero_spectre/modifier_spectre_dimensional_interjection", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_spectre_dimensional_interjection_shadow_path_thinker", "heroes/hero_spectre/spectre_dimensional_interjection", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_dimensional_interjection_shadow_path_thinker:OnCreated(kv)
 	self.stick = self:GetSpecialValueFor("path_grace_period")
-	self.radius = kv.radius or self:GetSpecialValueFor("path_radius")
+	self.radius = self:GetSpecialValueFor("path_radius")
 	if IsServer() then
 		AddFOWViewer( self:GetCaster():GetTeam(), self:GetParent():GetAbsOrigin(), kv.vision or self.radius, self:GetRemainingTime(), true )
 	end
@@ -210,17 +219,16 @@ function modifier_spectre_dimensional_interjection_shadow_path_thinker:IsHidden(
 end
 
 modifier_spectre_dimensional_interjection_shadow_path = class({})
-LinkLuaModifier("modifier_spectre_dimensional_interjection_shadow_path", "heroes/hero_spectre/modifier_spectre_dimensional_interjection", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_spectre_dimensional_interjection_shadow_path", "heroes/hero_spectre/spectre_dimensional_interjection", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_dimensional_interjection_shadow_path:OnCreated()
-	self.slow = self:GetSpecialValueFor("path_movespeed")
-	if not self:GetParent():IsSameTeam( self:GetCaster() ) then
-		self.slow = self.slow * (-1)
-	end
+	self.path_movespeed = self:GetSpecialValueFor("path_movespeed")
+	self.magic_resist = self:GetSpecialValueFor("magic_resist")
+	self.evasion = self:GetSpecialValueFor("evasion")
 end
 
 function modifier_spectre_dimensional_interjection_shadow_path:CheckState()
-	if self:GetParent:GetUnitName() == self:GetCaster():GetUnitName() then
+	if self:GetParent():GetUnitName() == self:GetCaster():GetUnitName() then
 		return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
 	end
 end
@@ -230,30 +238,30 @@ function modifier_spectre_dimensional_interjection_shadow_path:DeclareFunctions(
 end
 
 function modifier_spectre_dimensional_interjection_shadow_path:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
+	return self.path_movespeed
 end
 
 function modifier_spectre_dimensional_interjection_shadow_path:GetModifierMagicalResistanceBonus()
-	return self.talent1Mr
+	return self.magic_resist
 end
 
 function modifier_spectre_dimensional_interjection_shadow_path:GetModifierEvasion_Constant()
-	return self.talent1Ev
+	return self.evasion
 end
 
 function modifier_spectre_dimensional_interjection_shadow_path:GetEffectName()
-	if self:GetParent:GetUnitName() == self:GetCaster():GetUnitName() then
+	if self:GetParent():GetUnitName() == self:GetCaster():GetUnitName() then
 		return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf" 
 	end
 end
 
-function modifier_spectre_dimensional_interjection:SpawnEcho( position, tEchoData )
+function spectre_dimensional_interjection:CreateEcho( position, tEchoData )
 	local caster = self:GetCaster()
 	local echoData = tEchoData or {}
 	local target = echoData.target
-	local duration = echoData.echo_duration or self:GetSpecialValueFor("echo_duration")
-	local outgoing = echoData.echo_damage_dealt or self:GetSpecialValueFor("echo_damage_dealt") - 100
-	local incoming = echoData.echo_damage_taken or self:GetSpecialValueFor("echo_damage_taken") - 100
+	local duration = (echoData.echo_duration or self:GetSpecialValueFor("echo_duration")) + (echoData.bonus_duration or 0)
+	local outgoing = (echoData.echo_damage_dealt or self:GetSpecialValueFor("echo_damage_dealt") - 100) + (echoData.bonus_damage_dealt or 0)
+	local incoming = (echoData.echo_damage_taken or self:GetSpecialValueFor("echo_damage_taken") - 100) + (echoData.bonus_damage_taken or 0)
 	
 	position = position + RandomVector( caster:GetAttackRange() * 0.75 )
 	local illusions = caster:ConjureImage( {outgoing_damage = outgoing, incoming_damage = incoming, position = position, controllable = false}, duration, caster, 1 )
@@ -276,7 +284,7 @@ function modifier_spectre_dimensional_interjection:SpawnEcho( position, tEchoDat
 			end
 		end )
 	else
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( haunt:GetAbsOrigin(), -1, {order = FIND_CLOSEST} ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( haunt:GetAbsOrigin(), haunt:GetAttackRange(), {order = FIND_CLOSEST} ) ) do
 			haunt:SetAttacking( enemy )
 			attackTarget = enemy
 			Timers:CreateTimer(0.5, function()
@@ -305,12 +313,18 @@ function modifier_spectre_dimensional_interjection:SpawnEcho( position, tEchoDat
 	end
 	
 	haunt:AddNewModifier( caster, self, "modifier_spectre_dimensional_interjection_echo", {duration = duration-0.1} )
+	self._echoTable = self._echoTable or {}
+	self._echoTable[haunt] = true
 	return haunt
 end
 
 modifier_spectre_dimensional_interjection_echo = class({})
-LinkLuaModifier( "modifier_spectre_dimensional_interjection_echo", "heroes/hero_spectre/modifier_spectre_dimensional_interjection.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_spectre_dimensional_interjection_echo", "heroes/hero_spectre/spectre_dimensional_interjection.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_spectre_dimensional_interjection_echo:OnDestroy()
+	if IsClient() then return end
+	self:GetAbility()._echoTable[self:GetParent()] = nil
+end
 function modifier_spectre_dimensional_interjection_echo:IsHidden()
 	return true
 end

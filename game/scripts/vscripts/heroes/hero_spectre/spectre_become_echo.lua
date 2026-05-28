@@ -1,5 +1,14 @@
 spectre_become_echo = class({})
 
+function spectre_become_echo:Spawn()
+	if IsClient() then return end
+	self:SetActivated( true )
+	self:SetLevel( 1 )
+end
+
+function spectre_become_echo:ProcsMagicStick()
+	return false
+end
 
 function spectre_become_echo:OnSpellStart()
 	local caster = self:GetCaster()
@@ -7,21 +16,16 @@ function spectre_become_echo:OnSpellStart()
 	
 	local distance = 999999
 	local target
-	for i = #self.livingIllusions, 1, -1 do
-		local illusionIndex = self.livingIllusions[i]
-		local illusion = EntIndexToHScript( illusionIndex )
-		if not illusion or illusion:IsNull() or not illusion:IsAlive() then
-			table.remove( self.livingIllusions, i )
-		end
-	end
-	for _, illusionIndex in ipairs( self.livingIllusions ) do
-		local illusion = EntIndexToHScript( illusionIndex )
-		if illusion then
-			local calcDist = CalculateDistance( illusion, position )
-			if illusion:IsAlive( ) and calcDist < distance then
-				target = illusion
+	
+	for echo, _ in pairs( caster:GetEchoes() ) do
+		if IsEntitySafe( echo ) then
+			local calcDist = CalculateDistance( echo, position )
+			if echo:IsAlive( ) and calcDist < distance then
+				target = echo
 				distance = calcDist
 			end
+		else
+			caster:GetEchoes()[echo] = nil
 		end
 	end
 	if target then
@@ -35,8 +39,6 @@ function spectre_become_echo:OnSpellStart()
 		caster:StartGesture( ACT_DOTA_TELEPORT_END )
 		
 		FindClearSpaceForUnit(caster, targetPosition, true)
-		FindClearSpaceForUnit(target, casterPosition, true)
-	else
-		self:SetActivated( false )
+		target:ForceKill( false )
 	end
 end

@@ -2438,6 +2438,7 @@
 			"spectre_realm_cutter"		"BASIC"
 			"spectre_lonely_death"		"BASIC"
 			"spectre_mercurial_form"	"BASIC"
+			"spectre_echo_step"			"BASIC"
 			"spectre_fracture_self"		"ULTIMATE"
 			"spectre_eldritch_horror"	"ULTIMATE"
 		}

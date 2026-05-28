@@ -1,26 +1,15 @@
 spectre_fracture_self = class({})
 
-function spectre_fracture_self:GetCooldown( iLvl )
-	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_spectre_haunt_2", "cd")
-end
-
-function spectre_fracture_self:OnUpgrade( )
-	local caster = self:GetCaster()
-	local reality = caster:FindAbilityByName("spectre_reality_bh")
-	if reality and reality:GetLevel() == 0 then
-		reality:SetLevel( 1 )
-		reality:SetActivated( false )
-		reality.livingIllusions = {}
-	end
-end
-
 function spectre_fracture_self:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetSpecialValueFor("duration")
+	local bonus_damage_dealt = self:GetSpecialValueFor("illusion_damage_outgoing")
+	local bonus_damage_taken = self:GetSpecialValueFor("illusion_total_damage_incoming")
+	local cast_spells = self:GetSpecialValueFor("cast_spells") == 1
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		if not enemy:IsMinion() then
-			self:SpawnHauntIllusion( enemy, duration )
+			caster:CreateEcho( enemy, {bonus_duration = duration, bonus_damage_dealt = bonus_damage_dealt, bonus_damage_taken = bonus_damage_taken, cast_spells = cast_spells} )
 			EmitSoundOn( "Hero_Spectre.Haunt", enemy )
 		end
 		enemy:AddNewModifier( caster, self, "modifier_spectre_haunt_darkness", {duration} )

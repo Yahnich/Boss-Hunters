@@ -16,7 +16,8 @@ function modifier_spectre_lonely_death:OnRefresh()
 	self.solo_damage = self:GetSpecialValueFor("bonus_damage_solo")
 	self.radius = self:GetSpecialValueFor("radius")
 	
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_spectre_desolate_2")
+	self.shadow_path_solo = self:GetSpecialValueFor("shadow_path_solo") == 1
+	self.paralyze_duration = self:GetSpecialValueFor("paralyze_duration")
 end
 
 function modifier_spectre_lonely_death:DeclareFunctions()
@@ -27,8 +28,7 @@ function modifier_spectre_lonely_death:GetModifierProcAttack_BonusDamage_Pure(pa
 	if params.attacker == self:GetParent() then
 		local damage = self.solo_damage
 		local solo = true
-		print( self.talent2, params.target:HasModifier("modifier_spectre_spectral_dagger_bh") )
-		if not ( self.talent2 and params.target:HasModifier("modifier_spectre_spectral_dagger_bh") ) then
+		if not ( self.shadow_path_solo and params.attacker:HasModifier("modifier_spectre_dimensional_interjection_shadow_path") ) then
 			for _, ally in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius) ) do
 				if params.target ~= ally then
 					damage = self.damage
@@ -45,10 +45,10 @@ function modifier_spectre_lonely_death:GetModifierProcAttack_BonusDamage_Pure(pa
 			ParticleManager:SetParticleControlForward( hitFX, 0, vDir )
 			ParticleManager:ReleaseParticleIndex( hitFX )
 		end
-		if params.attacker:HasTalent("special_bonus_unique_spectre_desolate_1") then
-			params.target:Paralyze(self:GetAbility(), params.attacker, params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_1"))
+		if self.paralyze_duration > 0 then
+			params.target:Paralyze(self:GetAbility(), params.attacker, self.paralyze_duration)
 		end
-		return damage -- self:GetAbility():DealDamage( params.attacker, params.target, damage )
+		return damage
 	end
 end
 
