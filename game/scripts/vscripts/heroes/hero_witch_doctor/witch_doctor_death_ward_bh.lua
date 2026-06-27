@@ -140,7 +140,7 @@ function modifier_death_ward_handling:OnCreated()
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1")
 	self.talent1Bounces = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_death_ward_1")
 	if IsServer() then
-		self:StartIntervalThink( self:GetParent():GetBaseAttackTime() )
+		self:StartIntervalThink( self:GetParent():GetBaseAttackTime( false ) )
 	end
 end
 

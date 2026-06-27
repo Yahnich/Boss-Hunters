@@ -53,7 +53,7 @@ function  boss_aeon_sins_of_the_past:ConjureImage( target )
 	
 	illusion:SetAverageBaseDamage( target:GetAverageBaseDamage(), 15 )
 	illusion:SetPhysicalArmorBaseValue( target:GetPhysicalArmorValue(false) )
-	illusion:SetBaseAttackTime( target:GetBaseAttackTime() )
+	illusion:SetBaseAttackTime( target:GetBaseAttackTime( false ) )
 	illusion:SetBaseMoveSpeed( target:GetBaseMoveSpeed() )
 	
 	illusion:SetOriginalModel( target:GetModelName() )

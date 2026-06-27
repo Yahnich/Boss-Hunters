@@ -39,7 +39,6 @@ function modifier_spectre_realm_cutter_path:OnCreated()
 	end
 end
 
-
 function modifier_spectre_realm_cutter_path:OnIntervalThink()
 	local caster = self:GetCaster()
 	caster:CreateShadowPath( self:GetParent():GetAbsOrigin(), {ability = self:GetAbility()} )

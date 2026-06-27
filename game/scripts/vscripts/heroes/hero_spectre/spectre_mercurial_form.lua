@@ -79,10 +79,9 @@ function modifier_spectre_mercurial_form_buff:GetModifierIncomingDamage_Percenta
 						end
 					end
 				end
-				
 				ability:DealDamage( caster, unit, dmg*dmgmod, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION} )
 				
-				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_mercurial_form.vpcf",PATTACH_POINT_FOLLOW,unit)
+				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf",PATTACH_POINT_FOLLOW,unit)
 				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 				ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(particle)
@@ -98,14 +97,6 @@ end
 
 modifier_spectre_mercurial_form_aura = class(modifier_spectre_mercurial_form_buff)
 LinkLuaModifier( "modifier_spectre_mercurial_form_aura", "heroes/hero_spectre/spectre_mercurial_form.lua" ,LUA_MODIFIER_MOTION_NONE )
-
-function modifier_spectre_mercurial_form_aura:OnCreated()
-	self.radius = self:GetSpecialValueFor("aura_radius")
-end
-
-function modifier_spectre_mercurial_form_aura:OnRefresh()
-end
-
 --------------------------------------------------------------------------------
 
 function modifier_spectre_mercurial_form_aura:IsAura()

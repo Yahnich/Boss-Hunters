@@ -13,11 +13,13 @@ end
 
 function modifier_spectre_lonely_death:OnRefresh()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
-	self.solo_damage = self:GetSpecialValueFor("bonus_damage_solo")
+	self.solo_multiplier = self:GetSpecialValueFor("solo_multiplier")
 	self.radius = self:GetSpecialValueFor("radius")
 	
 	self.shadow_path_solo = self:GetSpecialValueFor("shadow_path_solo") == 1
 	self.paralyze_duration = self:GetSpecialValueFor("paralyze_duration")
+	
+	print( self.solo_multiplier, self.damage )
 end
 
 function modifier_spectre_lonely_death:DeclareFunctions()
@@ -26,18 +28,18 @@ end
 
 function modifier_spectre_lonely_death:GetModifierProcAttack_BonusDamage_Pure(params)
 	if params.attacker == self:GetParent() then
-		local damage = self.solo_damage
+		local damage = self.damage
 		local solo = true
 		if not ( self.shadow_path_solo and params.attacker:HasModifier("modifier_spectre_dimensional_interjection_shadow_path") ) then
 			for _, ally in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius) ) do
 				if params.target ~= ally then
-					damage = self.damage
 					solo = false
 					break
 				end
 			end
 		end
 		if solo then
+			damage = damage * self.solo_multiplier
 			params.target:EmitSound("Hero_Spectre.Desolate")
 			local vDir = CalculateDirection( params.target, params.attacker )
 			local hitFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_desolate.vpcf", PATTACH_ABSORIGIN, params.target)

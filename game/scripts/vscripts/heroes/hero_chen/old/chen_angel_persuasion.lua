@@ -41,7 +41,7 @@ function chen_angel_persuasion:SummonAngel(name, health, damage)
 	angel1:SetBaseDamageMax(ad)
 	angel1:SetBaseDamageMin(ad)
 	angel1:SetPhysicalArmorBaseValue(caster:GetPhysicalArmorValue(false))
-	angel1:SetBaseAttackTime(caster:GetBaseAttackTime())
+	angel1:SetBaseAttackTime(caster:GetBaseAttackTime( false ))
 
 	return angel1
 end

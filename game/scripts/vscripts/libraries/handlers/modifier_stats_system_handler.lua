@@ -444,8 +444,8 @@ end
 function modifier_stats_system_handler:GetModifierBaseAttackTimeConstant()
 	if self.requestingBaseAttackTimeData then return end
 	self.requestingBaseAttackTimeData = true
-	local baseAttackTimeOriginal = self:GetParent():GetBaseAttackTime()
-	local baseAttackTime = self:GetParent():GetBaseAttackTime()
+	local baseAttackTimeOriginal = self:GetParent():GetBaseAttackTime( false )
+	local baseAttackTime = self:GetParent():GetBaseAttackTime( false )
 	local baseAttackTimeModifier = 0
 	self.requestingBaseAttackTimeData = false
 	local maxPriority = 0

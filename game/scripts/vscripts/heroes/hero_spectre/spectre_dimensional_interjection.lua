@@ -11,7 +11,7 @@ end
 function spectre_dimensional_interjection:Spawn()
 	self:GetCaster()._dimensionalInterjunction = self
 	self._echoTable = {}
-	self:GetCaster().CreateEcho = function( self, position, echoData ) self._dimensionalInterjunction:CreateEcho( position, echoData ) end
+	self:GetCaster().CreateEcho = function( self, position, echoData ) return self._dimensionalInterjunction:CreateEcho( position, echoData ) end
 	self:GetCaster().GetEchoes = function( self, position, echoData ) return #self._dimensionalInterjunction._echoTable end
 	self:GetCaster().LaunchShadowPath = function( self, position, pathData ) self._dimensionalInterjunction:LaunchShadowPath( position, pathData ) end
 	self:GetCaster().CreateShadowPath = function( self, position, pathData ) self._dimensionalInterjunction:CreateShadowPath( position, pathData ) end

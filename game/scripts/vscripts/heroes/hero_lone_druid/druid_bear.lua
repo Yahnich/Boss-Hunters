@@ -73,7 +73,7 @@ function druid_bear:BearStats(unit)
 	local armor = 3 + caster:GetLevel() / 4
 	unit:SetThreat(0)
 	
-	local bat = caster:GetBaseAttackTime()
+	local bat = caster:GetBaseAttackTime( false )
 	local ms = 340 + caster:GetLevel() * 2
 	--unit:SetForwardVector(caster:GetForwardVector())
 	local health = baseHealth + hpScaling * (caster:GetLevel() - 1)

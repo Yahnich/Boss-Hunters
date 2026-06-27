@@ -26,8 +26,9 @@
 			
 			"bonus_poison_damage"
 			{
-				"value"							"10"
+				"value"							"1.9"
 				"CalculateAttackDamageTooltip"	"1"
+				"hero_levelup"					"0.1"
 			}
 			"hits_to_proc_bonus"				"4"
 			"proc_lifesteal"					{"special_bonus_facet_venomancer_toxicologist"		"50"}
@@ -75,9 +76,9 @@
 				"value"												"15.0"
 				"is_debuff_duration"								"1"
 			}
-			"strike_damage"			
+			"strike_damage"
 			{
-				"value"												"25 50 75 100"
+				"value"												"25"
 				"hero_levelup"										"+3"
 				"CalculateSpellDamageTooltip"						"1"
 			}
@@ -86,7 +87,7 @@
 				"special_bonus_unique_venomancer_venomous_gale_1"	"10"
 				"CalculateSpellDamageTooltip"						"1"
 			}
-			"tick_damage"											"5 10 15 20"
+			"tick_damage"											"5"
 			"movement_slow"											"40 50 60 70"
 			"radius"				
 			{
@@ -110,6 +111,39 @@
 			{
 				"special_bonus_facet_venomancer_toxicologist"		"1.5 2.0 2.5 3.0"
 				"is_debuff_duration"								"1"
+			}
+		}
+		
+		"AbilityPerks"
+		{
+			"venomancer_spit_venom_potent_toxins"
+			{
+				"armor_loss_per_sec"						"=1"
+			}
+			"special_bonus_major_big_boom"
+			{
+				"damage"									"+40"
+				"damage_per_sec"							"+40"
+				"linger_duration"							"+2"
+			}
+			"special_bonus_major_defensive_solution"
+			{
+				"panacea_heal"								"=50"
+				"panacea_armor"								"=100"
+			}
+			"special_bonus_major_sticky_infusion"
+			{
+				"alkahest_duration"							"=6"
+			}
+			"special_bonus_major_mass_manufacturing"
+			{
+				"AbilityCooldown"							"-8"
+				"AbilityManaCost"							"-50"
+			}
+			"special_bonus_major_distilled_power"
+			{
+				"armor_reduction"							"-3"
+				"duration"									"+5"
 			}
 		}
 	}
@@ -137,11 +171,12 @@
 		{
 			"duration"															
 			{
-				"value"											"6 9 12 15"
+				"value"											"6"
+				"hero_levelup"									"0.2"
 				"is_debuff_duration"							"1"
 			}
 			"damage"											"1"
-			"movement_speed"									"8 10 12 14"
+			"movement_speed"									"8"
 			"attack_speed"										{"special_bonus_facet_venomancer_toxicologist"	"=8 =10 =12 =14"}
 			"bonus_poison_slow"									{"special_bonus_facet_venomancer_toxicologist"	"1"}
 			"kills_refresh_cds"									{"special_bonus_facet_venomancer_plague_bringer"	"1"}

@@ -111,6 +111,7 @@ function AbilityManager:ProcessHeroPerkSelection( userid, event )
 	end
 	
 	hero:UpgradeAbility( ability )
+	ability:RefreshIntrinsicModifier()
 	
 	hero:RefreshStats()
 	
@@ -147,21 +148,25 @@ function AbilityManager:ProcessAbilityPerks( ability, hero )
 	for perkName, perkData in pairs( abilityPerks ) do
 		ability._majorPerks[perkName] = {}
 		for specialKey, specialValue in pairs( perkData ) do
+			local targetAbility = ability
 			local actualSpecialValue = specialValue
 			local levelValue = 0
 			if type(specialValue) == "table" then
 				actualSpecialValue = specialValue.value
 				levelValue = tonumber(specialValue.hero_levelup)
+				if specialValue.targets_ability then
+					targetAbility = hero:FindAbilityByName( specialValue.targets_ability ) or targetAbility
+				end
 			end
-			ability._majorPerks[perkName][specialKey] = {}
-			ability._majorPerks[perkName][specialKey].perkValue = string.match( actualSpecialValue, "(%d*%.?%d+)" )
-			ability._majorPerks[perkName][specialKey].perkLevelupValue = levelValue
+			targetAbility._majorPerks[perkName][specialKey] = {}
+			targetAbility._majorPerks[perkName][specialKey].perkValue = string.match( actualSpecialValue, "(%d*%.?%d+)" )
+			targetAbility._majorPerks[perkName][specialKey].perkLevelupValue = levelValue
 			local setType = string.sub( actualSpecialValue, 1, 1)
 			if string.match( setType, "%d+" ) then setType = "+" end -- default is addition
-			ability._majorPerks[perkName][specialKey].perkSettingType = setType
+			targetAbility._majorPerks[perkName][specialKey].perkSettingType = setType
 			local setFunc = string.sub( actualSpecialValue, -1)
 			if string.match( setFunc, "%d+" ) then setFunc = " " end -- default is no function
-			ability._majorPerks[perkName][specialKey].perkSettingFunction = setFunc
+			targetAbility._majorPerks[perkName][specialKey].perkSettingFunction = setFunc
 		end
 	end
 end

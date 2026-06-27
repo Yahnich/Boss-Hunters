@@ -205,8 +205,12 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_echo_step"
 		"AbilityTextureName"			"spectre_shadow_step"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Spectre.Desolate"
 		"MaxLevel"						"4"
@@ -219,19 +223,23 @@
 			"AbilityCooldown"					"24"
 			"AbilityManaCost"					"60"
 			"AbilityCastRange"					"825"
-			"duration"							"5.0"
+			"duration"							"6.0"
 			
 			"move_speed"						"900"
 			"bonus_move_speed_illusion_pct"		"35"
 			
-			"reality_swaps"						"0"
 			"shadow_path_walk"					"0"
+			"bonus_damage"						"0"
 		}
 		"AbilityPerks"
 		{
 			"special_bonus_major_everywhere_all_at_once"
 			{
-				"reality_swaps"							"=1"
+				"reality_swaps"
+				{
+					"targets_ability"					"spectre_become_echo"
+					"value"								"=1"
+				}
 				"AbilityCastRange"						"+375"
 			}
 			"special_bonus_major_rift_walker"
@@ -241,11 +249,12 @@
 			"special_bonus_major_ripples_in_space"
 			{
 				"duration"								"+3"
-				"move_speed"							"+400"
+				"bonus_move_speed_illusion_pct"			"+35"
 			}
 			"special_bonus_major_dimensionbreaker"
 			{
 				"shadow_path_walk"						"=1"
+				"bonus_damage"							"25"
 			}
 		}
 	}
@@ -316,6 +325,11 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"0"
+		
+		"AbilityValues"
+		{
+			"reality_swaps"						"0"
+		}
 	}
 	//=================================================================================================================
 	// Spectre: Haunt
@@ -397,70 +411,43 @@
 		
 		"AbilityTextureName"			"spawnlord_master_stomp"
 		"AbilityCastRange"				"1000"
-		"MaxLevel"						"3"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"MaxLevel"						"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
 
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"				
-			{
-				"value"					"825 950 1075 1200"
-			}
-			"duration"					
-			{
-				"value"							"3.5 4.0 4.5 5.0"
-				"special_bonus_unique_spectre_shadow_step_duration"	"+1.0"
-			}	
-			"illusion_damage_incoming"	"100 85 70 55"
-			"tooltip_illusion_total_damage_incoming"
-			{
-				"value"					"200 185 170 155"
-
-				// "damage" in attribute name but it's a percentage-based effect
-				"CalculateSpellDamageTooltip"	"0"
-				"DamageTypeTooltip"	"DAMAGE_TYPE_NONE"
-			}
-			"illusion_outgoing_damage"	
-			{
-				"value" 							"35 40 45 50"
-				"CalculateSpellDamageTooltip"		"0"
-				"DamageTypeTooltip"					"DAMAGE_TYPE_PHYSICAL"
-			}
+			"AbilityCooldown"							"60"
+			"AbilityManaCost"							"150"
 			
-			"move_speed"						"900"
-			"bonus_move_speed_illusion_pct"		"35"
+			"duration"									"4"
+			"slow"										"50"
+			"damage"									"200"
+			"radius"									"400"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_major_everywhere_all_at_once"
+			"special_bonus_major_tendrils_from_beyond"
 			{
-				"reality_swaps"							"=1"
+				"radius"								"400"
 			}
-			"special_bonus_major_embrace_the_shattered_self"
+			"special_bonus_major_stupefy_in_fear"
 			{
-				"AbilityCooldown"						"-30"
+				"stuns"									"1"
 			}
-			"special_bonus_major_ripples_in_space"
+			"special_bonus_major_a_veil_torn"
 			{
-				"illusion_damage_outgoing"				"+30"
-				"illusion_total_damage_incoming"		"-50"
+				"AbilityCooldown"						"-50%"
+				"AbilityManaCost"						"-50%"
 			}
-			"special_bonus_major_haunted_vistas"
+			"special_bonus_major_worse_than_death"
 			{
 				"duration"								"+2.0"
 			}
